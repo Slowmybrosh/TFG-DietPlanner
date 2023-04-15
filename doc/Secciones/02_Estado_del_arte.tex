@@ -1,33 +1,30 @@
 \chapter{Estado del arte}
-Después de una exhaustiva investigación en este campo, se han encontrado multitud de aplicaciones que te ayudan a gestionar tu dieta o bien para encontrar recetas que contengan los ingredientes que se encuentran en tu nevera. Cabe destacar que no se ha encontrado ninguna aplicación que permita crear una dieta dinámicamente adaptando los ingredientes de una receta a las alergias o intolerancias del usuario.
+Después de una investigación inicial en este campo buscando en diversos blogs de nutrición como \href{https://www.healthline.com/nutrition/best-meal-planning-apps#6.-MyFoodMyHealth}{\emph{HealthLine}} y revistas como \href{https://www.businessinsider.es/mejores-apps-dieta-nutricion-gratis-877177}{\emph{Bussines Insider}} y \href{https://www.theguardian.com/technology/2016/jun/02/10-best-cookery-apps-iphone-ipad-android}{\emph{The Guardian}}. Dónde se habla de aplicaciones que permiten desde desarrollar una dieta utilizando recetas publicadas por la comunidad o simplemente con los ingredientes que tenemos en nuestro frigorífico. 
 
-En dicha investigación se ha encontrado una herramienta muy interesante orientada a profesionales, denominada \emph{Diet Creator}, que permite crear dietas controlando multitud de parámetros. Esta cuenta con algunas funcionalidades interesantes como la creación de dietas de manera totalmente online sin tener que realizarla en una consulta tradicional o un informe detallado del expediente del paciente a lo largo del tiempo.
+Una de las más interesantes de las que se trata es \href{https://www.yummly.com}{\emph{Yummly}}, una aplicación disponible tanto en \emph{iOS} como en \emph{Android} que se adapta a las necesidades individuales de cada persona, incluyendo intolerancias alimentarias \cite{TheGuardian2016}. Esta ofrece un plan gratuito que permite buscar recetas, recomendaciones personalizadas, una lista de la compra. Además cuenta con un plan de pago que cuesta 4,99\$/mes, que incluye la creación de dietas personalizadas, información nutricional de las recetas, un motor de búsqueda por ingredientes que permite filtrar por ingredientes, alergias o tipo de dieta. Pero, desafortunadamente, no está disponible en España. 
 
-Otra de las aplicaciones más interesantes que se encontraron fue \href{https://www.eatthismuch.com/}{EatThisMuch}.Esta es una aplicación web, también disponible para Android e IOS, que permite generar una dieta de manera automática basándose en:
+Una aplicación quizá más conocida es \href{https://cookpad.com/es/home}{\emph{Cookpad}}, esta es una de las aplicaciones más descargadas de \emph{Apple Store} y \emph{Google Play} en la sección de cocina. Una de sus características principales es su comunidad, donde es posible compartir recetas y fotos de tus creaciones. Es posible usar esta aplicación de manera gratuita pero cuenta con algunas limitaciones. Por otra parte, la versión pro cuesta 2,99\$/mes y entre las funcionalidades que ofrece se encuentran planes de menús semanales elaborados por nutricionistas.
+
+Otra de las aplicaciones más interesantes que se encontraron fue \href{https://www.eatthismuch.com/}{EatThisMuch}.Esta es una aplicación web, también disponible para \emp{Android} e \emph{iOS}, que permite generar una dieta de manera automática basándose en:
 \begin{itemize}
     \item Las calorías que se quieren ingerir al día.
     \item El número de comidas que se desea realizar.
     \item El tipo de dieta que se quiere generar.
 \end{itemize}
-Esta es una aplicación gratuita abierta al usuario, al generar la dieta es posible cambiar el plato aleatoriamente entre los que se recomiendan. Pero, el principal problema se basa en que la personalización de la dieta es muy general, sin tener en cuenta las intolerancias del usuario.
+\emph{Eat This Much} tiene una versión gratuita abierta al usuario. Al generar la dieta es posible cambiar el plato aleatoriamente entre los que se recomiendan. Pero, el principal problema se basa en que la personalización de la dieta es muy general, sin tener en cuenta las intolerancias del usuario. De la misma manera, ofrecen una suscripción orientada a profesionales y entrenadores permitiendo que estos recomienden generen las dietas a sus clientes de manera totalmente personalizada. Esta suscripción cuesta 79,00\$/mes y solo incluye servicio para diez clientes, cada cliente extra costará 4\$/mes. 
 
-En un apartado más técnico, el problema al que nos enfrentamos para la creación de una dieta es el muy conocido ``problema de la mochila"\cite{mochila}. Se trata de un problema de optimización combinatoria, ideado en 1972 por \href{https://es.wikipedia.org/wiki/Richard_Karp}{Richard Karp}, que aborda la la pregunta de cómo llenar una mochila de objetos con diferente valor y peso. El objetivo final es llenar la mochila intentando maximizar el valor total sin exceder la capacidad de la misma. Este problema es muy importante a la hora de idear desde una planificación logística hasta una planificación de tareas en sistemas de inteligencia artificial. 
+La última aplicación de la que se hablará es \href{https://happyforks.com/}{\emph{HappyForks}}, que se trata de una herramienta que permite monitorizar una gran cantidad de valores nutricionales. Contando con una gran cantidad de utilidades para controlar una dieta ajustándose a las necesidades del usuario y una gran base de datos llena de recetas. Una de las utilidades que ofrecen permite analizar recetas y productos mostrando los ingredientes para no causar alergias al usuario. 
 
-Por otra parte, otro de los pilares fundamentales de la aplicación que se plantea desarrollar son las bases de datos. Este término se escuchó por primera vez en 1963. Su definición, por aquel entonces, fue ``un conjunto de información relacionada o agrupada''\cite{definition-database}. Existen antiguos papiros que contienen información sobre las cosechas, no es hasta 1884 que \href{https://es.wikipedia.org/wiki/Herman_Hollerith}{Herman Hollerith} inventa el tabulador electromagnético de tarjetas perforadas, permitiendo así guardar información resumida. Pero no fue hasta los años 60 que comenzó la idea de almacenar información en forma de grafos. Pero la primera base de datos en forma de grafo se desarrolló en 1990. Una de las herramientas para trabajar con grafos de este tipo es \href{https://aws.amazon.com/es/neptune/features/}{\emph{Amazon Neptune}}. La principal ventaja de \emph{Amazon Neptune} es su alto rendimiento en consultas SQL complejas y su gran disponibilidad.  
+La aplicación que se busca desarrollar, tiene como objetivo llegar al usuario final. Permitiendo así que cualquier persona pueda generar una dieta adaptada a sus necesidades. Por ello, se venderá un producto final bajo suscripción, cuya mensualidad vaya acorde a los gastos del desarrollo del software y el mantenimiento de la infraestructura en la nube, teniendo en cuenta un porcentaje para que haya un margen de beneficios.
 
-En este tipo de estructuras es muy sencillo visualizar las conexiones entre los datos, dependiendo de la manera en que se agrupen o su relación. Además, permiten el análisis con el objetivo de descubrir patrones en redes sociales, Big data, almacenes de datos, etc... Por otra parte, las consultas se pueden llegar a resolver en una fracción de segundo, añadiendo simplicidad en el análisis y aprendizaje automático. 
+En un apartado más técnico, el problema al que nos enfrentamos para la creación de una dieta es el muy conocido ``problema de la mochila", listado en los ``21 problemas NP-Completos de Richard Karp". Si el lector no conoce este problema, imagine a un autoestopista que viaja ligero de equipaje. Este tiene que elegir entre un número considerable de objetos que meter en su mochila. Debe tener en cuenta el tamaño \emph{w} del objeto \emph{j}, el espacio de la mochila \emph{c} y la utilidad \emph{p}. Al vector de objetos seleccionados se conoce como \emph{x}. Se tiene que cumplir la restricción
+\begin{equation}
+    \sum_{j=1}^{n}w_{j}x_{j} \leq c,
+\end{equation}
+y maximizar la función
+\begin{equation}
+    \sum_{j=1}^{n}p_{j}x_{j}.
+\end{equation}
 
-Debido a la gran cantidad de lenguajes de programación, se debe escoger cuidadosamente cual utilizar. Algunos de los lenguajes que se recomiendan \cite{known-lan} para aplicaciones en la nube son: 
-\begin{itemize}
-    \item JavaScript
-    \item Python
-    \item Rust
-    \item Go
-    \item NodeJS
-\end{itemize}
-Es obvio que cada uno tiene sus ventajas y sus desventajas. Por ejemplo, \emph{JavaScript} está orientado a clientes web, consiguiendo una gran compatibilidad con numerosos dispositivos. \emph{Go}, también conocido como \emph{GoLang}, tiene una sintaxis muy similar a C pero permitiendo utilizar recursos de un servidor para compilar los binarios del programa. Tanto \emph{Docker} como \emph{Kubernetes} están escritos en \emph{Go}. \emph{Python}, por otra parte, es muy popular entre desarrolladores por su simplicidad. Además, es de los lenguajes más usados en el campo de la inteligencia artificial y análisis de datos. Siendo este último el lenguaje elegido para el desarrollo de la aplicación. 
-
-
-
-
+Este tipo de problemas han sido estudiados muy de cerca, tanto teórica como prácticamente. Desde el punto de vista teórico despierta interés debido a la simplicidad que permite hacer uso de una serie de propiedades combinatorias y, por otra parte, la resolución de problemas complejos subdividiéndolos en el problema tipo que se describe. En la práctica este se puede utilizar en muchas situaciones. Desde Optimizar la carga de un barco hasta planear un presupuesto capital. \cite{martello1990knapsack}
 
