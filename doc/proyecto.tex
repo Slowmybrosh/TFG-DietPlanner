@@ -8,6 +8,14 @@
 %\usepackage{titlesec}
 %\usepackage{pailatino}
 
+%\usepackage[
+%backend=biber,
+%style=alphabetic,
+%sorting=ynt
+%]{biblatex}
+\usepackage{biblatex}
+\addbibresource{bibliografia.bib}
+
 \decimalpoint
 \usepackage{dcolumn}
 \newcolumntype{.}{D{.}{\esperiod}{-1}}
@@ -200,8 +208,8 @@ pdfproducer = {pdflatex}
 %%\chapter{Conclusiones y Trabajos Futuros}
 %
 %
-%%\nocite{*}
-%\bibliography{bibliografia/bibliografia}\addcontentsline{toc}{chapter}{Bibliografía}
+\nocite{*}
+%\bibliography{bibliografia.bib}\addcontentsline{toc}{chapter}{Bibliografía}
 %\bibliographystyle{miunsrturl}
 %
 %\appendix
