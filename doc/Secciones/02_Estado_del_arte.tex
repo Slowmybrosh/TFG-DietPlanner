@@ -1,5 +1,5 @@
 \chapter{Estado del arte}
-Después de una investigación inicial en este campo buscando en diversos blogs de nutrición como \emph{HealthLine}\cite{Healthline2022} y revistas como \emph{Bussines Insider}\cite{BusinessInsider2021} y \emph{The Guardian}. Dónde se habla de aplicaciones que permiten desde desarrollar una dieta utilizando recetas publicadas por la comunidad o simplemente con los ingredientes que tenemos en nuestro frigorífico. 
+Después de una investigación inicial en este campo buscando en diversos blogs de nutrición como \emph{HealthLine}\cite{Healthline2022} y revistas como \emph{Bussines Insider}\cite{BusinessInsider2021} y \emph{The Guardian}, donde se habla de aplicaciones que permiten desde desarrollar una dieta utilizando recetas publicadas por la comunidad o simplemente con los ingredientes que tenemos en nuestro frigorífico. 
 
 Una de las más interesantes de las que se trata es \href{https://www.yummly.com}{\emph{Yummly}}, una aplicación disponible tanto en \emph{iOS} como en \emph{Android} que se adapta a las necesidades individuales de cada persona, incluyendo intolerancias alimentarias \cite{TheGuardian2016}. Esta ofrece un plan gratuito que permite buscar recetas, recomendaciones personalizadas, una lista de la compra. Además cuenta con un plan de pago que cuesta 4,99\$/mes, que incluye la creación de dietas personalizadas, información nutricional de las recetas, un motor de búsqueda por ingredientes que permite filtrar por ingredientes, alergias o tipo de dieta. Pero, desafortunadamente, no está disponible en España. 
 
@@ -15,16 +15,52 @@ Otra de las aplicaciones más interesantes que se encontraron fue \href{https://
 
 La última aplicación de la que se hablará es \href{https://happyforks.com/}{\emph{HappyForks}}, que se trata de una herramienta que permite monitorizar una gran cantidad de valores nutricionales. Contando con una gran cantidad de utilidades para controlar una dieta ajustándose a las necesidades del usuario y una gran base de datos llena de recetas. Una de las utilidades que ofrecen permite analizar recetas y productos mostrando los ingredientes para no causar alergias al usuario. 
 
-El software que se busca desarrollar, tiene como objetivo llegar al usuario final. Permitiendo así que cualquier persona pueda generar una dieta adaptada a sus necesidades. Por ello, se venderá un producto final bajo suscripción, cuya mensualidad vaya acorde a los gastos del desarrollo del software y el mantenimiento de la infraestructura en la nube, teniendo en cuenta un porcentaje para que haya un margen de beneficios.
+El GED indica la cantidad de calorías que un individuo debe consumir para abastecer los requerimientos energéticos. Si el gasto corresponde a la ingesta de alimentos, mantendrá su peso. De lo contrario, si la ingesta supera al requerimiento, ganará peso. El gasto energético no solo corresponde a actividades fisiológicas, sino que también depende de las actividades físicas que desarrolle el individuo. Se deben tener en cuenta los siguientes mecanismos: 
+\begin{itemize}
+    \item Metabolismo basal
+    \item Actividad dinámica específica de los alimentos
+    \item Termogénesis inducida por el ejercicio
+\end{itemize}
 
-En un apartado más técnico, el problema al que nos enfrentamos para la creación de una dieta es el muy conocido ``problema de la mochila", listado en los ``21 problemas NP-Completos de Richard Karp". Si el lector no conoce este problema, imagine a un autoestopista que viaja ligero de equipaje. Este tiene que elegir entre un número considerable de objetos que meter en su mochila. Debe tener en cuenta el tamaño \emph{w} del objeto \emph{j}, el espacio de la mochila \emph{c} y la utilidad \emph{p}. Al vector de objetos seleccionados se conoce como \emph{x}. Se tiene que cumplir la restricción
+El metabolismo basal se trata de la cantidad de energía necesaria para realizar los procesos vitales estando en reposo. Una manera de calcularlo es multiplicando 24kcal por el peso del individuo en kilogramos. El resultado sería la cantidad de energía que necesitaría una persona para sobrevivir 24 horas estando completamente en reposo. 
+
+La actividad dinámica específica de los alimentos, se refiere a la cantidad de calorías que quema una persona al masticar digerir y absorber los alimentos. El valor oscila entre un 6\% y un 10\% dependiendo de cuanto se haya ingerido y del gasto energético basal.
+
+Por último, hay que tener en cuenta el consumo de calorías cuando se hace ejercicio, ya que en los esfuerzos físicos se consume gran cantidad de energía. Dependiendo del nivel de actividad del individuo, se consumirán más calorías. 
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{| c | r |}
+            Actividad & Gasto energético \\ \hline
+            Sedentario & 1,2 \\
+            Leve & 1,375 \\
+            Moderada & 1,55 \\
+            Intensa & 1,725 \\
+            Extrema & 1,9 \\ \hline
+        \end{tabular}
+        \caption{Tabla 1: factor de actividad física}
+        \label{tab:FAF}
+    \end{center}
+\end{table}
+
+La fórmula de Harris-Benedict aprovecha los parámetros introducidos anteriormente, además de otros valores individuales como la edad (años), peso (kg), talla (cm), etc... Para calcular el gasto energético en reposo. Se debe tener en cuenta el sexo del individuo \cite{GER}
 \begin{equation}
-    \sum_{j=1}^{n}w_{j}x_{j} \leq c,
+    Varones:GER = 66,5+(13,75*peso)+(5,08*talla)-(6,78*edad)
 \end{equation}
-y maximizar la función
 \begin{equation}
-    \sum_{j=1}^{n}p_{j}x_{j}.
+    Mujeres:GER = 65,51+(9,56*peso)+(1,85*talla)-(4,68*edad)
 \end{equation}
 
-Este tipo de problemas han sido estudiados muy de cerca, tanto teórica como prácticamente. Desde el punto de vista teórico despierta interés debido a la simplicidad que permite hacer uso de una serie de propiedades combinatorias y, por otra parte, la resolución de problemas complejos subdividiéndolos en el problema tipo que se describe. En la práctica este se puede utilizar en muchas situaciones. Desde Optimizar la carga de un barco hasta planear un presupuesto capital. \cite{martello1990knapsack}
+Otra fórmula que permite calcular el GER es la ecuación de Mifflin-St Jeor, desarrollada en 1990, es considerada más precisa que la ecuación Harris-Benedict. También considera el peso (kg), altura (cm), edad (años) y el sexo del individuo \cite{CARRASCO2007}
+\begin{equation}
+    Varones:GER = (10 * peso) + (6.25 * altura) - (5 * edad) + 5
+\end{equation}
+\begin{equation}
+    Mujeres:GER = (10 * peso) + (6.25 * altura) - (5 * edad) - 161
+\end{equation}
 
+Por otra parte, la fórmula de Katch-McArdle solo consta de una ecuacuón tanto para hombres, mujeres, edad y estatura. Esto simplifica el cálculo del metábolismo básal usando solo la cantidad de masa magra. En primer lugar se debe conocer el valor de grasa que tiene el individuo. Si, por ejemplo, tiene un 22\% de grasa entonces consta de un 78\% de masa magra (kg) que se sustituirá en la ecuación \cite{Katch-McArdle}
+\begin{equation}
+    TMB = 370 + (21,6 * masa)
+\end{equation}.
+
+Hay que tener en cuenta que cada fórmula está calculando el gasto energético en reposo, a esto hay que multiplicarle el factor de actividad que se expone en la \autoref{tab:FAF}.
