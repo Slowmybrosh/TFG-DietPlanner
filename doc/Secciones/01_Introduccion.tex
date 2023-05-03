@@ -6,14 +6,23 @@ En la actualidad, debido a una gran concienciación por parte de diferentes orga
 
 Según la \href{https://funsapa.org/alergia-alimentaria/incidencia/}{Fundación de Seguridad Alimentaria (FSA)}, en el mundo existen unas 520 millones de personas con este tipo de problemas alimentarios. Solo en España se estima que entre el 1-3\% de los adultos y un 4-6\% de los niños padecen algún inconveniente al consumir determinados alimentos. Además, debemos diferenciar a las personas con intolerancias alimentarias de las que sufren alergias. Ya que no tienen los mismos efectos aunque a primera vista sean parecidos. Las alergias se producen cuando el sistema inmune entra en contacto con el alérgeno, mientras que las intolerancias están ligadas a la dificultad para digerir determinados alimentos.
 
-Lo que se plantea es crear una aplicación que permita eliminar la carga de planear que comer, permitiendo al usuario crear una dieta completa y totalmente equilibrada adaptada completamente a sus necesidades. Que no solo se ajuste simplemente a un objetivo de calorías especificado, sino que te recomiende las recetas para llevarla a cabo. Además, ajustando la receta para sustituir los ingredientes que puedan provocar algún inconveniente al usuario.
+Lo que se plantea es crear una aplicación que ayude al usuario en la tarea de planear que comer, creando una dieta completa y totalmente equilibrada adaptada completamente a sus necesidades. Que no solo se ajuste simplemente a un objetivo de calorías especificado, sino que te recomiende las recetas para llevarla a cabo. Además, ajustando la receta para sustituir los ingredientes que puedan provocar algún inconveniente al usuario.
 
 \section{Objetivos}
 \begin{enumerate}
-    \item Diseñar e implementar un software que permita a los usuarios la creación de una dieta semanal completamente personalizada basada en una serie de parámetros antropométricos.
-    \begin{itemize}
-        \item Gestionar la dieta semanal, permitiendo generar una dieta completa compuesta de recetas.
-        \item Permitir la sustitución de componentes alergenos en recetas, cambiando dichos ingredientes por similares en la medida de lo posible, teniendo en cuenta la concordancia en la receta.
-    \end{itemize}
-    \item Estudiar y analizar el despliegue de la aplicación. Con la meta de llegar al máximo número de usuarios posible.
+    \item Diseñar e implementar un algoritmo que identifique y sustituya ingredientes en una receta según las intolerancias alimentarias del usuario y mantenga la coherencia de la receta.
+    \begin{enumerate}
+        \item Desarrollar una base de datos de ingredientes y alternativas para los casos de intolerancias alimentarias.
+        \item Implementar una lógica que permita la identificación y sustitución de ingredientes incompatibles con las intolerancias del usuario.
+    \end{enumerate}
+    \item Desarrollar un sistema de gestión de dietas personalizadas que tenga en cuenta las necesidades de cada usuario, incluyendo sus parámetros antropométricos y restricciones alimentarias.
+    \begin{enumerate}
+        \item Implementar la capacidad de crear y almacenar perfiles de usuario con información relevante, como edad, peso, altura e intolerancias alimentarias.
+        \item Diseñar e implementar un algoritmo que genere dietas equilibradas basandose en las necesidades y características individuales del usuario.
+    \end{enumerate}
+    \item Implementar un sistema de gestión de usuarios que permita la creación, autenticación y autorización de usuarios en el software. 
+    \begin{enumerate}
+        \item Diseñar e implementar una base de datos de usuarios con sus respectivas credeniales e información personal. 
+        \item Desarrollar un mecanismo de autenticación y autorización para garantizar la seguriadad y privacidad de los datos de los usuarios.
+    \end{enumerate}
 \end{enumerate}
