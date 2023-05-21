@@ -13,19 +13,15 @@ Cuando hablamos de variedad, nos referimos a la inclusión de alimentos de todos
 
 Además, la proporción adecuada de nutrientes es clave en una dieta equilibrada. Esto implica mantener un equilibrio entre macronutrientes (proteínas, grasas y carbohidratos) y micronutrientes (vitaminas y minerales) adecuado para las necesidades individuales de cada persona.
 
-El objetivo es desarrollar una aplicación orientada a aquellas personas que tienen dificultad para llevar una dieta equilibrada. Esta herramienta permitirá a los usuarios crear dietas semanales personalizadas compuestas de recetas detalladas basadas en sus gustos, obtenidos durante el proceso de registro. Además, se contemplará la posibilidad de sustituir ingredientes problemáticos para aquellos que tengan alguna alergia o intolerancia, por otros igualmente coherentes que sí puedan consumir.
+Es complicado decidir que hacer de comer, especialmente cuando se tienen ingredientes limitados o restricciones dietéticas específicas. Además suele ocurrir que las personas se olvidan de los detalles de una receta o perder la información relevante. por ello objetivo del proyecto es crear un recetario móvil que permita ayudar a las personas a llevar una dieta equilibrada optimizando el uso de los ingredientes en su despensa. En el caso de usuarios que tengan una intolerancia, alergia alimentaria o un tipo de dieta que no permita comer determinados alimentos, permitirá la sustitución coherente de los ingredientes problemáticos en la receta. Además, permitir que los usuarios guarden sus recetas favoritas para acceder rapidamente a ellas, pudiendo añadir notas a la receta para futuras referencias.
+
+\section{User Journey}
+El usuario se entera de la aplicación móvil y la instala, posteriormente debe registrarse creando una nueva cuenta y la configura proporcionando datos relevantes como el tipo de dieta. En este punto, debe ingresar un inventario de todos los ingredientes que se hallen en su despensa. Una vez analizada la despensa del usuario la aplicación presenta una lista de recetas posibles que cumplan los criterios. El usuario debe seleccionar una receta de la lista y proceder con la elaboración de dicha receta. Si es necesario, la aplicación sugiere sustituciones adecuadas para los ingredientes problemáticos o faltantes, teniendo en cuenta las restricciones dietéticas del usuario. Cuando el usuario ha probado el plato, se puede preguntar sobre una calificación para la receta o si quiere guardarla en sus favoritas para futuros usos de la aplicación. 
 
 \section{Objetivos}
 \begin{enumerate}
-    \item Desarrollar un sistema de gestión de dietas personalizadas que tenga en cuenta las necesidades de cada usuario, incluyendo sus parámetros antropométricos y restricciones alimentarias.
-    \begin{enumerate}
-        \item Implementar la capacidad de crear y almacenar perfiles de usuario con información relevante, como edad, peso, altura e intolerancias alimentarias.
-        \item Diseñar e implementar un algoritmo que genere dietas equilibradas basandose en las necesidades y características individuales del usuario.
-        \item Implementar una función que permita a los usuarios reemplazar ingredientes problemáticos por alternativas adecuadas según sus alergias o intolerancias. Manteniendo una coherencia en la receta.
-    \end{enumerate}
-    \item Implementar un sistema de gestión de usuarios que permita la creación, autenticación y autorización de usuarios en el software. 
-    \begin{enumerate}
-        \item Diseñar e implementar una base de datos de usuarios con sus respectivas credeniales e información personal. 
-        \item Desarrollar un mecanismo de autenticación y autorización para garantizar la seguriadad y privacidad de los datos de los usuarios.
-    \end{enumerate}
+    \item Busqueda básica de recetas. El usuario puede buscar recetas usando los ingredientes disponibles en su despensa. Centrandose solo en la búsqueda y no incluyendo preferencias o restricciones dietéticas.
+    \item Inclusión de preferencias dietéticas. Añadir la funcionalidad para que los usuarios puedan guardar sus restricciones dietéticas (intolerancias, alergias, preferencias) y mostrar solo recetas adaptadas a estas necesidades.
+    \item Sustitución de ingredientes. Implementar una característica que permita sugerir sustituciones adecuadas para los ingredientes faltantes en una receta, teniendo en cuenta las restricciones del usuario.
+    \item Historial de recetas y sistema de calificación. Permitir a los usuarios guardar y calificar las recetas que han concinado junto con comentarios o modificaciones para facilitar los futuros usos.
 \end{enumerate}
