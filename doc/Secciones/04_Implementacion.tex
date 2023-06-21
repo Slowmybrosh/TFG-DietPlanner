@@ -1,0 +1,75 @@
+\chapter{Implementación}
+En todo proyecto existen una serie de decisiones que marcan el avance del proyecto. En este capítulo se describirán, detalladamente, las justificaciones de cada decisión que se tome durante el desarrollo del mismo. Otorgando tanto al lector como a cualquier desarrollador que busque continuar este proyecto, un entendimiento de porque se han tomado dichas decisiones.
+
+\section{Plataforma}
+Existen infinidad de plataformas para las que desarrollar software, pero a la hora de comenzar un proyecto debemos preguntarnos a cuál se orientará el software. Muchas de ellas no corresponderán con las características del proyecto, no tendría sentido desarrollar una aplicación de mapas para una televisión inteligente. 
+El primer paso, es plantearse las características que tendrá nuestro software. Para este proyecto se busca que sea versátil y sencillo de utilizar, con lo cual estamos descartando muchas plataformas (relojes inteligentes, coches, televisiones, etc...). Analizaremos aquellas que más se alineen con las propiedades mencionadas: 
+\begin{enumerate}
+    \item Computadora
+    \item Dispositivo móvil
+    \item Plataforma web
+\end{enumerate}
+Los ordenadores cuentan con un mayor espacio de almacenamiento, mejor rendimiento. Desembocando directamente en una mayor capacidad de respuesta. Además existe un estándar en los tamaños de pantallas (y densidad de píxeles) que se utilizan, siendo capaces de adaptar mejor la interfaz de usuario. Aunque existen multitud de sistemas operativos, la mayoría de lenguajes son compatibles con multitud de sistemas. Permitiendo ejecutar la aplicación en diferentes plataformas, pero se debe tener en cuenta la posibilidad de que las llamadas a las \emph{API} de sistema pueden variar de un sistema a otro. Entre las desventajas que se han encontrado para el uso de este tipo de plataforma en el desarrollo del proyecto se hallan la falta de espacio que puede suponer utilizar el computador en la cocina, hasta los portátiles más pequeños pueden ocupar un espacio sustancial orientado a la preparación de la receta. Además, a pesar de que la posesión de un ordenador en el hogar está cada vez más extendida, según las estadísticas recopiladas por el Instituto Nacional de Estadística, solo el 82,9\% de los hogares en España cuenta con uno.
+
+Por otra parte el uso de un dispositivo móvil en los hogares está un poco más extendido, presente en un 99,5\% de los hogares y la mayoría de personas sabe utilizarlo fácilmente.\cite{ontsi2022} Si bien no es tan potente como un ordenador, su uso es mucho más cómodo. Pudiendo dejarlo fácilmente en cualquier rincón de la cocina o en cualquier soporte, como se haría con un libro de cocina. El principal problema es la heterogeneidad de dispositivos que existen, cada uno con una pantalla diferente, la interfaz de usuario se tendría que ajustar correctamente a cada tipo de pantalla. Y no cuenta con la misma compatibilidad que un ordenador, un claro ejemplo es el desarrollo de aplicaciones en los famosos sistemas operativos:\emph{Android} e \emph{iOS}. Los lenguajes nativos de \emph{Android} son: \emph{Java} y \emph{Kotlin}, siendo este último una mejora sustancial del primero, no seremos capaces de ejecutar una aplicación en uno de estos dos lenguajes en un dispositivo que cuente con \emph{iOS} de manera nativa. De la misma manera, no podremos ejecutar una aplicación basada en \emph{Swift}, nativa de \emph{iOS}, en un dispositivo que corra sobre \emph{Android}.
+
+La última considerada es la creación de una plataforma web. Se podría considerar un híbrido entre una plataforma orientada a un ordenador y un dispositivo móvil, contando con ventajas de ambas. En primer lugar, se soluciona el problema de compatibilidad de sistemas operativos ya que se podría hacer una página web a la que acceder con una \emph{API} que acceda al \emph{backend} y todo el procesamiento esté en el lado del servidor. Mostrando al cliente los resultados en un formato web. En el caso de acceder desde un dispositivo móvil sería posible hacer una aplicación que cuente con un \emph{wrapper API} para utilizar el servicio web que se ofrece. Siendo mucho más sencillo hacer compatible la aplicación con varios sistemas operativos. La principal desventaja que se ha encontrado al uso de este tipo de plataforma son los costes derivados de utilizar un servicio ``en la nube'', teniendo no solo que costear el uso de una base de datos donde se almacenen las recetas o el uso de una \emph{API} que proporcione las recetas. Sino que habría que mantener la infraestructura de los servidores que procesan las solicitudes y los costes derivados del desarrollo de las aplicaciones multiplataforma.
+
+La ventaja que decanta la decisión de elegir una plataforma web antes que una móvil se basa en que al usuario le será más sencillo utilizarla. Sin tener que descargar nada. Simplemente entrando a la página web e introduciendo los ingredientes que se quieren gastar de la despensa. Además, se podrá compatibilizar tanto para ordenador como para dispositivos móviles.
+
+
+\section{Framework}
+Un \emph{framework} es una estructura software compuesta de componentes personalizables, existiendo una infinidad. No solo relacionadas con el desarrollo web, sino que también hay \emph{framework} orientados a desarrollo de aplicaciones médicas, desarrollo de videojuegos o para cualquier contexto que se nos ocurra. Dicho en otras palabras, se puede definir como una aplicación incompleta a la que tenemos que añadirle las últimas pinceladas para completar el desarrollo. 
+
+Existen infinidad de \emph{framework web}, en esta sección se justificará la elección de uno concreto. Entre los que se analizaran: 
+\begin{enumerate}
+    \item Angular
+    \item Django
+    \item Laravel
+    \item Flask
+\end{enumerate}
+
+Se comenzará hablando de \emph{Angular}, que se trata de un \emph{framework} escrito en Typescript. Ideal para implementar muchos scripts para diferentes funcionalidades en un sitio web. Empleado sobretodo para crear menús animados. Utilizando un MVC (Modelo-Vista-Controlador). Además, tiene una comunidad muy amplia con mucha documentación. Aunque una queja frecuente es detallado y complejo. 
+
+El segundo \emph{framework} se trata de Django. Con una gran documentación y tutoriales, su curva de aprendizaje es mucho más suave que otros \emph{framework}. Además se cuenta con un poco de experiencia en el desarrollo de una aplicación web usando esta herramienta. Utiliza el MVC y tiene soporte para conexiones de bases de datos relacionales. Aunque, adicionalmente, es posible utilizar \emph{plugins} para conectar con bases de datos no relacionales como MongoDB.
+
+Laravel, por otra parte, es uno de los \emph{framework} más usados. Ofreciendo una estructura bastante moderna con herramientas muy útiles y potentes para crear aplicaciones de alto nivel. 
+
+Flask es un \emph{framework} muy sencillo de aprender pero poco escalable que permite hacer aplicaciones muy simples en poco tiempo. Pero, por experiencia propia, cuenta con mucha menos documentación y recursos que Django.
+
+En conclusión, es cierto que existen muchísimas herramientas que permiten crear aplicaciones web de manera relativamente sencilla. Por ello, se usará Django por tener una curva de aprendizaje asequible y los conocimientos con los que cuento habiendo usando este \emph{framework} con anterioridad. El lenguaje escogido para la aplicación es Python, ya que es un lenguaje muy versátil utilizado en gran cantidad de aplicaciones y es el utilizado en Django. 
+
+\section{Herramientas de control de versiones}
+En todo proyecto actual, se utiliza alguna herramienta que permite gestionar las versiones del código y colaborar en la construcción del mismo. Existen numerosas utilidades que lo facilitan, como \emph{GitHub}, \emph{BitBucket} y \emph{GitLab}, entre otros. En la elección se deben tener en cuenta las funcionalidades adicionales, el coste y la facilidad de uso de cada plataforma.
+
+GitLab se define como ``Una plataforma completa para DevOps''. Cuenta tanto con una versión gratuita como dos planes adicionales enfocados a empresas. La suscripción ``Premium'' incluye ramas protegidas, \emph{merge request} con \emph{approvals} e integración continua avanzada. El coste de este plan es de 24\$ al mes por usuario. Por otra parte existe la suscripción ``Ultimate'' que incluye todas las funcionalidades de la suscripción ``Premium'' además de algunas funcionalidades de seguridad avanzadas y escáner de dependencias entre otras cosas. El coste de la suscripción ``Ultimate'' es de 99\$ al mes por usuario. Algunas funcionalidades interesantes que no han sido mencionadas son:
+\begin{itemize}
+    \item Integración directa con Terraform, una herramienta para desplegar una infraestructura como código (IaC).
+    \item Gestión de licencias que permite comprobar si el proyecto cumple los requerimientos legales. 
+    \item \emph{Dynamic Application Security Testing}, que permite analizar el código de páginas web en busca de posibles vulnerabilidades.
+\end{itemize}
+
+BitBucket es una herramienta un tanto diferente, ya que inicialmente estaba basado en Mercurial para posteriormente ser cambiado por Git. Normalmente se define como una solución en la nube. Como ocurría con Gitlab, también cuenta con varias suscripciones dependiendo de las funcionalidades requeridas: ``Free'', ``Standard'' y ``Premium''. El plan gratuito incluye hasta cinco usuarios y 1 GB de almacenamiento e integración continua. Mientras que el plan ``Standard'' cuenta con mas libertad en cuestión de almacenamiento pero con las mismas funcionalidades que la versión gratuita. En cambio, la suscripción ``Premium'' añade más funcionalidades como comprobaciones adicionales a la hora de unir dos ramas. 
+
+Por último, pero no menos importante, Github fue fundado en 2007 y es una de las herramientas más usadas tanto por desarrolladores \emph{freelance} como por empresas más grandes. No fue hasta 2018, cuando fue adquirida por Microsoft, que se volvió una plataforma gratuita. Permitiendo la creación y gestión de repositorios privados. Algunas de sus principales funcionalidades, por las que se ha escogido esta herramienta son:
+\begin{itemize}
+    \item GitHub Actions. Facilitan la integración continua y el flujo de trabajo.
+    \item Marketplace. Existen numerosas aplicaciones de terceros que permiten extender la funcionalidad integrando nuevas funciones.
+    \item GitHub Pages. Permiten crear páginas web estáticas a partir del repositorio. 
+    \item Seguridad dedicada tanto al repositorio como al usuario, permitiendo añadir un factor de seguridad desde \emph{2FA} (Two-Factor Authentication) a vulnerabilidades en el código o dependencias. 
+\end{itemize}
+
+\section{¿Qué se considera ingrediente?}
+Este software pretende resolver la problemática del poco aprovechamiento de los ingredientes que tiene el usuario en su despensa y su desconocimiento de recetas que utilicen exclusivamente dichos ingredientes que tiene en su haber. Pero, existen determinados ingredientes que todo el mundo tiene por casa. Por ello tenemos que excluirlos de la lista de restricciones que se le pasará a la aplicación a la hora de buscar una receta con determinados ingredientes solicitados por el usuario. 
+
+Se considerará que todo usuario cuenta en su cocina con: 
+\begin{enumerate}
+    \item Agua
+    \item Aceite
+    \item Sal
+    \item Pimienta
+    \item Azúcar
+    \item Harina
+\end{enumerate}
+
+En conclusión, se incluirán recetas que cuenten con los ingredientes deseados por el usuario que puedan incluir los ingredientes listados.
