@@ -1,6 +1,9 @@
 \chapter{Implementación}
 En todo proyecto existen una serie de decisiones que marcan el avance del proyecto. En este capítulo se describirán, detalladamente, las justificaciones de cada decisión que se tome durante el desarrollo del mismo. Otorgando tanto al lector como a cualquier desarrollador que busque continuar este proyecto, un entendimiento de porque se han tomado dichas decisiones.
 
+\section{Uso de Github}
+Con el objetivo de seguir una metodología ágil explicada en el capítulo anterior, se ha tomado la decisión de utilizar Github en el desarrollo de la misma. No solo se utiliza por seguir una metodología ágil, sino que al ser una plataforma para el control de versiones será posible subir el código y mantenerlo disponible para cualquier persona que quiera continuar el desarrollo al finalizar este proyecto. Conociendo desde el primer momento que pasos se han seguido para desarrollar la aplicación y porque se ha tomado cada decisión.
+
 \section{Plataforma}
 Existen infinidad de plataformas para las que desarrollar software, pero a la hora de comenzar un proyecto debemos preguntarnos a cuál se orientará el software. Muchas de ellas no corresponderán con las características del proyecto, no tendría sentido desarrollar una aplicación de mapas para una televisión inteligente. 
 El primer paso, es plantearse las características que tendrá nuestro software. Para este proyecto se busca que sea versátil y sencillo de utilizar, con lo cual estamos descartando muchas plataformas (relojes inteligentes, coches, televisiones, etc...). Analizaremos aquellas que más se alineen con las propiedades mencionadas: 
@@ -17,61 +20,21 @@ La última considerada es la creación de una plataforma web. Se podría conside
 
 La ventaja que decanta la decisión de elegir una plataforma web antes que una móvil se basa en que al usuario le será más sencillo utilizarla. Sin tener que descargar nada. Simplemente entrando a la página web e introduciendo los ingredientes que se quieren gastar de la despensa. Además, se podrá compatibilizar tanto para ordenador como para dispositivos móviles.
 
-
-\section{Framework}
-Inicialmente, cuando no existían los \emph{framework web} al iniciar un proyecto era necesario implementar cada pequeña funcionalidad y diseño de la página web desde el código fuente de la página hasta las funcionalidades del \emph{backend}. Con la aparición de estas herramientas es mucho más sencillo el desarrollo de aplicaciones web muy elaboradas. Por ello se ha tomado la decisión de hacer uso de estas herramientas.
-
-Un \emph{framework} es una estructura software compuesta de componentes personalizables, existiendo una infinidad. No solo relacionadas con el desarrollo web, sino que también hay \emph{framework} orientados a desarrollo de aplicaciones médicas, desarrollo de videojuegos o para cualquier contexto que se nos ocurra. Dicho en otras palabras, se puede definir como una aplicación incompleta a la que tenemos que añadirle las últimas pinceladas para completar el desarrollo. 
-
-Existen infinidad de \emph{framework web}, en esta sección se justificará la elección de uno concreto. Entre los que se analizaran: 
+\section{Lenguaje de la plataforma}
+Para desarrollar la aplicación es necesario elegir un lenguaje para el \emph{backend} que supla los requisitos para la plataforma web. Dicho lenguaje, aunque no conste como requisito de la plataforma, debe adecuarse a la habilidad del equipo de desarrollo. Con el objetivo de una mayor rápidez y sencillez a la hora de comenzar la implementación de las funcionalidades. Como pequeño análisis previo a justificar el lenguaje de programación a usar. Se estiman los siguientes requisitos: 
 \begin{enumerate}
-    \item Angular
-    \item Django
-    \item Laravel
-    \item Flask
+    \item Escalabilidad. Debe ser capaz de manejar el rendimiento requeridos por la plataforma. Teniendo en cuenta la velocidad de desarrollo y el rendimiento del mismo.
+    \item Compatibilidad. El lenguaje debe ser compatible con diferentes frameworks y bibliotecas que permitan la construcción rápida de funcionalidades.
+    \item Seguridad. Es importante que ofrezca soluciones para que la plataforma sea segura contra ataques. 
+    \item Integración. El lenguaje debe ser compatible con tecnologías y servicios que se usarán en el proyecto como puede ser una base de datos o una API.
 \end{enumerate}
 
-Se comenzará hablando de \emph{Angular}, que se trata de un \emph{framework} escrito en Typescript. Ideal para implementar muchos scripts para diferentes funcionalidades en un sitio web. Empleado sobretodo para crear menús animados. Utilizando un MVC (Modelo-Vista-Controlador). Además, tiene una comunidad muy amplia con mucha documentación. Aunque una queja frecuente es detallado y complejo. 
+Teniendo en cuenta estos requisitos, podemos analizar algunos lenguajes de programación ampliamente conocidos. 
 
-El segundo \emph{framework} se trata de Django. Con una gran documentación y tutoriales, su curva de aprendizaje es mucho más suave que otros \emph{framework}. Además se cuenta con un poco de experiencia en el desarrollo de una aplicación web usando esta herramienta. Utiliza el MVC y tiene soporte para conexiones de bases de datos relacionales. Aunque, adicionalmente, es posible utilizar \emph{plugins} para conectar con bases de datos no relacionales como MongoDB.
+Java es un lenguaje, creado con el objetivo de poder ser usado en cualquier lugar. Con independencia de la plataforma o hardware en el que se ejecutase. Debido a su gran comunidad de usuarios, tiene una gran remesa de bibliotecas disponibles para el desarrollo de aplicaciones web. Pero tiene dos problemas principales, de los que se han quejado los usuarios a lo largo de los años: Cuenta con problemas de rendimiento y problemas de seguridad. Problemas que le han costado una gran cantidad de usuarios.
 
-Laravel, por otra parte, es uno de los \emph{framework} más usados. Ofreciendo una estructura bastante moderna con herramientas muy útiles y potentes para crear aplicaciones de alto nivel. 
+JavaScript, por otro lado, se utiliza en la mayoría de páginas web para hacerlas más dinámicas. Por ello es tan conocido y usado. Permite una gran interactividad, manteniendo la sencillez a la hora de crear los elementos dinámicos tipo: botones, iconos, formularios, etc... Y se trata de un lenguaje muy rápido con gran compatibilidad.
 
-Flask es un \emph{framework} muy sencillo de aprender pero poco escalable que permite hacer aplicaciones muy simples en poco tiempo. Pero, por experiencia propia, cuenta con mucha menos documentación y recursos que Django.
+TypeScript, es una expansión de JavaScript desarrollada por Google. Tiene el objetivo de suplir las carencias de su antecesor. Siendo un lenguaje de alto nivel, permitiendo desarrollar proyectos basados en JavaScript con mayor facilidad y agilidad. Pero está recomendado para personas que ya conocen JavaScript.
 
-En conclusión, es cierto que existen muchísimas herramientas que permiten crear aplicaciones web de manera relativamente sencilla. Por ello, se usará Django por tener una curva de aprendizaje asequible y los conocimientos con los que cuento habiendo usando este \emph{framework} con anterioridad. El lenguaje escogido para la aplicación es Python, ya que es un lenguaje muy versátil utilizado en gran cantidad de aplicaciones y es el utilizado en Django. 
-
-\section{Herramientas de control de versiones}
-En todo proyecto actual, se utiliza alguna herramienta que permite gestionar las versiones del código y colaborar en la construcción del mismo. Existen numerosas utilidades que lo facilitan, como \emph{GitHub}, \emph{BitBucket} y \emph{GitLab}, entre otros. En la elección se deben tener en cuenta las funcionalidades adicionales, el coste y la facilidad de uso de cada plataforma.
-
-GitLab se define como ``Una plataforma completa para DevOps''. Cuenta tanto con una versión gratuita como dos planes adicionales enfocados a empresas. La suscripción ``Premium'' incluye ramas protegidas, \emph{merge request} con \emph{approvals} e integración continua avanzada. El coste de este plan es de 24\$ al mes por usuario. Por otra parte existe la suscripción ``Ultimate'' que incluye todas las funcionalidades de la suscripción ``Premium'' además de algunas funcionalidades de seguridad avanzadas y escáner de dependencias entre otras cosas. El coste de la suscripción ``Ultimate'' es de 99\$ al mes por usuario. Algunas funcionalidades interesantes que no han sido mencionadas son:
-\begin{itemize}
-    \item Integración directa con Terraform, una herramienta para desplegar una infraestructura como código (IaC).
-    \item Gestión de licencias que permite comprobar si el proyecto cumple los requerimientos legales. 
-    \item \emph{Dynamic Application Security Testing}, que permite analizar el código de páginas web en busca de posibles vulnerabilidades.
-\end{itemize}
-
-BitBucket es una herramienta un tanto diferente, ya que inicialmente estaba basado en Mercurial para posteriormente ser cambiado por Git. Normalmente se define como una solución en la nube. Como ocurría con Gitlab, también cuenta con varias suscripciones dependiendo de las funcionalidades requeridas: ``Free'', ``Standard'' y ``Premium''. El plan gratuito incluye hasta cinco usuarios y 1 GB de almacenamiento e integración continua. Mientras que el plan ``Standard'' cuenta con mas libertad en cuestión de almacenamiento pero con las mismas funcionalidades que la versión gratuita. En cambio, la suscripción ``Premium'' añade más funcionalidades como comprobaciones adicionales a la hora de unir dos ramas. 
-
-Por último, pero no menos importante, Github fue fundado en 2007 y es una de las herramientas más usadas tanto por desarrolladores \emph{freelance} como por empresas más grandes. No fue hasta 2018, cuando fue adquirida por Microsoft, que se volvió una plataforma gratuita. Permitiendo la creación y gestión de repositorios privados. Algunas de sus principales funcionalidades, por las que se ha escogido esta herramienta son:
-\begin{itemize}
-    \item GitHub Actions. Facilitan la integración continua y el flujo de trabajo.
-    \item Marketplace. Existen numerosas aplicaciones de terceros que permiten extender la funcionalidad integrando nuevas funciones.
-    \item GitHub Pages. Permiten crear páginas web estáticas a partir del repositorio. 
-    \item Seguridad dedicada tanto al repositorio como al usuario, permitiendo añadir un factor de seguridad desde \emph{2FA} (Two-Factor Authentication) a vulnerabilidades en el código o dependencias. 
-\end{itemize}
-
-\section{¿Qué se considera ingrediente?}
-Este software pretende resolver la problemática del poco aprovechamiento de los ingredientes que tiene el usuario en su despensa y su desconocimiento de recetas que utilicen exclusivamente dichos ingredientes que tiene en su haber. Pero, existen determinados ingredientes que todo el mundo tiene por casa. Por ello tenemos que excluirlos de la lista de restricciones que se le pasará a la aplicación a la hora de buscar una receta con determinados ingredientes solicitados por el usuario. 
-
-Se considerará que todo usuario cuenta en su cocina con: 
-\begin{enumerate}
-    \item Agua
-    \item Aceite
-    \item Sal
-    \item Pimienta
-    \item Azúcar
-    \item Harina
-\end{enumerate}
-
-En conclusión, se incluirán recetas que cuenten con los ingredientes deseados por el usuario que puedan incluir los ingredientes listados.
+Python es el ultimo lenguaje considerado para el desarrollo de la aplicación. Se trata de uno de los lenguajes que más demanda tiene actualmente en el mercado. Su curva de aprendizaje combinadas a las habilidades del equipo, lo hacen perfecto para el desarrollo. Además es bastante escalable e integra algunos \emph{framework} orientados al desarrollo de aplicaciones web. Por ello es el lenguaje que se utilizará en el \emph{backend} de la plataforma.
