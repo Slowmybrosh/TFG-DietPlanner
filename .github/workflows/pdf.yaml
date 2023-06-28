@@ -1,0 +1,29 @@
+name: Generar y subir PDF
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout del código fuente
+      uses: actions/checkout@v2
+
+    - name: Configurar LaTeX
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y texlive texlive-latex-extra
+
+    - name: Compilar archivo LaTeX
+      run: |
+        pdflatex -interaction=nonstopmode -halt-on-error documento.tex
+
+    - name: Subir PDF
+      uses: actions/upload-artifact@v2
+      with:
+        name: documento.pdf
+        path: ./documento.pdf
