@@ -20,10 +20,10 @@ jobs:
 
     - name: Compilar archivo LaTeX
       run: |
-        pdflatex -interaction=nonstopmode -halt-on-error documento.tex
+        pdflatex -interaction=nonstopmode -halt-on-error doc/proyecto.tex
 
     - name: Subir PDF
       uses: actions/upload-artifact@v2
       with:
-        name: documento.pdf
-        path: ./documento.pdf
+        name: proyecto.pdf
+        path: ./doc/proyecto.pdf
