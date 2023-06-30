@@ -1,0 +1,29 @@
+\chapter{Implementación}
+En todo proyecto existen una serie de decisiones que marcan el avance del proyecto. En este capítulo se describirán, detalladamente, las justificaciones de cada decisión que se tome durante el desarrollo del mismo. Otorgando tanto al lector como a cualquier desarrollador que busque continuar este proyecto, un entendimiento de porque se han tomado dichas decisiones.
+
+\section{Gestor de tareas}
+En el ámbito del desarrollo de software y la gestión de proyectos cada vez es más complicado llevar a cabo una coordinación entre todos los entornos de desarrollo. Por ello, contar con un gestor de tareas es indispensable. Este tipo de herramientas también se conocen como \textit{build tools}. 
+
+Las opciones más populares son Make, Gradle, Maven o \textit{scripts} NPM. Se suelen automatizar la mayoría de tareas relacionadas con la prueba de test unitarios, compilación de código, hasta generar la documentación del proyecto. 
+
+La herramienta que se ha escogido por ser la más extendida y no depender de un lenguaje de programación es Make, incluido en todas las distribuciones de linux y, además, es posible instalar la herramienta en Windows. Se ha creado un Makefile con las instrucciones necesarias para generar el fichero pdf.
+
+\begin{lstlisting}[style=consola]
+    make all
+    make clean
+    make pdf
+\end{lstlisting}
+\newpage
+El formato del makefile, inicialmente, es el siguiente
+\begin{lstlisting}[style=consola]
+pdf:
+	cd doc && pdflatex -interaction=nonstopmode proyecto.tex
+	cd doc && biber proyecto
+	cd doc && pdflatex -interaction=nonstopmode proyecto.tex
+	cd doc && pdflatex -interaction=nonstopmode proyecto.tex
+clean:
+	rm -f doc/*.aux doc/*.bbl doc/*.bcf doc/*.blg doc/*.log doc/*.out doc/*.run.xml doc/*.toc
+.PHONY: latex clean
+\end{lstlisting}
+
+La instrucción ``pdf'' crea automáticamente el fichero pdf con la documentación del proyecto. Añadiendo la bibliografía, de manera intermedia. Posteriormente con la instrucción ``clean'' se borran los ficheros intermedios dejando solo el fichero pdf final. 
