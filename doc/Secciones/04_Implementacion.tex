@@ -80,15 +80,8 @@ La primera instrucción genera en formato pdf la documentación del proyecto, si
 	rm -f doc/*.aux doc/*.bbl doc/*.bcf doc/*.blg doc/*.log doc/*.out doc/*.run.xml doc/*.toc
 \end{lstlisting}
 
-La tercera tarea instala las dependencias necesarias en el proyecto, por ahora solo existe una dependencia a utilizar que se trata del propio Invoke. Añadida anteriormente
-@task
-def install(c, dev=False):
-	"""
-	Tarea encargada de instalar las dependencias del programa.
-
-	Si se usa con la flasg --dev se instalarán las dependencias de desarrollo también. 
-	"""
-
+La tercera tarea instala las dependencias necesarias en el proyecto, por ahora solo existe una dependencia a utilizar que se trata de la propia librería de Invoke para el fichero ``task.py''. En esta tarea se diferencian dos ejecuciones, es posible instalar las dependencias de desarrollador o de producción. Todo depende del\emph{flag} --dev, si se utiliza en la ejecución se instalarán las dependencias de desarrollador.
+\begin{lstlisting}[style=consola]
 	if(dev):
 		print("Instalando dependencias de dev...")
 		
@@ -96,4 +89,12 @@ def install(c, dev=False):
 	else:
 		print("Instalando dependencias...")
 		run("poetry install --no-dev", shell="/bin/sh")
+\end{lstlisting}
+
+El uso del gestor de tareas es muy sencillo, solo se tiene que llamar a la utilidad Invoke y especificar la tarea a realizar de la siguiente manera
+\begin{lstlisting}[style=consola]
+	invoke pdf
+	invoke clean
+	invoke install
+	invoke install --dev
 \end{lstlisting}
