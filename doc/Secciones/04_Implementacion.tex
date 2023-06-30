@@ -16,6 +16,7 @@ La herramienta que se ha escogido por ser la más extendida y no depender de un 
 \newpage
 El formato del makefile, inicialmente, es el siguiente
 \begin{lstlisting}[style=consola]
+all: pdf clean
 pdf:
 	cd doc && pdflatex -interaction=nonstopmode proyecto.tex
 	cd doc && biber proyecto
