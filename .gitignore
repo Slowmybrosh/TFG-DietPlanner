@@ -1,0 +1,11 @@
+# Latex temp files or logs
+*.aux
+*.bcf
+*.log
+*.out
+*.run.xml
+*.dtx
+*.dvi
+*.pdf
+*.bbl
+*.blg
