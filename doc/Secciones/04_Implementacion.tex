@@ -1,30 +1,99 @@
 \chapter{Implementación}
 En todo proyecto existen una serie de decisiones que marcan el avance del proyecto. En este capítulo se describirán, detalladamente, las justificaciones de cada decisión que se tome durante el desarrollo del mismo. Otorgando tanto al lector como a cualquier desarrollador que busque continuar este proyecto, un entendimiento de porque se han tomado dichas decisiones.
 
+\section{Lenguaje del proyecto}
+Para el desarrollo del proyecto, ya sea una plataforma web o una biblioteca, es necesario definir un lenguaje. Aunque no conste como requisito imprescindible, debe adecuarse a la habilidad del equipo de desarrollo. Con el objetivo de una robustez y eficiencia en la codificación de la solución al problema planteado. Como pequeño análisis previo a justificar el lenguaje de programación a usar. Se estiman los siguientes requisitos: 
+\begin{enumerate}
+    \item Escalabilidad. Debe ser capaz de manejar el rendimiento requerido por la aplicación, así como el uso por parte de multitud de usuarios de manera concurrente.
+    \item Compatibilidad. El lenguaje debe ser compatible con diferentes frameworks y bibliotecas que permitan implementar el desarrollo de la aplicación. 
+    \item Integración. El lenguaje debe ser compatible con tecnologías y servicios, que es posible que sean usados en el proyecto más adelante, como puede ser una base de datos o una API.
+\end{enumerate}
+
+Teniendo en cuenta estos requisitos, podemos analizar algunos lenguajes de programación ampliamente conocidos. 
+
+Java es un lenguaje, creado con el objetivo de poder ser usado en cualquier lugar. Con independencia de la plataforma o hardware en el que se ejecutase. Debido a su gran comunidad de usuarios, tiene una gran remesa de bibliotecas disponibles para el desarrollo de aplicaciones web. Pero tiene dos problemas principales: Cuenta con problemas de rendimiento y problemas de seguridad. Como el relacionado con la librería Log4j que ocurrió a finales de 2021. Subsanado en Abril de 2022.\cite{cisa}
+
+JavaScript, por otro lado, se utiliza en la mayoría de páginas web para hacerlas más dinámicas. Por ello es tan conocido y usado. Permite una gran interactividad, manteniendo la sencillez a la hora de crear los elementos dinámicos tipo: botones, iconos, formularios, etc... Y se trata de un lenguaje muy rápido con gran compatibilidad.
+
+TypeScript, es una expansión de JavaScript desarrollada por Google. Tiene el objetivo de suplir las carencias de su antecesor. Siendo un lenguaje de alto nivel, permitiendo desarrollar proyectos basados en JavaScript con mayor facilidad y agilidad. Pero está recomendado para personas que ya conocen JavaScript.
+
+Python es el ultimo lenguaje considerado para el desarrollo de la aplicación. Se trata de uno de los lenguajes que más demanda tiene actualmente en el mercado. Su curva de aprendizaje combinadas a las habilidades del equipo, lo hacen perfecto para el desarrollo. Además es bastante escalable e integra algunos bibliotecas orientadas desde el desarrollo web hasta el análisis de datos.
+
+El lenguaje utilizado en el desarrollo del proyecto será Python. Ya que ofrece una gran flexibilidad, además de que el equipo de desarrollo cuenta con conocimientos en este lenguaje. Facilitando y garantizando el buen diseño del código y el uso de buenas prácticas en este lenguaje.
+
+\section{Gestor de dependencias}
+En el desarrollo de software, un gestor de dependencias es fundamental para administrar las bibliotecas de las que hace uso el proyecto. Si trabaja una sola persona, puede que no sea tan complicado llevar una coherencia en las versiones de las dependencias. Pero, si se da el caso que el proyecto empieza a crecer. Aumentando tanto el número de dependencias como el de trabajadores. Cada vez se hará más complicado. Por ello es muy importante llevar un control de dependencias desde el inicio del proyecto.
+
+Existen demasiados gestores de dependencias orientadas al uso de Python como para hablar de todos. Los más conocidos son Pip, Poetry, Conda y pipenv. Para que el proyecto sea lo más sencillo posible, teniendo en cuenta la necesidad de controlar las dependencias que vayan añadiéndose a lo largo del desarrollo. 
+
+Aunque Pip viene instalado por defecto en todas las versiones de Python. Es muy sencillo instalar dependencias con este paquete, pero al instalar una dependencia no desinstalará las subdependencias. Además, Poetry ofrece otras funcionalidades como ejecutar pequeñós scripts de python que pueden permitir la automatización de test unitarios.
+
+Para instalar poetry, es necesario ejecutar el comando que lo descarga desde su propio repositorio, ya que no se encuentra en los repositorios incluidos con Linux. Y se añade la aplicación al \emph{path} para poder encontrar la utlidad de manera sencilla.
+\begin{lstlisting}[style=consola]
+	curl -sSL https://install.python-poetry.org | python3 -
+	$HOME/.local/bin
+\end{lstlisting}
+
+Poetry se vale de un fichero .toml que gestiona las dependencias del proyecto. Para iniciar el repositorio se utiliza el comando
+\begin{lstlisting}[style=consola]
+	poetry init
+\end{lstlisting}
+
+En esta fase, se responderán una serie de cuestiones para generar la documentación relativa al proyecto (nombre, autor, versión, descripción, etc...). Y se podrán añadir las dependencias de manera interactiva, buscando los paquetes que utiliza el proyecto hasta el momento.
+
+Para correr scripts de python o comandos shell, debemos añadir las siguientes líneas al fichero .toml
+\begin{lstlisting}[style=consola]
+	[tool.poetry.script]
+	script = 'python3 script.py'
+\end{lstlisting}
+
+Una vez guardada la configuración, se debe utilizar el siguiente comando para crear el entorno virtual con las dependencias especificadas y ejecutará el script de Python. 
+\begin{lstlisting}[style=consola]
+	poetry run script
+\end{lstlisting}
+
 \section{Gestor de tareas}
 En el ámbito del desarrollo de software y la gestión de proyectos cada vez es más complicado llevar a cabo una coordinación entre todos los entornos de desarrollo. Por ello, contar con un gestor de tareas es indispensable. Este tipo de herramientas también se conocen como \textit{build tools}. 
 
-Las opciones más populares son Make, Gradle, Maven o \textit{scripts} NPM. Se suelen automatizar la mayoría de tareas relacionadas con la prueba de test unitarios, compilación de código, hasta generar la documentación del proyecto. 
+Para Python existen algunos gestores renombrados como Make, Invoke o Fabric. Make no está limitado al uso de un lenguaje en específico, sino que es común a todos los entornos de desarrollo que utilicen Linux, pudiendo instalar esta herramienta en Windows de manera adicional. Fabric se utiliza más en servidores, ya que está pensada para ser usada a través de SSH. E Invoke se parece mucho a Make pero utiliza un script escrito en python que especifica las tareas a automatizar. 
 
-La herramienta que se ha escogido por ser la más extendida y no depender de un lenguaje de programación es Make, incluido en todas las distribuciones de linux y, además, es posible instalar la herramienta en Windows. Se ha creado un Makefile con las instrucciones necesarias para generar el fichero pdf.
+En el proyecto se utilizará Invoke ya que se puede combinar con Poetry para la automatización de las tareas, no solo a nivel de código sino también a nivel de proyecto.
 
+Para añadir Invoke al proyecto se ha de instalar por medio de Pip y posteriormente añadirla a las dependencias del proyecto.
 \begin{lstlisting}[style=consola]
-    make all
-    make clean
-    make pdf
+	pip install Invoke
+	poetry add Invoke
 \end{lstlisting}
-\newpage
-El formato del makefile, inicialmente, es el siguiente
+
+Y solo quedaría generar el script de python con las tareas a automatizar. Dicho fichero se llamará ``task.py'' y contiene las siguientes instrucciones. 
+
 \begin{lstlisting}[style=consola]
-all: pdf clean
-pdf:
-	cd doc && pdflatex -interaction=nonstopmode proyecto.tex
-	cd doc && biber proyecto
-	cd doc && pdflatex -interaction=nonstopmode proyecto.tex
-	cd doc && pdflatex -interaction=nonstopmode proyecto.tex
-clean:
+	cd doc
+	pdflatex -interaction=nonstopmode proyecto.tex
+	biber proyecto
+	pdflatex -interaction=nonstopmode proyecto.tex
+	pdflatex -interaction=nonstopmode proyecto.tex
+\end{lstlisting}
+La primera instrucción genera en formato pdf la documentación del proyecto, sin preguntar en los posibles errores que pueda encontrar el compilador. En caso de darse fallo, no generaría el fichero pdf. Cabe destacar que se realiza en una sola \emph{shell}, pero para darle mayor legibilidad se han separado los pasos. En la generación del fichero se crean multitud de archivos intermedios que se utilizan tanto para la generación de la bibliografía del proyecto como para generar el pdf final. La segunda tarea se encarga de eliminar estos ficheros intermedios.
+
+\begin{lstlisting}[style=consola]
 	rm -f doc/*.aux doc/*.bbl doc/*.bcf doc/*.blg doc/*.log doc/*.out doc/*.run.xml doc/*.toc
-.PHONY: latex clean
 \end{lstlisting}
 
-La instrucción ``pdf'' crea automáticamente el fichero pdf con la documentación del proyecto. Añadiendo la bibliografía, de manera intermedia. Posteriormente con la instrucción ``clean'' se borran los ficheros intermedios dejando solo el fichero pdf final. 
+La tercera tarea instala las dependencias necesarias en el proyecto, por ahora solo existe una dependencia a utilizar que se trata del propio Invoke. Añadida anteriormente
+@task
+def install(c, dev=False):
+	"""
+	Tarea encargada de instalar las dependencias del programa.
+
+	Si se usa con la flasg --dev se instalarán las dependencias de desarrollo también. 
+	"""
+
+	if(dev):
+		print("Instalando dependencias de dev...")
+		
+		run("poetry install", shell="/bin/sh")
+	else:
+		print("Instalando dependencias...")
+		run("poetry install --no-dev", shell="/bin/sh")
+\end{lstlisting}
