@@ -1,71 +1,95 @@
 \chapter{Implementación}
 En todo proyecto existen una serie de decisiones que marcan el avance del proyecto. En este capítulo se describirán, detalladamente, las justificaciones de cada decisión que se tome durante el desarrollo del mismo. Otorgando tanto al lector como a cualquier desarrollador que busque continuar este proyecto, un entendimiento de porque se han tomado dichas decisiones.
 
+\section{Milestones}
+En el marco de la planificación se han especificado los \emph{milestones}, detallados en el repositorio del proyecto, constituyendo cada uno un entregable (PMV) del mismo.
+
+\subsection{Establecer el alcance}
+En todo proyecto, ya sea desarrollo software o construir un edificio necesita una planificación. Por ello es muy importante especificar el problema a resolver. En este caso, facilitar a los usuarios el proceso de encontrar recetas que se adapten a los ingredientes que tienen en su despensa. En primer lugar, se han especificado los objetivos a seguir durante el desarrollo del proyecto. Sentar las bases del proyecto ayuda a tener una orientación sobre que hacer en cada momento. 
+
+\subsection{Inicio del desarrollo}
+Antes de lanzarse a programar hay que hacer una serie de análisis previos y resolver ciertas cuestiones algunas de ellas son:
+\begin{enumerate}
+    \item ¿Para que plataforma está orientado el software?
+    \item ¿En que lenguaje se realizará?
+    \item ¿Se usará una herramienta de control de versiones?
+\end{enumerate}
+Este paso en la planificación es extremadamente importante, ya que determinará el marco de desarrollo bajo un lenguaje específico que no se puede escoger a la primera de cambio ya que cada uno cuenta con una serie de ventajas y desventajas a tener en cuenta en el proyecto. Aunque estas cuestiones serán resueltas en una sección posterior.
+
+\subsection{Encontrar recetas}
+Este es el primer objetivo del software a desarrollar, que permitirá ayudar a los usuarios definidos anteriormente a encontrar recetas que contengan los ingredientes con los que cuentan el usuario. Además, en este punto es necesario definir que tipo de ingredientes son los que tiene cualquier persona en su casa, como por ejemplo: Agua, sal o aceite. Y conforme avance el desarrollo de este objetivo habrá que resolver ciertas cuestiones, como la anterior, que vayan surgiendo. 
+
+\subsection{Despliegue de la solución}
+Para permitir al usuario final el uso de la solución ya sea una aplicación, biblioteca o funcionalidad, debe desplegarse una versión final de la solución, analizando los posibles despliegues dependiendo del tipo de solución que se diseñe a lo largo del proyecto.
+
+\subsection{Sustituir ingredientes}
+También se planifica una de las posibles mejoras a seguir una vez se haya completado el desarrollo del proyecto. En este caso se permitiría que se recomendasen recetas a las que les falta uno o varios ingredientes pero es posible sustituirlos de manera coherente con otros ingredientes con los que sí cuenta el usuario. Pero esto es solo una posible mejora para el futuro del software, teniendo que analizar la viabilidad una vez completado el objetivo anterior. 
+
 \section{Lenguaje del proyecto}
-Para el desarrollo del proyecto, ya sea una plataforma web o una biblioteca, es necesario definir un lenguaje. Aunque no conste como requisito imprescindible, debe adecuarse a la habilidad del equipo de desarrollo. Con el objetivo de una robustez y eficiencia en la codificación de la solución al problema planteado. Como pequeño análisis previo a justificar el lenguaje de programación a usar. Se estiman los siguientes requisitos: 
+Para el desarrollo del proyecto, ya sea una plataforma web o una biblioteca, es necesario definir un lenguaje. Aunque no conste como requisito imprescindible, debe adecuarse a la habilidad del equipo de desarrollo, con el objetivo de una robustez y eficiencia en la codificación de la solución al problema planteado. 
+
+Como pequeño análisis previo a justificar el lenguaje de programación a usar, se estiman los siguientes requisitos:
 \begin{enumerate}
     \item Escalabilidad. Debe ser capaz de manejar el rendimiento requerido por la aplicación, así como el uso por parte de multitud de usuarios de manera concurrente.
-    \item Compatibilidad. El lenguaje debe ser compatible con diferentes frameworks y bibliotecas que permitan implementar el desarrollo de la aplicación. 
-    \item Integración. El lenguaje debe ser compatible con tecnologías y servicios, que es posible que sean usados en el proyecto más adelante, como puede ser una base de datos o una API.
+    \item Compatibilidad. El lenguaje debe ser compatible con diferentes \gls{framework} y bibliotecas que permitan implementar el desarrollo de la aplicación. 
+    \item Integración. El lenguaje debe ser compatible con tecnologías y servicios, que es posible que sean usados en el proyecto más adelante, como puede ser una base de datos o una \gls{API}.
 \end{enumerate}
 
 Teniendo en cuenta estos requisitos, podemos analizar algunos lenguajes de programación ampliamente conocidos. 
 
-Java es un lenguaje, creado con el objetivo de poder ser usado en cualquier lugar. Con independencia de la plataforma o hardware en el que se ejecutase. Debido a su gran comunidad de usuarios, tiene una gran remesa de bibliotecas disponibles para el desarrollo de aplicaciones web. Pero tiene dos problemas principales: Cuenta con problemas de rendimiento y problemas de seguridad. Como el relacionado con la librería Log4j que ocurrió a finales de 2021. Subsanado en Abril de 2022.\cite{cisa}
+Java, es un lenguaje creado con el objetivo de poder ser usado en cualquier lugar, con independencia de la plataforma o hardware en el que se ejecute. Debido a su gran comunidad de usuarios, tiene una gran remesa de bibliotecas disponibles para el desarrollo de aplicaciones web. Pero tiene dos problemas principales: Cuenta con problemas de rendimiento y problemas de seguridad. Como el relacionado con la librería Log4j que ocurrió a finales de 2021. Subsanado en Abril de 2022.\cite{cisa}
 
 JavaScript, por otro lado, se utiliza en la mayoría de páginas web para hacerlas más dinámicas. Por ello es tan conocido y usado. Permite una gran interactividad, manteniendo la sencillez a la hora de crear los elementos dinámicos tipo: botones, iconos, formularios, etc... Y se trata de un lenguaje muy rápido con gran compatibilidad.
 
 TypeScript, es una expansión de JavaScript desarrollada por Google. Tiene el objetivo de suplir las carencias de su antecesor. Siendo un lenguaje de alto nivel, permitiendo desarrollar proyectos basados en JavaScript con mayor facilidad y agilidad. Pero está recomendado para personas que ya conocen JavaScript.
 
-Python es el ultimo lenguaje considerado para el desarrollo de la aplicación. Se trata de uno de los lenguajes que más demanda tiene actualmente en el mercado. Su curva de aprendizaje combinadas a las habilidades del equipo, lo hacen perfecto para el desarrollo. Además es bastante escalable e integra algunos bibliotecas orientadas desde el desarrollo web hasta el análisis de datos.
+\Gls{python} es el ultimo lenguaje considerado para el desarrollo de la aplicación. Se trata de uno de los lenguajes que más demanda tiene actualmente en el mercado. Su curva de aprendizaje combinadas a las habilidades del equipo, lo hacen perfecto para el desarrollo. Además es bastante escalable e integra algunos bibliotecas orientadas desde el desarrollo web hasta el análisis de datos.
 
-El lenguaje utilizado en el desarrollo del proyecto será Python. Ya que ofrece una gran flexibilidad, además de que el equipo de desarrollo cuenta con conocimientos en este lenguaje. Facilitando y garantizando el buen diseño del código y el uso de buenas prácticas en este lenguaje.
+El lenguaje utilizado en el desarrollo del proyecto será \Gls{python}. Ya que ofrece una gran flexibilidad, además de que el equipo de desarrollo cuenta con conocimientos en este lenguaje. Facilitando y garantizando el buen diseño del código y el uso de buenas prácticas en este lenguaje.
 
 \section{Gestor de dependencias}
-En el desarrollo de software, un gestor de dependencias es fundamental para administrar las bibliotecas de las que hace uso el proyecto. Si trabaja una sola persona, puede que no sea tan complicado llevar una coherencia en las versiones de las dependencias. Pero, si se da el caso que el proyecto empieza a crecer. Aumentando tanto el número de dependencias como el de trabajadores. Cada vez se hará más complicado. Por ello es muy importante llevar un control de dependencias desde el inicio del proyecto.
+En el desarrollo de software, un gestor de \glspl{dependencia} es fundamental para administrar las bibliotecas de las que hace uso el proyecto. Si trabaja una sola persona, puede que no sea tan complicado llevar una coherencia en las versiones de las \glspl{dependencia}. Pero si se da el caso que el proyecto empieza a crecer, aumentando tanto el número de \glspl{dependencia} como el de trabajadores, cada vez se hará más complicado. Por ello es muy importante llevar un control de \glspl{dependencia} desde el inicio del proyecto.
 
-Existen demasiados gestores de dependencias orientadas al uso de Python como para hablar de todos. Los más conocidos son Pip, Poetry, Conda y pipenv. Para que el proyecto sea lo más sencillo posible, teniendo en cuenta la necesidad de controlar las dependencias que vayan añadiéndose a lo largo del desarrollo. 
+Existen demasiados gestores de \glspl{dependencia} orientados al uso de \Gls{python} como para hablar de todos, para que el proyecto sea lo más sencillo posible, teniendo en cuenta la necesidad de controlar las \glspl{dependencia} que vayan añadiéndose a lo largo del desarrollo se usará \Gls{poetry}, aunque \Gls{pip} viene instalado por defecto en todas las versiones de \Gls{python}. 
 
-Aunque Pip viene instalado por defecto en todas las versiones de Python. Es muy sencillo instalar dependencias con este paquete, pero al instalar una dependencia no desinstalará las subdependencias. Además, Poetry ofrece otras funcionalidades como ejecutar pequeñós scripts de python que pueden permitir la automatización de test unitarios.
-
-Para instalar poetry, es necesario ejecutar el comando que lo descarga desde su propio repositorio, ya que no se encuentra en los repositorios incluidos con Linux. Y se añade la aplicación al \emph{path} para poder encontrar la utlidad de manera sencilla.
+Para instalar \gls{poetry}, es necesario descargarlo desde su propio repositorio, ya que no se encuentra en los repositorios incluidos con Linux. Y se añade la aplicación al \gls{path} para poder encontrar la utilidad de manera sencilla.
 \begin{lstlisting}[style=consola]
 	curl -sSL https://install.python-poetry.org | python3 -
 	$HOME/.local/bin
 \end{lstlisting}
 
-Poetry se vale de un fichero .toml que gestiona las dependencias del proyecto. Para iniciar el repositorio se utiliza el comando
+\gls{poetry} se vale de un fichero \gls{toml} que gestiona las \glspl{dependencia} del proyecto. Para iniciar el \gls{repositorio} se utiliza el comando
 \begin{lstlisting}[style=consola]
 	poetry init
 \end{lstlisting}
 
-En esta fase, se responderán una serie de cuestiones para generar la documentación relativa al proyecto (nombre, autor, versión, descripción, etc...). Y se podrán añadir las dependencias de manera interactiva, buscando los paquetes que utiliza el proyecto hasta el momento.
+En esta fase, se responderán una serie de cuestiones para generar la documentación relativa al proyecto (nombre, autor, versión, descripción, etc...). Y se podrán añadir las \glspl{dependencia} de manera interactiva, buscando los paquetes que utiliza el proyecto hasta el momento.
 
-Para correr scripts de python o comandos shell, debemos añadir las siguientes líneas al fichero .toml
+Para correr \glspl{script} de \gls{python} o comandos \gls{shell}, debemos añadir las siguientes líneas al fichero \gls{toml}
 \begin{lstlisting}[style=consola]
 	[tool.poetry.script]
 	script = 'python3 script.py'
 \end{lstlisting}
 
-Una vez guardada la configuración, se debe utilizar el siguiente comando para crear el entorno virtual con las dependencias especificadas y ejecutará el script de Python. 
+Una vez guardada la configuración, se debe utilizar el siguiente comando para crear el entorno virtual con las \glspl{dependencia} especificadas y ejecutará el \gls{script} de \gls{python}. 
 \begin{lstlisting}[style=consola]
 	poetry run script
 \end{lstlisting}
 
 \section{Gestor de tareas}
-En el ámbito del desarrollo de software y la gestión de proyectos cada vez es más complicado llevar a cabo una coordinación entre todos los entornos de desarrollo. Por ello, contar con un gestor de tareas es indispensable. Este tipo de herramientas también se conocen como \textit{build tools}. 
+En el ámbito del desarrollo de software y la gestión de proyectos cada vez es más complicado llevar a cabo una coordinación entre todos los entornos de desarrollo. Por ello, contar con un \gls{tareas} es indispensable. Este tipo de herramientas también se conocen como \gls{buildtools}. 
 
-Para Python existen algunos gestores renombrados como Make, Invoke o Fabric. Make no está limitado al uso de un lenguaje en específico, sino que es común a todos los entornos de desarrollo que utilicen Linux, pudiendo instalar esta herramienta en Windows de manera adicional. Fabric se utiliza más en servidores, ya que está pensada para ser usada a través de SSH. E Invoke se parece mucho a Make pero utiliza un script escrito en python que especifica las tareas a automatizar. 
+Para \gls{python} existen algunos gestores renombrados como Make, Invoke o Fabric. Make no está limitado al uso de un lenguaje en específico, sino que es común a todos los entornos de desarrollo que utilicen Linux, pudiendo instalar esta herramienta en Windows de manera adicional. Fabric se utiliza más en servidores, ya que está pensada para ser usada a través de \gls{ssh}. E Invoke se parece mucho a Make pero utiliza un \gls{script} escrito en \gls{python} que especifica las tareas a automatizar. 
 
-En el proyecto se utilizará Invoke ya que se puede combinar con Poetry para la automatización de las tareas, no solo a nivel de código sino también a nivel de proyecto.
+En el proyecto se utilizará Invoke ya que se puede combinar con \Gls{poetry} para la automatización de las tareas, no solo a nivel de código sino también a nivel de proyecto.
 
-Para añadir Invoke al proyecto se ha de instalar por medio de Pip y posteriormente añadirla a las dependencias del proyecto.
+Para añadir Invoke al proyecto se ha de instalar por medio de Pip y posteriormente añadirla a las \glspl{dependencia} del proyecto.
 \begin{lstlisting}[style=consola]
 	pip install Invoke
 	poetry add Invoke
 \end{lstlisting}
 
-Y solo quedaría generar el script de python con las tareas a automatizar. Dicho fichero se llamará ``task.py'' y contiene las siguientes instrucciones. 
+Y solo quedaría generar el \gls{script} de python con las tareas a automatizar. Dicho fichero se llamará ``task.py'' y contiene las siguientes instrucciones. 
 
 \begin{lstlisting}[style=consola]
 	cd doc
@@ -74,13 +98,14 @@ Y solo quedaría generar el script de python con las tareas a automatizar. Dicho
 	pdflatex -interaction=nonstopmode proyecto.tex
 	pdflatex -interaction=nonstopmode proyecto.tex
 \end{lstlisting}
-La primera instrucción genera en formato pdf la documentación del proyecto, sin preguntar en los posibles errores que pueda encontrar el compilador. En caso de darse fallo, no generaría el fichero pdf. Cabe destacar que se realiza en una sola \emph{shell}, pero para darle mayor legibilidad se han separado los pasos. En la generación del fichero se crean multitud de archivos intermedios que se utilizan tanto para la generación de la bibliografía del proyecto como para generar el pdf final. La segunda tarea se encarga de eliminar estos ficheros intermedios.
+La primera instrucción genera en formato pdf la documentación del proyecto, sin preguntar en los posibles errores que pueda encontrar el compilador. En caso de darse fallo, no generaría el fichero pdf. Cabe destacar que se realiza en una sola \gls{shell}, pero para darle mayor legibilidad se han separado los pasos. En la generación del fichero se crean multitud de archivos intermedios que se utilizan tanto para la generación de la bibliografía del proyecto, como para generar el pdf final. 
 
+La segunda tarea se encarga de eliminar los ficheros intermedios generados por el compilador.
 \begin{lstlisting}[style=consola]
 	rm -f doc/*.aux doc/*.bbl doc/*.bcf doc/*.blg doc/*.log doc/*.out doc/*.run.xml doc/*.toc
 \end{lstlisting}
 
-La tercera tarea instala las dependencias necesarias en el proyecto, por ahora solo existe una dependencia a utilizar que se trata de la propia librería de Invoke para el fichero ``task.py''. En esta tarea se diferencian dos ejecuciones, es posible instalar las dependencias de desarrollador o de producción. Todo depende del\emph{flag} --dev, si se utiliza en la ejecución se instalarán las dependencias de desarrollador.
+La tercera tarea, instala las \glspl{dependencia} necesarias en el proyecto, por ahora, solo existe una \gls{dependencia} a utilizar que se trata de la propia librería de Invoke para el fichero ``task.py''. En esta tarea se diferencian dos ejecuciones, es posible instalar las \glspl{dependencia} de desarrollador o producción. Todo depende del \gls{flag} --dev, si se utiliza en la ejecución se instalarán las \glspl{dependencia} de desarrollador y si no las de producción. 
 \begin{lstlisting}[style=consola]
 	if(dev):
 		print("Instalando dependencias de dev...")
@@ -90,8 +115,8 @@ La tercera tarea instala las dependencias necesarias en el proyecto, por ahora s
 		print("Instalando dependencias...")
 		run("poetry install --no-dev", shell="/bin/sh")
 \end{lstlisting}
-
-El uso del gestor de tareas es muy sencillo, solo se tiene que llamar a la utilidad Invoke y especificar la tarea a realizar de la siguiente manera
+\newpage
+El uso del \gls{tareas} es muy sencillo, solo se tiene que llamar a la utilidad Invoke y especificar la tarea a realizar de la siguiente manera
 \begin{lstlisting}[style=consola]
 	invoke pdf
 	invoke clean
