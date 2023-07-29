@@ -2,17 +2,9 @@
 En todo proyecto existen una serie de decisiones que marcan el avance del proyecto. En este capítulo se describirán, detalladamente, las justificaciones de cada decisión que se tome durante el desarrollo del mismo. Otorgando tanto al lector como a cualquier desarrollador que busque continuar este proyecto, un entendimiento de porque se han tomado dichas decisiones.
 
 \section{Lenguaje del proyecto}
-Para el desarrollo del proyecto, ya sea una plataforma web o una biblioteca, es necesario definir un lenguaje. Aunque no conste como requisito imprescindible, debe adecuarse a mi habilidad de desarrollo en el lenguaje, con el objetivo de una robustez y eficiencia en la codificación de la solución al problema planteado. Inicialmente se han planteado los siguientes lenguajes.
+Para el desarrollo del proyecto, ya sea una plataforma web o una biblioteca, es necesario definir un lenguaje. Aunque no conste como requisito imprescindible, debe adecuarse a mi habilidad de desarrollo en el lenguaje, con el objetivo de una robustez y eficiencia en la codificación de la solución al problema planteado. 
 
-Java, es un lenguaje creado con el objetivo de poder ser usado en cualquier lugar, con independencia de la plataforma o hardware en el que se ejecute. Debido a su gran comunidad de usuarios, tiene una gran remesa de bibliotecas disponibles para el desarrollo de aplicaciones web. Pero tiene dos problemas principales: Cuenta con problemas de rendimiento y problemas de seguridad. Como el relacionado con la librería Log4j que ocurrió a finales de 2021. Subsanado en Abril de 2022.\cite{cisa}
-
-JavaScript, por otro lado, se utiliza en la mayoría de páginas web para hacerlas más dinámicas. Por ello es tan conocido y usado. Permite una gran interactividad, manteniendo la sencillez a la hora de crear los elementos dinámicos tipo: botones, iconos, formularios, etc... Y se trata de un lenguaje muy rápido con gran compatibilidad.
-
-TypeScript, es una expansión de JavaScript desarrollada por Google. Tiene el objetivo de suplir las carencias de su antecesor. Siendo un lenguaje de alto nivel, permitiendo desarrollar proyectos basados en JavaScript con mayor facilidad y agilidad. Pero está recomendado para personas que ya conocen JavaScript.
-
-\Gls{python} es el ultimo lenguaje considerado para el desarrollo de la aplicación. Se trata de uno de los lenguajes que más demanda tiene actualmente en el mercado. Su curva de aprendizaje combinadas a las habilidades que poseo, lo hacen perfecto para el desarrollo. Integra algunas bibliotecas, y frameworks, orientadas desde el desarrollo web hasta el análisis de datos.
-
-Con lo cual, el lenguaje utilizado en el desarrollo del proyecto será \Gls{python}, ya que tengo conocimientos de este lenguaje. Facilitando el desarrollo del proyecto y el uso de buenas prácticas. 
+Se ha elegido \Gls{python} como lenguaje de desarrollo, siendo el lenguaje con el que más experiencia cuento. Además de conocer frameworks útiles en este lenguaje que pueden ayudar al al desarrollo del proyecto.
 
 \section{Gestor de dependencias}
 En el desarrollo de software, un gestor de \glspl{dependencia} es fundamental para administrar las bibliotecas de las que hace uso el proyecto. Si trabaja una sola persona, puede que no sea tan complicado llevar una coherencia en las versiones de las \glspl{dependencia}. Pero si se da el caso que el proyecto empieza a crecer, aumentando tanto el número de \glspl{dependencia} como el de trabajadores, cada vez se hará más complicado. Por ello es muy importante llevar un control de \glspl{dependencia} desde el inicio del proyecto.
@@ -32,7 +24,7 @@ Para instalar \gls{poetry}, es necesario descargarlo desde su propio repositorio
 
 En esta fase, se responderán una serie de cuestiones para generar la documentación relativa al proyecto (nombre, autor, versión, descripción, etc...). Y se podrán añadir las \glspl{dependencia} de manera interactiva, buscando los paquetes que utiliza el proyecto hasta el momento.
 
-Para correr \glspl{script} de \gls{python} o comandos \gls{shell}, debemos añadir las siguientes líneas al fichero \gls{toml}
+Para correr \glspl{script} de \gls{python}, debemos añadir las siguientes líneas al fichero \gls{toml}
 \begin{lstlisting}[style=consola]
 	[tool.poetry.script]
 	script = 'python3 script.py'
@@ -46,9 +38,22 @@ Una vez guardada la configuración, se debe utilizar el siguiente comando para c
 \section{Gestor de tareas}
 En el ámbito del desarrollo de software y la gestión de proyectos cada vez es más complicado llevar a cabo una coordinación entre todos los entornos de desarrollo. Por ello, contar con un \gls{tareas} es indispensable. Este tipo de herramientas también se conocen como \gls{buildtools}. 
 
-Para \gls{python} existen algunos gestores renombrados como Make, Invoke o Fabric. Make no está limitado al uso de un lenguaje en específico, sino que es común a todos los entornos de desarrollo que utilicen Linux, pudiendo instalar esta herramienta en Windows de manera adicional. Fabric se utiliza más en servidores, ya que está pensada para ser usada a través de \gls{ssh}. E Invoke se parece mucho a Make pero utiliza un \gls{script} escrito en \gls{python} que especifica las tareas a automatizar. 
+Para \gls{python} existen algunos gestores renombrados como Invoke, Fabric, Nox, Paver o Pynt. Para el proyecto se buscan los requisitos: 
+\begin{enumerate}
+	\item Sencillez de uso
+	\item Buena documentación
+	\item Extensibilidad
+\end{enumerate}
 
-En el proyecto se utilizará Invoke ya que se puede combinar con \Gls{poetry} para la automatización de las tareas, no solo a nivel de código sino también a nivel de proyecto.
+El primer gestor de herramientas analizado es \href{https://www.fabfile.org/index.html}{Fabric}, un gestor de tareas de alto nivel diseñado para ejecutar comandos remotos a través de \gls{ssh}. Está desarrollado apoyándose en Invoke y necesita la biblioteca Paramiko para las conexiones \gls{ssh}.
+
+\href{https://nox.thea.codes/en/stable/}{Nox}, por otra parte, es un gestor de tareas que permite la automatización en varios entornos de desarrollo. Para cada sesión crea un entorno con la herramienta virtualenv y ejecuta los comandos en orden.
+
+\href{https://pythonhosted.org/Paver/}{Paver} es una herramienta parecida a Make o Rake, que permite automatizar las tareas de la forma más directa posible. De hecho, uno de sus ``eslóganes'' de su página web es ``¿Necesitas hacer algo que ocupa solo cinco líneas de código? Solo te ocupará eso.''. Tiene otras ventajas como soporte de virtualenv, sphinx y subversion, pero no necesita de ninguna de ellas para funcionar. El principal problema encontrado es la necesidad de instalar el paquete a través de \emph{easy_install} o descargar el instalador en formato \gls{.tgz}.
+
+Por último, \href{https://www.pyinvoke.org/}{Invoke}, es una herramienta que también coge su inspiración de Make o Rake. Crea una \gls{API} de alto nivel para ejecutar comandos organizados en funciones dentro del fichero ``task.py''. Fue separado de Fabric, ya que muchos usuarios solo necesitaban o bien lanzar comandos a traves de ssh o bien solo usan comandos en local. 
+
+Todos los gestores de tareas desarrollados cumplen con los requisitos propuestos, son sencillos de usar, existe buena documentación para cada herramienta y son extensibles ya que utilizan ficheros de configuración basados en \Gls{python}. Se ha decantado por el uso de Invoke ya que tengo experiencia en el uso de esta herramienta, pero cualquier otra expuesta también sería válida. Poetry, cuenta con un pequeño ``gestor de tareas'' que permite automatizar el lanzamiento de scripts basados en \Gls{Python}. Pero haciendo pruebas, no ha sido posible automatizar comandos de \Gls{shell}.
 
 Para añadir Invoke al proyecto se ha de instalar por medio de Pip y posteriormente añadirla a las \glspl{dependencia} del proyecto.
 \begin{lstlisting}[style=consola]
