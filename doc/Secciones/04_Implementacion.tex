@@ -1,5 +1,5 @@
 \chapter{Implementación}
-En todo proyecto existen una serie de decisiones que marcan el avance del proyecto. En este capítulo se describirán, detalladamente, las justificaciones de cada decisión que se tome durante el desarrollo del mismo. Otorgando tanto al lector como a cualquier desarrollador que busque continuar este proyecto, un entendimiento de porque se han tomado dichas decisiones.
+En todo proyecto existen una serie de decisiones que marcan el avance del proyecto. En este capítulo se describirán, detalladamente, las justificaciones de cada decisión que se tome durante el desarrollo del mismo. Otorgando tanto al lector como a cualquier desarrollador que busque continuar este proyecto, un entendimiento de porqué se han tomado dichas decisiones.
 
 \section{Lenguaje del proyecto}
 Para el desarrollo del proyecto, ya sea una plataforma web o una biblioteca, es necesario definir un lenguaje. Aunque no conste como requisito imprescindible, debe adecuarse a mi habilidad de desarrollo en el lenguaje, con el objetivo de una robustez y eficiencia en la codificación de la solución al problema planteado. 
@@ -57,8 +57,8 @@ Todos los gestores de tareas desarrollados cumplen con los requisitos propuestos
 
 Para añadir Invoke al proyecto se ha de instalar por medio de Pip y posteriormente añadirla a las \glspl{dependencia} del proyecto.
 \begin{lstlisting}[style=consola]
-	pip install Invoke
-	poetry add Invoke
+	pip install invoke
+	poetry add invoke
 \end{lstlisting}
 
 Y solo quedaría generar el \gls{script} de python con las tareas a automatizar. Dicho fichero se llamará ``task.py'' y contiene las siguientes instrucciones. 
