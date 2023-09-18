@@ -1,4 +1,4 @@
-name: Comprobador ortografia
+name: Comprobador ortografía
 on: push
 jobs:
   check-spelling:
@@ -6,5 +6,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Install tools and spelling check
-        run: make workflow-spell
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install Poetry
+        run: |
+          pip install poetry
+          poetry config virtualenvs.create false
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Run spelling check
+        run: invoke workflowSpell
