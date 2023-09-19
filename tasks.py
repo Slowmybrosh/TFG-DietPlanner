@@ -31,3 +31,24 @@ def install(c, dev=False):
 	else:
 		print("Instalando dependencias...")
 		run("poetry install --no-dev", shell="/bin/sh")
+            
+@task
+def installSpell(c):
+      print("Instalando dependencias...")
+      run("./scripts/spell_install.sh", shell="/bin/sh")
+
+@task
+def orderDic(c):
+      print("Ordenando diccionario de palabras clave...")
+      run("python3 ./scripts/order_dico.py")
+
+@task
+def spell(c):
+    print("Lanzando script de comprobación...")
+    run("./scripts/spell_check.sh",shell="/bin/sh")
+    
+@task
+def workflowSpell(c):
+    installSpell(c)
+    orderDic(c)
+    spell(c)
