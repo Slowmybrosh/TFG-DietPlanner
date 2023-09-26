@@ -20,10 +20,20 @@ Ambas herramientas proporcionan un marco para la gestión de proyectos. Permitie
 
 Al comenzar todo proyecto, la orientación del mismo se reflejará como una serie de historias de usuario especificadas en \emph{issues} y la planificación haciendo uso de \emph{milestones}.
 
+\section{Operaciones utilizadas en el proyecto}
+En esta sección se describirán las operaciones, fuera de las habituales (\emph{commit}, \emph{push}, \emph{pull}, \emph{merge}, etc...), que se han utilizado en el proyecto, el motivo y como se han aplicado las operaciones. 
+
+\subsection{Cherry-picking}
+La operación \emph{cherry-picking} es un proceso por el cual se escogen \emph{commits} manualmente de una rama para introducirlos en otra. El problema es la dificultad de conocer que cambios contiene cada \emph{commit} y en cual deberían ser introducidos. Se utiliza normalmente en ramas de desarrollo muy largas que no pueden ser mezcladas, los desarrolladores escogen los \emph{commits} haciendo uso de \emph{cherry-pick} y reusar el código en otras ramas.\cite{bunyakiati2017cherry}
+
+En el proyecto ha sido necesario el uso de \emph{cherry-picking} para extraer \emph{commits} de una rama extensa que contenía cambios que no debían mezclarse con la rama principal. Que han sido extraídos a una nueva rama y mezclados con éxito en la rama principal. 
+
+Es posible usar \emph{cherry-pick} desde la línea de comandos de git pero es muy lioso, en el proyecto se ha utilizado la herramienta de \href{https://desktop.github.com/}{Github Desktop} para extraer los \emph{commits} de manera sencilla.
+
 \section{Design Thinking}
 En el proyecto, se aplicará el enfoque del \gls{design thinking} para empatizar con el usuario y comprender a fondo el problema que están experimentando. Para ello, se debe asumir el rol de usuario y ponerse en su lugar para identificar los posibles obstáculos que podrían tener al cocinar con ingredientes específicos sin conocer una receta adecuada. En este caso, el proceso de \gls{design thinking} nos ayudará a resolver el problema del usuario al permitirle encontrar recetas que se adapten a los ingredientes de su elección, abordando así sus necesidades de manera efectiva.
 
-El concepto nació a finales del siglo XX como un compuesto que se basa en disciplinas como el diseño industrial y gráfico, además de la ingeniería y arquitectura. Este se fiere a estrategias creativas que utilizan los diseñadores durante el proceso de diseño. También es utilizado tanto como para abordar problemas como para desarrollar una solución, no solo en el ámbito de la ingeniería sino en ámbitos como empresas o cuestiones sociales. El \gls{design thinking} aprovecha los métodos a disposición del diseñador para hacer coincidir las necesidades de las personas con lo tecnologícamente factible, que a su vez se puede convertir en valor de mercado para una empresa.
+El concepto nació a finales del siglo XX como un compuesto que se basa en disciplinas como el diseño industrial y gráfico, además de la ingeniería y arquitectura. Este se refiere a estrategias creativas que utilizan los diseñadores durante el proceso de diseño. También es utilizado tanto como para abordar problemas como para desarrollar una solución, no solo en el ámbito de la ingeniería sino en ámbitos como empresas o cuestiones sociales. El \gls{design thinking} aprovecha los métodos a disposición del diseñador para hacer coincidir las necesidades de las personas con lo tecnológicamente factible, que a su vez se puede convertir en valor de mercado para una empresa.
 
 Se compone de cinco estados que se deben usar en el proceso. Es muy importante no saltarse ningún paso
 \begin{figure}[h]
@@ -38,9 +48,9 @@ Se compone de cinco estados que se deben usar en el proceso. Es muy importante n
     \label{list:stepsDesign}
 \end{figure}
 
-Se determinan las caracteristicas de los usuarios objetivo de los que se van a beneficiar de la aplicación. Así es posible obtener toda la información posible sobre los usuarios del producto y sus necesidades. Este paso ya se ha realizado anteriormente y se han especificado los clientes de la aplicación.
+Se determinan las características de los usuarios objetivo de los que se van a beneficiar de la aplicación. Así es posible obtener toda la información posible sobre los usuarios del producto y sus necesidades. Este paso ya se ha realizado anteriormente y se han especificado los clientes de la aplicación.
 
-La siguiente etapa del \gls{design thinking} es la definición del usuario, es el paso más difícil ya que normalmente el desarrollador del proyecto tiende a idear soluciones familiares para él, pero se tiene que poner al usuario por delante de la comodidad del desarrollador. Se perfilarán los usuarios del proyecto, detallando su entorno, conocimientos, circulos sociales, motivaciones, etc... Para comprender que necesidades tienen de la aplicación. Basándonos en esas necesidades irán surgiendo nuevos objetivos y metas que alcanzar.
+La siguiente etapa del \gls{design thinking} es la definición del usuario, es el paso más difícil ya que normalmente el desarrollador del proyecto tiende a idear soluciones familiares para él, pero se tiene que poner al usuario por delante de la comodidad del desarrollador. Se perfilarán los usuarios del proyecto, detallando su entorno, conocimientos, círculos sociales, motivaciones, etc... Para comprender que necesidades tienen de la aplicación. Basándonos en esas necesidades irán surgiendo nuevos objetivos y metas que alcanzar.
 
 El paso de idear involucra la parte creativa del diseño, se debe intentar generar la mayor cantidad de ideas posibles, teniendo en cuenta solo las más importantes o realistas en el proyecto. Y una vez que se ha realizado una lluvia de ideas se seleccionarán las más relevantes y se creará un prototipo de aplicación, o varios dependiendo del proyecto. Para la fase de pruebas, donde se debería llegar al mayor público posible para obtener la mayor cantidad de retroalimentación de cara a futuras versiones de la aplicación o el descubrimiento de nuevas necesidades del usuario. \cite{wolniak2017design}
 
