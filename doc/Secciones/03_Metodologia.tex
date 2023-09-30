@@ -1,7 +1,7 @@
 \chapter{Descripción de la metodología}
 En todo proyecto es necesaria una metodología que ayude a guiar el siguiente paso, ya que en realidad el paso más importante es el siguiente y no el primero. Por esta razón, en este capítulo se describirá la metodología utilizada así como la planificación del proyecto.
 
-\section{Marco ágil}
+\section{Marco ágil del proyecto}
 Debido a las limitaciones de la gestión de proyectos, a finales de los 90 se empezó a utilizar una metodología ágil. Pero no fue hasta 2001 que un grupo de expertos desarrolla el ``Manifiesto por el Desarrollo Ágil de Software''. Donde se especificaron los doce principios clave para el desarrollo de software. A partir de ese punto, cada vez han ido surgiendo más modelos ágiles. Los 12 conceptos clave\cite{OBS2016} a seguir en este proyecto son\:
 \begin{enumerate}
     \item Los cambios son bienvenidos
@@ -13,25 +13,8 @@ Debido a las limitaciones de la gestión de proyectos, a finales de los 90 se em
     \item Adaptación a circunstancias cambiantes
 \end{enumerate}
 
-\section{Impacto de git en la metodología}
-\emph{Git} se trata de una herramienta de control de versiones que surge de la necesidad de llevar un seguimiento del código fuente y sus actualizaciones. Es el núcleo de herramientas como \emph{Github} y \emph{Gitlab}. Cualquier equipo de desarrolladores, que cuente con más de un trabajador, debe hacer uso de una de estas herramientas.
-
-Ambas herramientas proporcionan un marco para la gestión de proyectos. Permitiendo que diferentes equipos implementen concurrentemente \emph{features} en el software creando ramas a partir del código principal. Cualquier cambio realizado debe reflejarse con su correspondiente \emph{issue}, dotando de coherencia dichos cambios. Estos no solo sirven para reflejar cambios en el código o correcciones, en un proyecto muy grande también permiten llevar un seguimiento de en que trabaja cada miembro. Todos los \emph{issues} deben estar vinculados a un objetivo o \emph{milestone}. Estos últimos constituyen los entregables (producto mínimo viable) a alcanzar o, lo que es lo mismo, la planificación del proyecto.
-
-Al comenzar todo proyecto, la orientación del mismo se reflejará como una serie de historias de usuario especificadas en \emph{issues} y la planificación haciendo uso de \emph{milestones}.
-
-\section{Operaciones utilizadas en el proyecto}
-En esta sección se describirán las operaciones, fuera de las habituales (\emph{commit}, \emph{push}, \emph{pull}, \emph{merge}, etc...), que se han utilizado en el proyecto, el motivo y como se han aplicado las operaciones. 
-
-\subsection{Cherry-picking}
-La operación \emph{cherry-picking} es un proceso por el cual se escogen \emph{commits} manualmente de una rama para introducirlos en otra. El problema es la dificultad de conocer que cambios contiene cada \emph{commit} y en cual deberían ser introducidos. Se utiliza normalmente en ramas de desarrollo muy largas que no pueden ser mezcladas, los desarrolladores escogen los \emph{commits} haciendo uso de \emph{cherry-pick} y reusar el código en otras ramas.\cite{bunyakiati2017cherry}
-
-En el proyecto ha sido necesario el uso de \emph{cherry-picking} para extraer \emph{commits} de una rama extensa que contenía cambios que no debían mezclarse con la rama principal. Que han sido extraídos a una nueva rama y mezclados con éxito en la rama principal. 
-
-Es posible usar \emph{cherry-pick} desde la línea de comandos de git pero es muy lioso, en el proyecto se ha utilizado la herramienta de \href{https://desktop.github.com/}{Github Desktop} para extraer los \emph{commits} de manera sencilla.
-
 \section{Design Thinking}
-En el proyecto, se aplicará el enfoque del \gls{design thinking} para empatizar con el usuario y comprender a fondo el problema que están experimentando. Para ello, se debe asumir el rol de usuario y ponerse en su lugar para identificar los posibles obstáculos que podrían tener al cocinar con ingredientes específicos sin conocer una receta adecuada. En este caso, el proceso de \gls{design thinking} nos ayudará a resolver el problema del usuario al permitirle encontrar recetas que se adapten a los ingredientes de su elección, abordando así sus necesidades de manera efectiva.
+En el proyecto, se aplicará el enfoque del \gls{design thinking}, en el que sus primeros pasos implican realizar un análisis del problema empatizando con los usuarios y definiéndolos detalladamente. Para empatizar con el usuario y comprender a fondo el problema que están experimentando. Para ello, se debe asumir el rol de usuario y ponerse en su lugar para identificar los posibles obstáculos que podrían tener al cocinar con ingredientes específicos sin conocer una receta adecuada. En este caso, el proceso de \gls{design thinking} nos ayudará a resolver el problema del usuario al permitirle encontrar recetas que se adapten a los ingredientes de su elección, abordando así sus necesidades de manera efectiva.
 
 El concepto nació a finales del siglo XX como un compuesto que se basa en disciplinas como el diseño industrial y gráfico, además de la ingeniería y arquitectura. Este se refiere a estrategias creativas que utilizan los diseñadores durante el proceso de diseño. También es utilizado tanto como para abordar problemas como para desarrollar una solución, no solo en el ámbito de la ingeniería sino en ámbitos como empresas o cuestiones sociales. El \gls{design thinking} aprovecha los métodos a disposición del diseñador para hacer coincidir las necesidades de las personas con lo tecnológicamente factible, que a su vez se puede convertir en valor de mercado para una empresa.
 
@@ -56,14 +39,14 @@ El paso de idear involucra la parte creativa del diseño, se debe intentar gener
 
 Para realizar los pasos futuros del \gls{design thinking} se tendrá en cuenta lo explicado en este apartado, en la etapa de ideas se anotarán las ideas más relevantes para la solución al problema de los usuarios. Posteriormente se escogerán las ideas más relevantes y razonables para crear prototipos de la aplicación planteada en el proyecto. Y, por último, se presentará el prototipo a determinados usuarios que puedan aportar retroalimentación útil para posibles mejoras o nuevas necesidades que se deban cubrir.
 
-\section{User journeys}
+\subsection{1. Empatizar - User journeys}
 
 En primer lugar se tratará de resolver el problema de un estudiante que cuenta con un presupuesto ajustado al mes y no puede permitirse el lujo de comprar en el supermercado todos los días. Dicho estudiante se siente frustrado por no ser capaz de controlar sus gastos en el supermercado y que ciertos ingredientes que no utiliza asiduamente le caduquen en la despensa. Por casualidad descubre el software desarrollado en este proyecto y se lo descarga. Una vez descargado abre la aplicación e introduce los ingredientes que tiene en su despensa. El estudiante podrá encontrar a su disposición diferentes recetas que realizar con los ingredientes introducidos. Una vez seleccionada la receta, el usuario puede comprobar los detalles de la misma.
 
 Otro problema que se tratará de resolver es el que tiene una persona mayor que no se encuentra en disposición de ir al supermercado cada vez que le faltan ingredientes y tiene una despensa limitada. De pronto escucha la existencia de la aplicación y se dispone a probarla. Después de descargarla, con dificultad debido a sus achaques de la edad y a su dificultad para entender las nuevas tecnologías, la abre. En primer lugar debe introducir los ingredientes que tiene por casa y aunque encuentra cierta dificultad sustituir una nota de papel, con esfuerzo consigue hacer un inventario de sus ingredientes. La aplicación en este momento le podrá empezar a sugerir recetas con los ingredientes que tiene en su despensa. Después de elegir una receta, puede comprobar los detalles de la misma con detenimiento.
 
-\section{Perfiles de usuarios}
-\subsection{Estudiante}
+\subsection{2. Definir - Perfiles de usuarios}
+\subsubsection{Perfil de un estudiante}
 \begin{itemize}
     \item Nombre: Daniel Pérez
     \item Edad: 22 años
@@ -76,7 +59,7 @@ Otro problema que se tratará de resolver es el que tiene una persona mayor que 
     \item Cita: Erradicar el hambre en el mundo es una responsabilidad compartida.
 \end{itemize}
 
-\subsection{Persona mayor}
+\subsubsection{Perfil de una persona mayor}
 \begin{itemize}
     \item Nombre: María Encarnación Sánchez
     \item Edad: 85 años
@@ -88,6 +71,21 @@ Otro problema que se tratará de resolver es el que tiene una persona mayor que 
     \item Motivación: María Encarnación ya no tiene edad para ir a comprar cada vez que le falta algún ingrediente y su memoria no es lo que era, no recuerda muchas recetas de su juventud.
     \item Cita: La edad puede nublar la memoria de nuestras recetas favoritas, pero nunca desvanece el sabor de los momentos compartidos
 \end{itemize}
+
+\section{Uso de git en el proyecto}
+\emph{Git} se trata de una herramienta de control de versiones que surge de la necesidad de llevar un seguimiento del código fuente y sus actualizaciones. Es el núcleo de herramientas como \emph{Github} y \emph{Gitlab}. Cualquier equipo de desarrolladores, que cuente con más de un trabajador, debe hacer uso de una de estas herramientas.
+
+Ambas herramientas proporcionan un marco para la gestión de proyectos. Permitiendo que diferentes equipos implementen concurrentemente \emph{features} en el software creando ramas a partir del código principal. Cualquier cambio realizado debe reflejarse con su correspondiente \emph{issue}, dotando de coherencia dichos cambios. Estos no solo sirven para reflejar cambios en el código o correcciones, en un proyecto muy grande también permiten llevar un seguimiento de en que trabaja cada miembro. Todos los \emph{issues} deben estar vinculados a un objetivo o \emph{milestone}. Estos últimos constituyen los entregables (producto mínimo viable) a alcanzar o, lo que es lo mismo, la planificación del proyecto.
+
+Al comenzar todo proyecto, la orientación del mismo se reflejará como una serie de historias de usuario especificadas en \emph{issues} y la planificación haciendo uso de \emph{milestones}.
+
+Para añadir código e ir cerrando \emph{issues}, se utilizan \emph{pull request} (o PR para abreviar). Estas son solicitudes para mezclar código de una rama a otra. Permiten cerrar problemas que pueda tener el código, reflejados en \emph{issues}. Puede darse el caso en el que se quieran mezclar \emph{commits} (o cambios) para cerrar \emph{issues} pero no todos los cambios porque algunos no deben pasar de un \emph{milestone} al siguiente.
+
+En el proyecto ha sido necesario el uso de \emph{cherry-picking} para extraer \emph{commits} de una rama extensa que contenía cambios que no debían mezclarse con la rama principal. Que han sido extraídos a una nueva rama y mezclados con éxito en la rama principal.
+
+\emph{cherry-picking} es un proceso por el cual se escogen \emph{commits} manualmente de una rama para introducirlos en otra. El problema es la dificultad de conocer que cambios contiene cada \emph{commit} y en cual deberían ser introducidos. Se utiliza normalmente en ramas de desarrollo muy largas que no pueden ser mezcladas, los desarrolladores escogen los \emph{commits} haciendo uso de \emph{cherry-pick} y reusar el código en otras ramas.\cite{bunyakiati2017cherry}
+
+Es posible usar \emph{cherry-pick} desde la línea de comandos de git pero es muy lioso, en el proyecto se ha utilizado la herramienta de \href{https://desktop.github.com/}{Github Desktop} para extraer los \emph{commits} de manera sencilla.
 
 \section{Planificación}
 En este proyecto se usará una mentalidad ágil para el desarrollo del mismo, esto significa que no se sabe a largo plazo que objetivos se van a cumplir, ya que solo se puede planificar como mucho un objetivo o dos por delante. Pero hasta que no se llega al final de un objetivo no se puede saber realmente por donde se va a seguir avanzando.
