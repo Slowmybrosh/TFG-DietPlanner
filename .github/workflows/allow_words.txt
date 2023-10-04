@@ -38,6 +38,7 @@ commentstyle
 dev
 dietarias
 empatizar
+entregable
 entregables
 framerule
 framesep
@@ -68,9 +69,9 @@ rulesepcolor
 sSL
 showstringspaces
 stringstyle
+subobjetivos
 toc
 toml
 ugr
 vegana
-subobjetivos
-entregable
+empatizando
