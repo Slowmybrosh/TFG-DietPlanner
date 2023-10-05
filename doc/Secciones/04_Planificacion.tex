@@ -1,10 +1,7 @@
-\chapter{Implementación}
-En este capítulo se describirán las decisiones tomada a lo largo del desarrollo del proyecto, organizadas por \emph{milestones}. 
+\chapter{Planificación}
+En este tercer capítulo se narrará la planificación seguida en el proyecto, desde la definición del problema a resolver hasta la especificación de las metodologías que se utilizarán en el proyecto. 
 
-\section{\href{https://github.com/Slowmybrosh/TFG-DietPlanner/milestone/1}{Milestone 0} - Documentación inicial}
-El primer hito del proyecto consiste en la descripción detallada del mismo, detallando el problema que se va a abordar y ciertas cuestiones iniciales que se deben solventar tales como los objetivos del proyecto, las soluciones que existen en el mercado, la metodología que se utilizará y la planificación del proyecto. Pero no solo es relativo a documentación, para asegurar una correcta documentación es necesario contar con un corrector ortográfico que permita asegurar una correcta escritura de la memoria del proyecto.
-
-\subsection{Introducción}
+\section{Introducción}
 En el apartado de introducción se detalla la motivación del proyecto, exponiendo los motivos que llevan al desarrollo del proyecto, además se determina que se considera como ``dieta equilibrada'', ya que no todo el mundo tiene el mismo concepto y, adicionalmente, que se considera una ``dieta variada''. 
 
 Por otra parte, se describe el problema desde el punto de vista de los clientes de la aplicación. El problema que se va a resolver es la necesidad que tiene el usuario para encontrar nuevas recetas, o recordar antiguas, utilizando los ingredientes a su disposición. 
@@ -15,7 +12,7 @@ Una vez descrito el problema, fue necesario describir a quien se dirige la soluc
     \item Persona mayor
 \end{enumerate}
 
-\subsection{Estado del arte}
+\section{Estado del arte}
 En este capítulo se definen las principales soluciones existentes similares a lo que se busca desarrollar. Se realizó una búsqueda de aplicaciones que pudieran ser parecidas o con una funcionalidad que sea una solución al problema planteado. 
 
 Se encontraron algunas aplicaciones, en blogs de nutrición y revistas \cite{Healthline2022}\cite{TheGuardian2016}\cite{BusinessInsider2021}, que cumplen los requisitos especificados antes, la mayoría son de pago o imponen restricciones a la hora de escoger ingredientes que se utilicen en la búsqueda de recetas. 
@@ -41,6 +38,4 @@ En la gestión del proyecto se han afrontado algunos desafíos como la correcta 
 
 En un punto del desarrollo del \emph{milestone} se desarrolló una parte del proyecto de manera prematura, utilizando una rama para ello. Para afrontar el problema de manera organizada, se abrieron \emph{pull request} lo más atómicos posibles con el objetivo de cerrar los \emph{issues} relativos a este milestone, dejando pendientes los prematuros. Una vez completados todos los \emph{issues} se tomó la decisión de dejar la rama abierta sin mezclar y extraer los cambios realizados para cerrar los problemas abordados. Para ello, se utiliza la operación \emph{cherry-pick}, siendo mejor opción que eliminar la rama y tener que repetir los cambios para solventar los \emph{issues}. Desde una nueva rama con los cambios extraídos de la problemática, se mezclaron con la rama principal sin inconvenientes.
 
-En la planificación del proyecto se tomó la decisión de especificar únicamente los primeros \emph{milestones} del proyecto debido a la imposibilidad de conocer el camino que tomará el desarrollo siguiendo una mentalidad ágil. 
-
-En este milestone también tiene como objetivo establecer un comprobador de ortografía. Inicialmente se implementó TeXtidote pero debido a su dificultad para la configuración, los test que deben pasar las ramas no estaban bien configurados. Se utiliza Aspell por ser el utilizado en algunos proyectos libres encontrados en el repositorio de proyectos. En el proyecto se mantiene un diccionario con términos personalizados que no se deben tener en cuenta. 
+En la planificación del proyecto se tomó la decisión de especificar únicamente los primeros \emph{milestones} del proyecto debido a la imposibilidad de conocer el camino que tomará el desarrollo siguiendo una mentalidad ágil.
