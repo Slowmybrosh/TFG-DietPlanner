@@ -1,0 +1,41 @@
+\chapter{Planificación}
+En este tercer capítulo se narrará la planificación seguida en el proyecto, desde la definición del problema a resolver hasta la especificación de las metodologías que se utilizarán en el proyecto. 
+
+\section{Introducción}
+En el apartado de introducción se detalla la motivación del proyecto, exponiendo los motivos que llevan al desarrollo del proyecto, además se determina que se considera como ``dieta equilibrada'', ya que no todo el mundo tiene el mismo concepto y, adicionalmente, que se considera una ``dieta variada''. 
+
+Por otra parte, se describe el problema desde el punto de vista de los clientes de la aplicación. El problema que se va a resolver es la necesidad que tiene el usuario para encontrar nuevas recetas, o recordar antiguas, utilizando los ingredientes a su disposición. 
+
+Una vez descrito el problema, fue necesario describir a quien se dirige la solución, se determinó que existen dos tipos de cliente a los que se resuelve la necesidad:
+\begin{enumerate}
+    \item Estudiante
+    \item Persona mayor
+\end{enumerate}
+
+\section{Estado del arte}
+En este capítulo se definen las principales soluciones existentes similares a lo que se busca desarrollar. Se realizó una búsqueda de aplicaciones que pudieran ser parecidas o con una funcionalidad que sea una solución al problema planteado. 
+
+Se encontraron algunas aplicaciones, en blogs de nutrición y revistas \cite{Healthline2022}\cite{TheGuardian2016}\cite{BusinessInsider2021}, que cumplen los requisitos especificados antes, la mayoría son de pago o imponen restricciones a la hora de escoger ingredientes que se utilicen en la búsqueda de recetas. 
+
+Se han detallado las más relevantes o parecidas que se han encontrado.
+
+\section{Metodologías}
+En esta sección inicialmente se describe el concepto de marco ágil y las ventajas que se aprovecharán en el desarrollo del proyecto. 
+
+Para el proyecto se plantea el uso de \emph{design thinking}, realizando una pequeña investigación leyendo diversos artículos académicos\cite{wolniak2017design}\cite{thoring2011understanding} que han servido de guía para obtener un entendimiento del concepto de \emph{design thinking} y sus etapas en el desarrollo. Además, se ha especificado el avance en las primeras etapas del proyecto.
+
+La etapa de empatizar con el usuario objetivo se completa pensando en las necesidades que hay que cubrir del usuario. Especificando el viaje del usuario (\emph{user journey}) en la aplicación. Un \emph{user journey} es una herramienta que permite representar paso a paso el proceso que necesita el usuario para alcanzar su objetivo, en este caso encontrar una receta que se adapte a él. \cite{gasparini2015perspective}
+
+Para definir a los usuarios se utiliza la metodología de persona, que permite definir al usuario por medio de una serie de información planteada por medio de preguntas para conocer a fondo al cliente, tanto sus necesidades como sus motivaciones. 
+
+Las preguntas propuestas para el perfilado del usuario permiten entender las necesidades de los clientes potenciales y abasteciéndolos de las funcionalidades o servicios que necesitan.
+
+El proyecto más complejo que el desarrollar una aplicación, es muy importante llevar una correcta gestión del mismo. Para llevar a cabo esa gestión se utiliza \emph{git}, una herramienta de control de versiones que permite trabajar siguiendo una mentalidad ágil resolviendo poco a poco \emph{issues}.
+
+Existen diferentes herramientas que permiten el uso de \emph{git}, se utiliza \emph{Github} por ser la herramienta con la que he trabajado y tengo mayor experiencia en su uso. Pero existen otras herramientas como \emph{Jira} o \emph{Gitlab} en las que tengo menos experiencia.
+
+En la gestión del proyecto se han afrontado algunos desafíos como la correcta creación de \emph{issues} que definan de manera corta un problema o desafío que se necesita resolver para continuar el desarrollo. La definición de \emph{milestones} y que se espera de cada hito también ha supuesto un desafío en esta etapa del proyecto, debido a la poca experiencia que poseía al abordar el proyecto con una mentalidad ágil.
+
+En un punto del desarrollo del \emph{milestone} se desarrolló una parte del proyecto de manera prematura, utilizando una rama para ello. Para afrontar el problema de manera organizada, se abrieron \emph{pull request} lo más atómicos posibles con el objetivo de cerrar los \emph{issues} relativos a este milestone, dejando pendientes los prematuros. Una vez completados todos los \emph{issues} se tomó la decisión de dejar la rama abierta sin mezclar y extraer los cambios realizados para cerrar los problemas abordados. Para ello, se utiliza la operación \emph{cherry-pick}, siendo mejor opción que eliminar la rama y tener que repetir los cambios para solventar los \emph{issues}. Desde una nueva rama con los cambios extraídos de la problemática, se mezclaron con la rama principal sin inconvenientes.
+
+En la planificación del proyecto se tomó la decisión de especificar únicamente los primeros \emph{milestones} del proyecto debido a la imposibilidad de conocer el camino que tomará el desarrollo siguiendo una mentalidad ágil.
