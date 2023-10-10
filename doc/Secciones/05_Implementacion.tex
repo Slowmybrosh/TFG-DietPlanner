@@ -1,0 +1,34 @@
+\chapter{Implementación}
+En todo proyecto existen una serie de decisiones que marcan el avance del proyecto. En este capítulo se describirán, detalladamente, las justificaciones de cada decisión que se tome durante el desarrollo del mismo. Otorgando tanto al lector como a cualquier desarrollador que busque continuar este proyecto, un entendimiento de porqué se han tomado dichas decisiones.
+
+Los criterios que se seguirán para la elección de un lenguaje de programación son: 
+\begin{itemize}
+    \item Estándares generales: 
+    \item Buenas prácticas:
+    \item Deuda técnica: 
+\end{itemize}
+
+\section{Herramientas de control de versiones}
+Como se explicó en capítulos anteriores, \Gls{git} es una herramienta de control de versiones muy poderosa que permite mantener una organización en los cambios realizados en el código de un proyecto por medio de \emph{issues} y \emph{commits}.
+
+Es posible trabajar con \Gls{git} localmente, pero se consiguen mejores resultados al utilizar una plataforma en línea para almacenar estos cambios. Para mantener la coherencia en los cambios del proyecto es necesario elegir una plataforma para el control de versiones. Las dos plataformas consideradas son \href{}{Github} y \href{}{GitLab}. 
+
+Dichas plataformas son muy parecidas, dificultando la elección de una de ellas objetivamente. Ambas permiten la gestión del proyecto por medio de un repositorio remoto y están basadas en \Gls{git}. La mayor diferencia que existe entre ambas es el objetivo para el que se utilizan. GitHub es una plataforma colaborativa que ayuda a revisar y gestionar el código remotamente. Mientras que GitLab está más enfocado a proyectos de DevOps y CI/CD. \cite{VCS2022}
+
+En el proyecto se utiliza GitHub por ser la única herramienta de control de versiones  
+
+\section{Herramientas de Integración continua}
+La integración continua (CI) es un proceso de desarrollo de software que permite al equipo de desarrollo realizar \emph{builds} consistentes, añadiendo test que permitan comprobar que las funcionalidades desarrolladas funcionen como se espera. Los tres pasos esenciales de la integración continua son: Construir, testear y mezclar. \cite{virtanen2021comparing}
+
+En este proyecto es necesario comprobar que la memoria no contenga errores ortográficos a la hora de subir cualquier cambio al repositorio. Para ello es necesaria la implementación de una herramienta de integración continua que ejecute un test sobre el contenido de la memoria para asegurar que no exista ningún error.
+
+\href{}{Jenkins} es un software de código abierto bajo licencia del MIT que proporciona servicios de integración continua, que se pueden iniciar localmente o desde el servidor de aplicaciones web. Es posible descargarlo e instalarlo gratuitamente. Pero ese es el principal motivo por el que se descarta el uso de Jenkins, por la problemática de tener que instalar la herramienta de CI. \cite{virtanen2021comparing}
+
+Otra de las herramientas consideradas es \href{https://www.travis-ci.com/}{Travis CI}, permite conectar el repositorio de GitHub y lanzar el test después de cada \emph{push} al repositorio. Para su configuración se utiliza un fichero YAML que permite configurar los trabajos. Una de las ventajas que tiene esta herramienta es la gran cantidad de integraciones útiles que tiene, pero esta herramienta no es gratuita. Para ejecutar pruebas se necesitan créditos, por ello esta herramienta no se utilizará en el proyecto. 
+
+Debido al uso de GitHub como herramienta de control de versiones, lo más sencillo es utilizar GitHub Actions como herramienta de integración continua. Cuenta con una gran base de módulos aportados por la comunidad que pueden ser utilizados en las tareas de integración continua. La configuración es muy sencilla, se utiliza un fichero YAML en el que se configuran las tareas y los pasos de la misma. 
+
+
+
+
+

@@ -75,3 +75,6 @@ toml
 ugr
 vegana
 empatizando
+GitLab
+DevOps
+YAML
