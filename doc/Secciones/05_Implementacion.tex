@@ -22,88 +22,11 @@ La integración continua (CI) es un proceso de desarrollo de software que permit
 
 Después de una investigación, de diferentes artículos\emph{online}, en el cambo de los \emph{framework} de integración continua más populares actualmente se deben valorar diferentes soluciones posibles para la implementación de la integración continua. \cite{CIKumar2023}\cite{CITaylor2023}\cite{CIRoddewig2023}
 
-Para realizar una elección, se deben tener en cuenta tanto las ventajas que ofrece cada herramienta. Los requisitos buscados son los siguientes:
+Se consideran las siguientes herramientas como herramientas de CI:
 \begin{enumerate}
-    \item Plan gratuito
-    \item Computación en la nube
-\end{enumerate}
-
-En primer lugar, se busca que sea gratuita la ejecución de pruebas, no se considera un plan gratuito por minutos de ejecución ya que debido a los constantes cambios en el proyecto, si no se va con cuidado, se pueden acabar prematuramente. Por otro lado, se busca que la computación de estas pruebas se haga exclusivamente en la nube, sin necesidad de instalar localmente un software que permita pruebas.
-
-Las herramientas más repetidas en la investigación son:
-\begin{enumerate}
-    \item Jenkins
-    \item CircleCI
-    \item TravisCI
-    \item TeamCity
     \item GitHub Actions
+    \item CircleCI
 \end{enumerate}
 
-La primera herramienta que se analizará es \href{https://www.jenkins.io/}{Jenkins}, es una herramienta multiplataforma, de código abierto, ganadora de múltiples premios. Utiliza un servidor web basado en Java para ejecutar los \emph{test al software}. Soporta los siguientes lenguajes: Java, JavaScript, Groovy, GoLang, Ruby y Shell \emph{Scripting}, pero es compatible con otros lenguajes de programación como \Gls{python} haciendo uso de de una librería conocida como \href{https://python-jenkins.readthedocs.io/en/latest/index.html}{Python-Jenkins} que utiliza la \emph{REST API} de Jenkins para ejecutar los test. De acuerdo a la página oficial, ofrece las siguientes ventajas: \cite{polkhovskiy2016comparison}
-\begin{itemize}
-    \item Instalación y configuración sencilla
-    \item Multitud de \emph{plugins} disponibles
-    \item Extensibilidad
-\end{itemize}
-
-También cuenta con desventajas, por ejemplo, consume demasiados recursos cuando se empiezan a añadir muchos \emph{plugin} y trabajos.
-
-Para concluir, Jenkins es una herramienta muy poderosa que permite a usuarios sin experiencia implementar un servicio de integración continua localmente y de manera muy sencilla. En el proyecto se busca mantener una herramienta de integración continua hospedada en la nube, que permita realizar los \emph{test} de manera dinámica. Al ser una herramienta de código abierto, su uso es completamente gratuito. 
-
-\href{https://circleci.com/}{CircleCI}, cuenta con una instalación y configuración que no supone ninguna dificultad, \href{https://circleci.com/customers/}{muchas compañías conocidas} utilizan esta herramienta de integración continua algunas son: \href{https://www.google.com/}{Google}, \href{https://www.airbnb.es/}{AirBnb}, \href{https://www.okta.com/}{Okta}. Ofrece un plan gratuito basado en minutos, ofreciendo seis mil minutos y cinco usuarios activos por mes, contando además con diferentes planes pudiendo elegir el que más se adapte al proyecto. Ofrece las siguientes ventajas: \cite{polkhovskiy2016comparison}
-\begin{itemize}
-    \item Configuración rápida
-    \item Personalización avanzada
-    \item Es muy sencillo hacer \emph{debug} a los trabajos
-    \item Cuenta con notificaciones avanzadas, soportando diferentes vías de comunicación
-    \item Desarrollo continuo, permitiendo la integración con GitHub
-\end{itemize}
-
-Las opiniones de CircleCI son muy positivas, haciendo hincapié en la sencillez de la configuración utilizando un solo fichero YAML, su interfaz intuitiva que permite trabajar fácilmente con la herramienta. Por otro lado, los usuarios remarcan que si no se tiene cuidado, los créditos se acaban muy rápido además en cada \emph{push} al repositorio se inicia un nuevo \emph{test} que consume los créditos con mayor rapidez aún. \cite{CircleCI2023}
-
-Para concluir el análisis de esta herramienta, CircleCI es una opción muy considerada para su uso en este proyecto, pero el límite de créditos mensual otorgados en el plan gratuito supone una barrera importante por la que se considera el uso de otra herramienta en vez de esta.
-
-\href{https://www.travis-ci.com/}{TravisCI} es una herramienta de integración continua basada en \emph{web} construida para proyectos de código abierto, tiene la ventaja de poder utilizarse tanto localmente (\emph{on-premises}) como en la nube. Cuenta diferentes planes que para adaptarse a las necesidades del proyecto, pero lamentablemente no cuenta con un plan gratuito. 
-
-Algunas de las ventajas que ofrece:
-\begin{itemize}
-    \item Integración con GitHub
-    \item Compuesto de multiples \emph{runtimes} que permiten probar aplicaciones con distintas configuraciones sin instalarlas localmente
-    \item Soporta multitud de lenguajes como: Node.js, PHP, Python y Ruby
-    \item Configuración sencilla por medio de un fichero YAML
-\end{itemize}
-
-Algunas opiniones de los usuarios valoran la facilidad que tienen a la hora de la configuración de la herramienta, la integración con GitHub y BitBucket y la facilidad de uso. Pero se quejan de los reportes poco claros y el precio de los planes. \cite{TravisCI2023}
-
-Debido a que TravisCI no tiene planes gratuitos, no se escogerá esta herramienta de integración continua para el proyecto. 
-
-\href{https://www.jetbrains.com/es-es/teamcity/}{TeamCity} es una herramienta de integración continua que permite tanto hospedar las pruebas en la nube, utilizando un agente, como hospedar la herramienta localmente reduciendo la factura de su uso. Esta herramienta ofrece una prueba gratuita \emph{on-premises} de cien \emph{builds} a partir de las cuales se comenzarán a cobrar 359 euros por \emph{build}.
-
-Las cinco ventajas que muestra JetBrains en la página oficial de TeamCity son:
-\begin{numerate}
-    \item Mejora el rendimiento
-    \item Configuración sencilla
-    \item \emph{Tests} inteligentes
-    \item Reportes en tiempo real
-\end{numerate}
-
-Otra ventaja encontrada a la hora de investigar sobre esta herramienta es el soporte de múltiples lenguajes como C++, Python, Ruby, Java, Kotlin, entre otros.
-
-Las opiniones de los usuarios son mayormente positivas, la mayoría de usuarios agradece que sea sencillo de instalar, soporte gran cantidad de de herramientas entre ellas Docker y Kubernetes. Uno de los problemas recurrentes que se comentan es la dificultad en la curva de aprendizaje que tiene esta herramienta. \cite{TeamCity2023}
-
-Debido a que TeamCity es un software que no ofrece una versión gratuita y que la curva de aprendizaje es demasiado pronunciada, no se elegirá para el desarrollo del proyecto. 
-
-Por último se analizará \href{https://github.com/features/actions}{GitHub Actions} como herramienta de integración continua. GitHub Actions permite tanto ejecutar el \emph{test} tanto en una máquina alojada en los servidores de GitHub gratuitamente como realizar el \emph{test} en localmente. La principal ventaja de esta herramienta es su integración con GitHub, permitiendo lanzar \emph{tests} cuando ocurren determinados eventos en el repositorio.
-
-\begin{itemize}
-    \item Integración con GitHub, permitiendo lanzar \emph{test} cuando ocurran determinados eventos en el repositorio, programado o un evento externo utilizando un \emph{webhook}
-    \item Configuración sencilla a través de un fichero YAML
-    \item Genera reportes en cada \emph{pull request}, permitiendo comprobar si el código introduce un error en el repositorio
-    \item GitHub analiza el código en el repositorio y recomienda \emph{workflows} basados en el lenguaje del código
-    \item Tiene una gran librería de acciones compartidas por la comunidad de GitHub
-\end{itemize}
-
-Para concluir esta elección, se han analizado algunas herramientas muy conocidas y utilizadas. Jenkins no se escogerá como herramienta de CI, ya que no cuenta con un plan gratuito y es una herramienta \emph{on-premises}. Aunque es posible utilizarlo en la nube contratando servidores en la nube en servicios como AWS, Google Cloud o Azure. CircleCI, cuenta con un plan gratuito que incluye algunos minutos, pero se busca un plan gratuito que no esté sujeto a minutos. El principal problema encontrado en TravisCI es la falta de plan gratuito, no pudiendo costear los planes de pago en este proyecto. El plan gratuito de TeamCity involucra un agente instalado localmente en la computadora, por ello no se elegirá esta herramienta. 
-
-La decisión de utilizar GitHub Actions como herramienta de integración continua es debido a su completa gratuidad sin estar sujeta a minutos o a condiciones, pudiendo ejecutar todos los \emph{test} en los servidores de GitHub cada vez que se introducen nuevos cambios a una rama. Asegurando así que el código introducido no contiene ningún error que pueda dejar una funcionalidad sin funcionar. Por otra parte también se configura fácilmente por medio de un fichero YAML y cuenta con una gran comunidad de módulos creados por los usuarios del propio GitHub.
+Las mencionadas anteriormente cumplen los dos requisitos, CircleCI cuenta con un plan regido por créditos de ejecución en el primer caso, mientras que GitHub Actions es completamente gratuito. Se utilizará CircleCI por salir de la zona de confort y aprender una nueva herramienta de CI, y adicionalmente, GitHub Actions de ser necesario su uso como soporte, en caso de agotar los créditos mensuales de CircleCI. 
 
