@@ -19,7 +19,7 @@ jobs:
 
       - run:
           name: Install dependencies
-          command: poetry install --no-root
+          command: poetry install
 
       - run:
           name: Run spelling check
