@@ -1,0 +1,30 @@
+version: 2.1
+jobs:
+  check-spelling:
+    docker:
+      - image: circleci/python:3.x
+    steps:
+      - checkout
+
+      - run:
+          name: Install Poetry
+          command: |
+            pip install poetry
+            poetry config virtualenvs.create false
+
+      - run:
+          name: Install dependencies
+          command: poetry install --no-root
+
+      - run:
+          name: Run spelling check
+          command: invoke workflowSpell
+
+workflows:
+  version: 2
+  check-spelling:
+    jobs:
+      - check-spelling:
+          filters:
+            branches:
+              ignore: /.*/
