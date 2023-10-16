@@ -12,13 +12,8 @@ jobs:
             sudo apt install python3 python3-pip -y
 
       - run:
-          name: Install Poetry
-          command: |
-            pip install poetry
-
-      - run:
           name: Install dependencies
-          command: poetry install
+          command: pip install invoke
 
       - run:
           name: Run spelling check
