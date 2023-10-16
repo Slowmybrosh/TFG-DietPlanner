@@ -24,7 +24,4 @@ workflows:
   version: 2
   check-spelling:
     jobs:
-      - check-spelling:
-          filters:
-            branches:
-              ignore: /.*/
+      - check-spelling
