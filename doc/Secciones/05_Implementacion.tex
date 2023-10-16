@@ -22,7 +22,15 @@ La integración continua (CI) es un proceso de desarrollo de software que permit
 
 Después de una investigación, de diferentes artículos\emph{online}, en el cambo de los \emph{framework} de integración continua más populares actualmente se deben valorar diferentes soluciones posibles para la implementación de la integración continua. \cite{CIKumar2023}\cite{CITaylor2023}\cite{CIRoddewig2023}
 
-Las herramientas más repetidas son:
+Para realizar una elección, se deben tener en cuenta tanto las ventajas que ofrece cada herramienta. Los requisitos buscados son los siguientes:
+\begin{enumerate}
+    \item Plan gratuito
+    \item Computación en la nube
+\end{enumerate}
+
+En primer lugar, se busca que sea gratuita la ejecución de pruebas, no se considera un plan gratuito por minutos de ejecución ya que debido a los constantes cambios en el proyecto, si no se va con cuidado, se pueden acabar prematuramente. Por otro lado, se busca que la computación de estas pruebas se haga exclusivamente en la nube, sin necesidad de instalar localmente un software que permita pruebas.
+
+Las herramientas más repetidas en la investigación son:
 \begin{enumerate}
     \item Jenkins
     \item CircleCI
@@ -40,7 +48,7 @@ La primera herramienta que se analizará es \href{https://www.jenkins.io/}{Jenki
 
 También cuenta con desventajas, por ejemplo, consume demasiados recursos cuando se empiezan a añadir muchos \emph{plugin} y trabajos.
 
-Para concluir, Jenkins es una herramienta muy poderosa que permite a usuarios sin experiencia implementar un servicio de integración continua localmente y de manera muy sencilla. En el proyecto se busca mantener una herramienta de integración continua hospedada en la nube, que permita realizar los \emph{test} de manera dinámica.
+Para concluir, Jenkins es una herramienta muy poderosa que permite a usuarios sin experiencia implementar un servicio de integración continua localmente y de manera muy sencilla. En el proyecto se busca mantener una herramienta de integración continua hospedada en la nube, que permita realizar los \emph{test} de manera dinámica. Al ser una herramienta de código abierto, su uso es completamente gratuito. 
 
 \href{https://circleci.com/}{CircleCI}, cuenta con una instalación y configuración que no supone ninguna dificultad, \href{https://circleci.com/customers/}{muchas compañías conocidas} utilizan esta herramienta de integración continua algunas son: \href{https://www.google.com/}{Google}, \href{https://www.airbnb.es/}{AirBnb}, \href{https://www.okta.com/}{Okta}. Ofrece un plan gratuito basado en minutos, ofreciendo seis mil minutos y cinco usuarios activos por mes, contando además con diferentes planes pudiendo elegir el que más se adapte al proyecto. Ofrece las siguientes ventajas: \cite{polkhovskiy2016comparison}
 \begin{itemize}
@@ -53,7 +61,7 @@ Para concluir, Jenkins es una herramienta muy poderosa que permite a usuarios si
 
 Las opiniones de CircleCI son muy positivas, haciendo hincapié en la sencillez de la configuración utilizando un solo fichero YAML, su interfaz intuitiva que permite trabajar fácilmente con la herramienta. Por otro lado, los usuarios remarcan que si no se tiene cuidado, los créditos se acaban muy rápido además en cada \emph{push} al repositorio se inicia un nuevo \emph{test} que consume los créditos con mayor rapidez aún. \cite{CircleCI2023}
 
-Para concluir el análisis de esta herramienta, CircleCI es una opción muy considerada para su uso en este proyecto, pero el límite de créditos mensual otorgados en el plan gratuito supone una barrera importante por la que se considera el uso de otra herramienta.
+Para concluir el análisis de esta herramienta, CircleCI es una opción muy considerada para su uso en este proyecto, pero el límite de créditos mensual otorgados en el plan gratuito supone una barrera importante por la que se considera el uso de otra herramienta en vez de esta.
 
 \href{https://www.travis-ci.com/}{TravisCI} es una herramienta de integración continua basada en \emph{web} construida para proyectos de código abierto, tiene la ventaja de poder utilizarse tanto localmente (\emph{on-premises}) como en la nube. Cuenta diferentes planes que para adaptarse a las necesidades del proyecto, pero lamentablemente no cuenta con un plan gratuito. 
 
@@ -95,9 +103,7 @@ Por último se analizará \href{https://github.com/features/actions}{GitHub Acti
     \item Tiene una gran librería de acciones compartidas por la comunidad de GitHub
 \end{itemize}
 
-Para concluir, debido a que la ejecución gratuita de \emph{test} en los servidores de GitHub, la sencillez en la configuración del \emph{workflow} para ejecutar estos \emph{test} y la integración con GitHub siendo esta última la herramienta de control de versiones elegida, se utilizará GitHub Actions como herramienta de integración continua.
+Para concluir esta elección, se han analizado algunas herramientas muy conocidas y utilizadas. Jenkins no se escogerá como herramienta de CI, ya que no cuenta con un plan gratuito y es una herramienta \emph{on-premises}. Aunque es posible utilizarlo en la nube contratando servidores en la nube en servicios como AWS, Google Cloud o Azure. CircleCI, cuenta con un plan gratuito que incluye algunos minutos, pero se busca un plan gratuito que no esté sujeto a minutos. El principal problema encontrado en TravisCI es la falta de plan gratuito, no pudiendo costear los planes de pago en este proyecto. El plan gratuito de TeamCity involucra un agente instalado localmente en la computadora, por ello no se elegirá esta herramienta. 
 
-
-
-
+La decisión de utilizar GitHub Actions como herramienta de integración continua es debido a su completa gratuidad sin estar sujeta a minutos o a condiciones, pudiendo ejecutar todos los \emph{test} en los servidores de GitHub cada vez que se introducen nuevos cambios a una rama. Asegurando así que el código introducido no contiene ningún error que pueda dejar una funcionalidad sin funcionar. Por otra parte también se configura fácilmente por medio de un fichero YAML y cuenta con una gran comunidad de módulos creados por los usuarios del propio GitHub.
 
