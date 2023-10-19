@@ -1,13 +1,6 @@
 \chapter{Implementación}
 En todo proyecto existen una serie de decisiones que marcan el avance del proyecto. En este capítulo se describirán, detalladamente, las justificaciones de cada decisión que se tome durante el desarrollo del mismo. Otorgando tanto al lector como a cualquier desarrollador que busque continuar este proyecto, un entendimiento de porqué se han tomado dichas decisiones.
 
-Los criterios que se seguirán para la elección de un lenguaje de programación son: 
-\begin{itemize}
-    \item Estándares generales: 
-    \item Buenas prácticas:
-    \item Deuda técnica: 
-\end{itemize}
-
 \section{Herramientas de control de versiones}
 Como se explicó en capítulos anteriores, \Gls{git} es una herramienta de control de versiones muy poderosa que permite mantener una organización en los cambios realizados en el código de un proyecto por medio de \emph{issues} y \emph{commits}.
 
@@ -18,7 +11,7 @@ Dichas plataformas son muy parecidas, dificultando la elección de una de ellas 
 En el proyecto se utiliza GitHub por ser la única herramienta de control de versiones  
 
 \section{Herramientas de integración continua}
-La integración continua (CI) es un proceso de desarrollo de software que permite al equipo de desarrollo realizar \emph{builds} consistentes, añadiendo test que permitan comprobar que las funcionalidades desarrolladas funcionen como se espera. Los tres pasos esenciales de la integración continua son: Construir, testear y mezclar. \cite{virtanen2021comparing}
+La integración continua (CI) es un proceso de desarrollo de software que permite al equipo de desarrollo realizar \emph{builds} consistentes, añadiendo test que permitan comprobar que las funcionalidades desarrolladas funcionen como se espera. Los tres pasos esenciales de la integración continua son: Construir, testear y mezclar.
 
 Después de una investigación, de diferentes artículos\emph{online}, en el cambo de los \emph{framework} de integración continua más populares actualmente se deben valorar diferentes soluciones posibles para la implementación de la integración continua. \cite{CIKumar2023}\cite{CITaylor2023}\cite{CIRoddewig2023}
 
@@ -30,3 +23,9 @@ Se consideran las siguientes herramientas como herramientas de CI:
 
 Las mencionadas anteriormente cumplen los dos requisitos, CircleCI cuenta con un plan regido por créditos de ejecución en el primer caso, mientras que GitHub Actions es completamente gratuito. Se utilizará CircleCI por salir de la zona de confort y aprender una nueva herramienta de CI, y adicionalmente, GitHub Actions de ser necesario su uso como soporte, en caso de agotar los créditos mensuales de CircleCI. 
 
+\section{Lenguaje del proyecto}
+Para el desarrollo de la solución, de cualquier tipo, es necesario definir un lenguaje de programación. 
+
+\Gls{python} es un lenguaje interpretado, es decir, es un interprete quien traduce línea a línea en tiempo de ejecución el programa a lenguaje máquina. Es un lenguaje flexible, con una sintaxis legible, siendo muy parecida al inglés. Además, cuenta con gran cantidad de módulos indexados y de fácil acceso que le dan esa flexibilidad mencionada anteriormente.
+
+Se elige este lenguaje por ser con el que más experiencia cuento para realizar cualquier tipo de implementación que necesite el proyecto de manera eficaz.
