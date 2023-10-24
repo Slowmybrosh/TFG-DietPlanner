@@ -29,3 +29,15 @@ Para el desarrollo de la solución, de cualquier tipo, es necesario definir un l
 \Gls{python} es un lenguaje interpretado, es decir, es un interprete quien traduce línea a línea en tiempo de ejecución el programa a lenguaje máquina. Es un lenguaje flexible, con una sintaxis legible, siendo muy parecida al inglés. Además, cuenta con gran cantidad de módulos indexados y de fácil acceso que le dan esa flexibilidad mencionada anteriormente.
 
 Se elige este lenguaje por ser con el que más experiencia cuento para realizar cualquier tipo de implementación que necesite el proyecto de manera eficaz.
+
+\section{Gestor de dependencias}
+En el proyecto es necesario utilizar un gestor de dependencias que resuelva la problemática de la gestión de módulos y bibliotecas externas del proyecto, para facilitar la colaboración en el proyecto y brindar una reproducibilidad en diferentes sistemas y momentos. 
+
+Como opciones se considera Poetry, ya que el lenguaje en el que se implementará el proyecto es \Gls{Python}, y son sencillos de utilizar. Las mejores prácticas en la gestión de dependencias de \Gls{Python} es el uso de pip. Esta herramienta instala las dependencias de manera global, por ello se habla también de aislar los entornos de \Gls{python} para separar las dependencias de un proyecto de otro, teniendo que añadir herramientas extra. 
+
+Se escoge Poetry por ser un gestor de dependencias sencillo que permite gestionar las dependencias de manera sencilla dentro de un entorno virtual por proyecto, para asegurar la reproducibilidad.
+
+\section{Gestor de tareas}
+Se considera Poetry e Invoke como gestor de tareas por su simplicidad y completitud. Poetry es mucho más simple y está enfocado a la gestión de dependencias, aunque pueden ejecutar tareas con la librería ``subprocess'' de \Gls{python}. Sigue siendo un gestor de dependencias. 
+
+En conclusión, se elige Invoke como gestor de dependencias por su simplicidad y potencial. Se ajusta mejor a las necesidades del proyecto para lanzar test, siendo también muy intuitivo implementar las tareas, ya que se incluyen en un fichero ``tasks.py'' escrito en \Gls{python}.
