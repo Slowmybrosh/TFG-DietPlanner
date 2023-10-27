@@ -103,6 +103,48 @@ Las ideas razonables técnicamente que se han recogido son las siguientes:
 
 Ya que estas tres ideas no son incompatibles, se implementarán poco a poco estas ideas para ofrecer la solución a la mayor cantidad de usuarios posibles. Comenzando por ofrecer la solución a los usuarios perfilados en la etapa anterior. La mejor manera de ofrecerla directamente es permitiendo que estos usuarios puedan interactuar con ella, la idea más razonable para este pensamiento es la implementación de una aplicación web. Pero más adelante se pueden ofrecer las otras dos ideas para otros tipos de usuarios, como desarrolladores de \emhp{software}.
 
+\subsection{Prototipo - Bocetos}
+El objetivo de esta fase es producir versiones mínimas o baratas del producto, para investigar las soluciones exploradas. En primer lugar, se desarrollará una aplicación web con una interfaz sencilla que permita al usuario interactuar y dar \textit{feedback}.
+
+No solo es un mecanismo para probar la funcionalidad del servicio, además se trabajan en distintos niveles: 
+\begin{itemize}
+    \item Ganar empatía
+    \item Explorar otros conceptos para testear en paralelo
+    \item Inspirar a otras personas al mostrar la visión
+\end{itemize}
+
+El prototipo comienza con un diseño de baja fidelidad que imprimir al prototipo para luego mejorar la solución iterativamente. Se utilizarán los siguientes bocetos para la solución web, tanto para computadores como para dispositivos móviles.
+
+Se ha creado un \gls{mockup} de la aplicación web. Además se han generado diagramas de bajo nivel para cada tipo de dispositivo para acceder a la aplicación web.
+
+\subsubsection{Computadora}
+\begin{figure}[h!]
+\centering
+\fbox{\includegraphics[width=100mm,scale=1]{./doc/imagenes/Desktop.png}}
+\caption{Diseño para escritorio}
+\label{fig:escritorio}
+\end{figure}
+En la figura superior se presenta la\gls{interfaz} con un diseño para escritorio. Se utiliza una barra superior a modo de navegador de la página web, con un botón para volver a la página principal y un buscador que permite buscar recetas por nombre. 
+
+En cuanto al diseño central de la aplicación, se puede observar una clara división en dos zonas. El buscador de recetas por ingredientes y una columna a la derecha con algunas recetas aleatorias para inspirar al usuario, estas irán cambiando mientras el usuario utiliza la aplicación. Los resultados del buscador aparecerán bajo la barra de búsqueda.
+
+\subsubsection{Dispositivos móviles}
+\begin{figure}[h!]
+\centering
+\fbox{\includegraphics[width=100mm,scale=1]{./doc/imagenes/SurfacePro8.png}}
+\caption{Diseño para tableta horizontal}
+\label{fig:surface}
+\end{figure}
+La figura superior muestra un diseño para una tableta en modo horizontal, siendo muy parecida al diseño de escritorio, excepto el navegador que colapsaría mostrando el botón para desplegarlo y la desaparición del cuadro que explicaría el uso del buscador.
+
+\begin{figure}[h!]
+\centering
+\fbox{\includegraphics[width=63mm,scale=1]{./doc/imagenes/iPadPro11.png}}
+\caption{Diseño para tableta vertical}
+\label{fig:ipad}
+\end{figure}
+
+\newpage
 \section{Uso de git en el proyecto}
 \emph{Git} se trata de una herramienta de control de versiones que surge de la necesidad de llevar un seguimiento del código fuente y sus actualizaciones. Es el núcleo de herramientas como \emph{Github} y \emph{Gitlab}. Cualquier equipo de desarrolladores, que cuente con más de un trabajador, debe hacer uso de una de estas herramientas.
 
