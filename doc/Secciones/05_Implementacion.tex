@@ -41,3 +41,22 @@ Se escoge Poetry por ser un gestor de dependencias sencillo que permite gestiona
 Se considera Poetry e Invoke como gestor de tareas por su simplicidad y completitud. Poetry es mucho más simple y está enfocado a la gestión de dependencias, aunque pueden ejecutar tareas con la librería ``subprocess'' de \Gls{python}. Sigue siendo un gestor de dependencias. 
 
 En conclusión, se elige Invoke como gestor de dependencias por su simplicidad y potencial. Se ajusta mejor a las necesidades del proyecto para lanzar test, siendo también muy intuitivo implementar las tareas, ya que se incluyen en un fichero ``tasks.py'' escrito en \Gls{python}.
+
+\section{Fuente de recetas}
+Para ser capaces de resolver la necesidad del usuario de obtener recetas con unos ingredientes limitados, es necesario tener un conjunto de recetas. Para ello, como se comentó en el capítulo anterior. 
+
+Después de una investigación \textit{on-line}, no se ha encontrado ninguna fuente válida de recetas. Existen algunas API en inglés que permiten filtrar por ingredientes, pero no existe ninguna que lo ofrezca gratuitamente, ni que tenga un plan gratuito de prueba. No se ha encontrado ningún conjunto de recetas que puedan ser insertadas en una base de datos. 
+
+Para formar una base de datos lo más realista posible, se plantean dos soluciones para recoger recetas de una página web real: 
+\begin{itemize}
+    \item Utilizar un \textit{\gls{crawler}}
+    \item Crear un robot que recoja las recetas y las organice 
+\end{itemize}
+
+Un \textit{crawler} o rastreador, es un programa que analiza los documentos \gls{HTML} de sitios web. Su objetivo principal es crear una base de datos, se utilizan sobretodo en motores de búsqueda, con el objetivo de extraer información que necesitan para evaluar sitios web y el posicionamiento en las búsquedas web.\cite{https://es.ryte.com/wiki/Crawler}
+
+Otra solución planteada es utilizar una automatización para extraer recetas de un sitio web, que sirva para obtener una base de datos inicial con la que trabajar. 
+
+La ventaja que determina utilizar una herramienta de ``Robotic Process Automation'' (RPA) es que la mayoría de sitios web añaden un fichero ``robots.txt'' que impiden el acceso a \textit{\gls{crawlers}} a la página, aunque es posible esquivar esta medida de protección de manera no muy lícita. Mientras que un robot hace uso de la interfaz gráfica de un navegador común, pudiendo completar la tarea sin ningún inconveniente.
+
+Para automatizar el proceso de búsqueda de recetas, se utilizará la herramienta BluePrism, aunque es una herramienta de pago, cuento con una licencia para su uso. Existen otras opciones como UIPath, robocorp o python RPA. Pero BluePrism es la herramienta con la que más experiencia tengo y contar con una licencia es un aliciente para la elección de esta herramienta. 
