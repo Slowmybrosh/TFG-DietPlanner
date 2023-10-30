@@ -93,3 +93,6 @@ GoLang
 AirBnb
 Okta
 subprocess
+empatía
+mockup
+imagenes
