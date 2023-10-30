@@ -99,3 +99,6 @@ JSON
 BluePrism
 XPATH
 url
+empatía
+mockup
+imagenes
