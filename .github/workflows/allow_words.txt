@@ -102,3 +102,6 @@ url
 empatía
 mockup
 imagenes
+Postgre
+UIPath
+robocorp
