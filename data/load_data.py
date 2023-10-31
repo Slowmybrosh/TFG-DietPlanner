@@ -1,50 +1,44 @@
-import psycopg2, csv, dotenv, os, json
-
-dotenv.load_dotenv()
+import sqlite3, csv, json
 
 # Conexión con la base de datos
-conn = psycopg2.connect(
-    host=os.getenv("DB_HOST"),
-    port=5432,
-    database="dietplanner",
-    user=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASSWORD"),
-)
+conn = sqlite3.connect('dietplanner.sqlite3')
 
 # Creación de las tablas
 cursor = conn.cursor()
+
+# Resetear tablas
+# cursor.execute('DROP TABLE Ingredients')
+# cursor.execute('DROP TABLE Recipes')
+# cursor.execute('DROP TABLE RecipeIngredient')
+# conn.commit()
+
 cursor.execute(
-    """
-    CREATE TABLE Ingredients (
-        id integer PRIMARY KEY,
-        ingredient varchar(255)
-    );
-    """
-)
+    '''CREATE TABLE IF NOT EXISTS Ingredients (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        ingredient TEXT NOT NULL
+    );''')
 
 cursor.execute(
     """
-    CREATE TABLE Recipes (
-        id SERIAL PRIMARY KEY,
+    CREATE TABLE IF NOT EXISTS Recipes(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         name VARCHAR(255),
         steps TEXT
-    );
+    )
     """
 )
 
 cursor.execute(
     """
-    CREATE TABLE RecipeIngredient (
+    CREATE TABLE IF NOT EXISTS RecipeIngredient(
         recipe_id INTEGER,
         ingredient_id INTEGER,
         FOREIGN KEY (recipe_id) REFERENCES Recipes(id),
         FOREIGN KEY (ingredient_id) REFERENCES Ingredients(id),
         PRIMARY KEY (recipe_id, ingredient_id)
-    );
+    )
     """
 )
-
-conn.commit()
 
 # Carga de los datos del CSV
 with open("./data/ingredients.csv", "r") as f:
@@ -56,9 +50,9 @@ with open("./data/ingredients.csv", "r") as f:
         cursor.execute(
             """
             INSERT INTO Ingredients (id, ingredient)
-            VALUES (%s, %s);
+            VALUES (?, ?)
             """,
-            (id, ingredient),
+            (id, str(ingredient))
         )
 
 # Cargar las recetas en formato JSON
@@ -72,10 +66,11 @@ for recipe in recipes:
     cursor.execute(
         """
         INSERT INTO Recipes (name,steps)
-        VALUES (%s,%s);
+        VALUES (?,?);
         """,
         (name,steps)
-    ) 
+    )
+
 conn.commit()
 
 cursor.execute(
@@ -98,7 +93,7 @@ for recipe in recipes:
         cursor.execute(
             """
             INSERT INTO RecipeIngredient (recipe_id,ingredient_id)
-            VALUES (%s,%s) 
+            VALUES (?,?) 
             """,
             (int(id[0]),int(ingredient))
         )
