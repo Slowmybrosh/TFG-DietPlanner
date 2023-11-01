@@ -1,21 +1,28 @@
-import sqlite3, csv, json
+import sqlite3, csv, json, dotenv,os
+
+dotenv.load_dotenv()
 
 # Conexión con la base de datos
-conn = sqlite3.connect('dietplanner.sqlite3')
+conn = sqlite3.connect(os.getenv("DB_NAME"))
 
 # Creación de las tablas
 cursor = conn.cursor()
 
 # Resetear tablas
-# cursor.execute('DROP TABLE Ingredients')
-# cursor.execute('DROP TABLE Recipes')
-# cursor.execute('DROP TABLE RecipeIngredient')
-# conn.commit()
+cursor.execute('DROP TABLE IF EXISTS Ingredients')
+cursor.execute('DROP TABLE IF EXISTS Recipes')
+cursor.execute('DROP TABLE IF EXISTS RecipeIngredient')
+conn.commit()
+
+# Cambiar configuración de la base de datos
+cursor.execute("PRAGMA case_sensitive_like=OFF;")
+cursor.execute("PRAGMA encoding='UTF-8';")
+conn.commit()
 
 cursor.execute(
     '''CREATE TABLE IF NOT EXISTS Ingredients (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        ingredient TEXT NOT NULL
+        name TEXT NOT NULL
     );''')
 
 cursor.execute(
@@ -23,7 +30,8 @@ cursor.execute(
     CREATE TABLE IF NOT EXISTS Recipes(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name VARCHAR(255),
-        steps TEXT
+        steps TEXT,
+        numberofingredients INTEGER
     )
     """
 )
@@ -49,7 +57,7 @@ with open("./data/ingredients.csv", "r") as f:
         ingredient = row[1]
         cursor.execute(
             """
-            INSERT INTO Ingredients (id, ingredient)
+            INSERT INTO Ingredients (id, name)
             VALUES (?, ?)
             """,
             (id, str(ingredient))
@@ -65,20 +73,13 @@ for recipe in recipes:
     steps = ";".join(recipe['Steps'])
     cursor.execute(
         """
-        INSERT INTO Recipes (name,steps)
-        VALUES (?,?);
+        INSERT INTO Recipes (name,steps,numberofingredients)
+        VALUES (?,?,?);
         """,
-        (name,steps)
+        (name,steps,None)
     )
 
 conn.commit()
-
-cursor.execute(
-    """
-    SELECT id, name from recipes;
-    """
-)
-recipes_db = cursor.fetchall()
 
 for recipe in recipes:
     ingredients = recipe['Ingredients_ID']
@@ -97,6 +98,30 @@ for recipe in recipes:
             """,
             (int(id[0]),int(ingredient))
         )
+
+# Actualizar tabla para incluir el número de ingredientes de la receta
+for recipe in recipes:
+    cursor.execute(
+        f"""
+        SELECT id FROM Recipes WHERE name = '{recipe['Name']}';
+        """
+    )
+    id = cursor.fetchall()[0][0]
+    cursor.execute(
+        f"""
+        SELECT COUNT(*) FROM RecipeIngredient WHERE recipe_id = {id}
+        """
+    )
+
+    numberofingredients = cursor.fetchall()[0][0]
+
+    cursor.execute(
+        f"""
+        UPDATE recipes
+        SET numberofingredients = {numberofingredients}
+        WHERE id = {id};
+        """
+    )
 
 # Cierre de la conexión
 conn.commit()
