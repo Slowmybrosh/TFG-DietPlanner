@@ -34,10 +34,12 @@ jobs:
     - run:
         name: Run Tests
         command: invoke test
-
+        
 workflows:
   version: 2
   check-spelling:
     jobs:
       - check-spelling
+  test:
+    jobs:
       - test
