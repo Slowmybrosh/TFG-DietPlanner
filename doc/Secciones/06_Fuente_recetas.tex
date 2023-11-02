@@ -53,3 +53,15 @@ La función que extrae la receta de la página, obtiene el nombre teniendo en cu
 Para que constituya una fuente de información uniforme, la colección de recetas se guarda como un fichero JSON que puede ser fácilmente recuperado y transformado en cualquier otro formato.
 
 El proceso de ejecución del robot lleva tiempo, ya que el identificar los ingredientes a través de una expresión regular toma entre diez y veinte segundos. Los demás pasos son relativamente menos costosos en cuestión de tiempo. El robot tardó aproximadamente cuatro horas en obtener sesenta y dos recetas con todos los elementos mencionados. La ventaja de haber utilizado este proceso de obtención de recetas es que se puede ampliar en el futuro a conveniencia, aunque hay que tener en cuenta el tiempo que tarda el robot en obtener recetas.
+
+\section{Gestión de las recetas en la aplicación}
+
+Para insertar los datos en la aplicación, se insertan en una base de datos relacional para aprovechar la relación que existe entre una receta y los ingredientes que contiene. Permitiendo identificar rápidamente que ingredientes lleva una receta, pudiendo gestionar de manera sencilla los requisitos para realizar una receta. 
+
+Se utiliza un pequeño script para insertar los datos desde sus respectivos ficheros a la base de datos siguiendo el siguiente esquema
+\begin{figure}[h!]
+    \centering
+    \fbox{\includegraphics[width=100mm,scale=1]{./images/db.drawio.png}}
+    \caption{Identificar los pasos de la receta}
+    \label{fig:links}
+\end{figure}
