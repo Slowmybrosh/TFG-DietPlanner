@@ -57,3 +57,7 @@ def workflowSpell(c):
 def loadData(c):
     print("Cargando datos...")
     run("poetry run python3 data/load_data.py")
+
+@task
+def test(c):
+    run("poetry run pytest tests/test.py")
