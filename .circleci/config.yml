@@ -1,7 +1,6 @@
 version: 2.1
 jobs:
   check-spelling:
-    executor: base
     docker:
       - image: cimg/base:2023.09
     steps:
@@ -20,7 +19,6 @@ jobs:
           name: Run spelling check
           command: invoke workflowSpell
   test:
-    executor: base
     docker:
       - image: cimg/base:2023.09
     environment:
