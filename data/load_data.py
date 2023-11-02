@@ -1,9 +1,7 @@
 import sqlite3, csv, json, dotenv,os
 
-dotenv.load_dotenv()
-
 # Conexión con la base de datos
-conn = sqlite3.connect(os.getenv("DB_NAME"))
+conn = sqlite3.connect(dotenv.get_variable(".env","DB_NAME"))
 
 # Creación de las tablas
 cursor = conn.cursor()
