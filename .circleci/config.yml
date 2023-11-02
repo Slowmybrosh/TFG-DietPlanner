@@ -1,6 +1,7 @@
 version: 2.1
 jobs:
   check-spelling:
+    executor: base
     docker:
       - image: cimg/base:2023.09
     steps:
@@ -19,24 +20,30 @@ jobs:
           name: Run spelling check
           command: invoke workflowSpell
   test:
-  docker:
-    - image: cimg/base:2023.09
-  steps:
-    - checkout
-    - run:
-        name: Install Python
-        command: |
-          sudo apt update
-          sudo apt install python3 python3-pip -y
-    - run:
-        name: Install dependencies
-        command: pip install pytest
-    - run:
-        name: Run Tests
-        command: invoke test
-        
+    executor: base
+    docker:
+      - image: cimg/base:2023.09
+    environment:
+      DB_NAME: dietplanner.sqlite3
+      DB_USER: ""
+      DB_PASSWORD: ""
+      DB_HOST: ""
+      DB_PORT: ""
+    steps:
+      - checkout
+      - run:
+          name: Install Python
+          command: |
+            sudo apt update
+            sudo apt install python3 python3-pip -y
+      - run:
+          name: Install dependencies
+          command: pip install pytest python-decouple invoke
+      - run:
+          name: Run Tests
+          command: invoke test
+
 workflows:
-  version: 2
   check-spelling:
     jobs:
       - check-spelling
