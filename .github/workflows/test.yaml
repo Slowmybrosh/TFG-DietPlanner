@@ -1,4 +1,4 @@
-name: Comprobador ortografía
+name: Test unitarios
 on: push
 jobs:
   test:
