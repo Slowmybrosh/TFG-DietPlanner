@@ -1,4 +1,4 @@
-import dotenv
+from decouple import config
 import os
 
 class Configuration:
@@ -13,10 +13,10 @@ class Configuration:
     
     def __init__(self):
         """Constructor de clase"""
-        self._db_host = os.getenv("DB_HOST")
-        self._db_name = dotenv.get_variable(".env","DB_NAME")
-        self._db_user = os.getenv("DB_USER")
-        self._db_password = os.getenv("DB_PASSWORD")
+        self._db_host = config("DB_HOST")
+        self._db_name = config("DB_NAME")
+        self._db_user = config("DB_USER")
+        self._db_password = config("DB_PASSWORD")
 
     @property
     def db_host(self):

@@ -1,7 +1,8 @@
-import sqlite3, csv, json, dotenv,os
+import sqlite3, csv, json, os
+from decouple import config
 
 # Conexión con la base de datos
-conn = sqlite3.connect(dotenv.get_variable(".env","DB_NAME"))
+conn = sqlite3.connect(config("DB_NAME"))
 
 # Creación de las tablas
 cursor = conn.cursor()
