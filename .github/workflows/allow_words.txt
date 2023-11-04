@@ -119,3 +119,9 @@ numberofIngredients
 ORM
 SQLAlchemy
 referencian
+buscarRecetasID
+buscarRecetasIngredientes
+buscarRecetasIngredientesNumber
+buscarRecetasNombre
+subquery
+RecipeIngredient

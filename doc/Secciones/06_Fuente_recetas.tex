@@ -103,12 +103,12 @@ Los dos métodos más relevantes de esta clase son las relativas a buscar receta
 
 Al buscar recetas se obtienen también los ingredientes que contienen, con el objetivo de que el usuario pueda comprobar que contiene la receta, o que ingredientes necesitará antes de comprobar los detalles de la misma.
 
-El método para buscar recetas por su nombre, \textit{buscarRecetasnombre}, hace uso de la sentencia \gls{SQL} que selecciona las recetas en base a su nombre, utilizando la función \textit{LIKE},  ignorando las mayúsculas a la hora de buscar la \gls{tupla} en la \gls{base}, devolviendo el identificador y el nombre de las recetas que cumplan la condición.
+El método para buscar recetas por su nombre, \textit{buscarRecetasNombre}, hace uso de la sentencia \gls{SQL} que selecciona las recetas en base a su nombre, utilizando la función \textit{LIKE},  ignorando las mayúsculas a la hora de buscar la \gls{tupla} en la \gls{base}, devolviendo el identificador y el nombre de las recetas que cumplan la condición.
 Para cada receta, se incluyen sus ingredientes, de manera que el usuario tenga en cuenta la posibilidad de que le falte algún ingrediente antes de comprobar los detalles de la receta, iterando los ingredientes que contiene cada receta e introduciéndolos en una lista que será añadida a la \gls{tupla} devuelta.
 
 Por otra parte, \textit{buscarRecetasID}, usa un algoritmo similar a la función anterior. Se recupera la receta de la \gls{base} así como sus ingredientes de manera similar, posteriormente se añade la lista de ingredientes a la \gls{tupla} que será devuelta como resultado de la operación. 
 
-El método \textit{buscarRecetas\_Ingredientes}, utiliza el algoritmo descrito en la sección anterior. Con el método \emph{buscarRecetaIngredientesNumber}, se seleccionan con una sentencia \gls{SQL} todos las las recetas que tengan un número menor de ingredientes que la selección del usuario y tengan al menos un ingrediente de la lista proporcionada. 
+El método \textit{buscarRecetasIngredientes}, utiliza el algoritmo descrito en la sección anterior. Con el método \emph{buscarRecetasIngredientesNumber}, se seleccionan con una sentencia \gls{SQL} todos las las recetas que tengan un número menor de ingredientes que la selección del usuario y tengan al menos un ingrediente de la lista proporcionada. 
 
 Una vez reducido el número de recetas se comprueba si cada ingrediente de la receta está en la lista de ingredientes del usuario. En caso de que no esté, no se debería seguir comprobando esa receta así que se sale del bucle para no perder tiempo. Si la receta cumple, se le añade la lista de ingredientes que se utilizan y a su vez este conjunto se añade al resultado a devolver.
 \begin{figure}[H!]
