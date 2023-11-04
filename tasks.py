@@ -54,10 +54,20 @@ def workflowSpell(c):
     spell(c)
 
 @task
+def migrate(c):
+    print("migrating data...")
+    run("poetry run python3 dietplanner/manage.py makemigrations")
+    run("poetry run python3 dietplanner/manage.py migrate")
+
+@task
 def loadData(c):
     print("Cargando datos...")
-    run("poetry run python3 src/load_data.py")
+    run("poetry run python3 dietplanner/manage.py shell < data/load_data.py")
+
+@task
+def runserver(c):
+    run("poetry run python3 dietplanner/manage.py runserver")
 
 @task
 def test(c):
-    run("poetry run pytest tests/test.py")
+    run("poetry run dietplanner/manage.py test app.tests.tests")
