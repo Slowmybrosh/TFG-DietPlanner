@@ -52,3 +52,12 @@ def workflowSpell(c):
     installSpell(c)
     orderDic(c)
     spell(c)
+
+@task
+def loadData(c):
+    print("Cargando datos...")
+    run("poetry run python3 src/load_data.py")
+
+@task
+def test(c):
+    run("poetry run pytest tests/test.py")
