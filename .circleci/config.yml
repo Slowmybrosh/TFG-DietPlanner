@@ -23,10 +23,6 @@ jobs:
       - image: cimg/base:2023.09
     environment:
       DB_NAME: dietplanner.sqlite3
-      DB_USER: ""
-      DB_PASSWORD: ""
-      DB_HOST: ""
-      DB_PORT: ""
     steps:
       - checkout
       - run:
@@ -36,10 +32,10 @@ jobs:
             sudo apt install python3 python3-pip -y
       - run:
           name: Install dependencies
-          command: pip install pytest python-decouple sqlalchemy
+          command: pip install invoke pytest python-decouple django pytest-django
       - run:
           name: Run Tests
-          command: pytest tests/test.py
+          command: invoke test
 
 workflows:
   check-spelling:
