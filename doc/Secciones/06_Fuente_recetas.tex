@@ -95,62 +95,70 @@ Una vez que se ha reducido la búsqueda a un subconjunto de recetas que cuentan 
 Al aplicar los dos filtros conjuntamente, se está obteniendo un subconjunto mucho menor y más manejable, solo se necesitaría comprobar que el usuario tenga en su haber los demás ingredientes de la receta.
 
 \subsection{Implementación}
-De manera técnica se ha implementado toda la funcionalidad en una misma clase denominada \textit{Buscador}, que contiene todos los métodos para buscar en la base de datos utilizando diferentes filtros. Además, se han tomado protecciones para que solo haya una clase de este tipo, siendo un \gls{singleton}. 
+De manera técnica se ha implementado toda la funcionalidad en una misma clase denominada \textit{Buscador}, que contiene todos los métodos para buscar en la base de datos utilizando diferentes filtros. Además, se han tomado protecciones para que solo haya una clase de este tipo, siendo un \gls{singleton}. Todas las sentencias \gls{SQL} se generan por medio de la herramienta \gls{ORM} utilizando los modelos de las tablas existentes en la base de datos.
 
 La mayoría de métodos son sentencias \gls{SQL} triviales, con el objetivo de recuperar una \gls{tupla} por su identificador o por nombre. Se puede ver la información detallada de esta clase en el apéndice de la memoria.
 
-Los dos métodos más relevantes de esta clase son las relativas a buscar recetas: \textit{buscarRecetas\_Nombre}, \textit{buscarRecetas\_ID} y \textit{buscarRecetas\_Ingredientes}.
+Los dos métodos más relevantes de esta clase son las relativas a buscar recetas: \textit{buscarRecetasNombre}, \textit{buscarRecetasID} y \textit{buscarRecetasIngredientes}.
 
 Al buscar recetas se obtienen también los ingredientes que contienen, con el objetivo de que el usuario pueda comprobar que contiene la receta, o que ingredientes necesitará antes de comprobar los detalles de la misma.
 
-El método para buscar recetas por su nombre, \textit{buscarRecetas\_nombre}, hace uso de la sentencia \gls{SQL} que selecciona las recetas en base a su nombre, utilizando la función \textit{LIKE},  ignorando las mayúsculas a la hora de buscar la \gls{tupla} en la \gls{base}, devolviendo el identificador y el nombre de las recetas que cumplan la condición.
+El método para buscar recetas por su nombre, \textit{buscarRecetasnombre}, hace uso de la sentencia \gls{SQL} que selecciona las recetas en base a su nombre, utilizando la función \textit{LIKE},  ignorando las mayúsculas a la hora de buscar la \gls{tupla} en la \gls{base}, devolviendo el identificador y el nombre de las recetas que cumplan la condición.
 Para cada receta, se incluyen sus ingredientes, de manera que el usuario tenga en cuenta la posibilidad de que le falte algún ingrediente antes de comprobar los detalles de la receta, iterando los ingredientes que contiene cada receta e introduciéndolos en una lista que será añadida a la \gls{tupla} devuelta.
 
-Por otra parte, \textit{buscarRecetas\_ID}, usa un algoritmo similar a la función anterior. Se recupera la receta de la \gls{base} así como sus ingredientes de manera similar, posteriormente se añade la lista de ingredientes a la \gls{tupla} que será devuelta como resultado de la operación. 
+Por otra parte, \textit{buscarRecetasID}, usa un algoritmo similar a la función anterior. Se recupera la receta de la \gls{base} así como sus ingredientes de manera similar, posteriormente se añade la lista de ingredientes a la \gls{tupla} que será devuelta como resultado de la operación. 
 
-El método \textit{buscarRecetas\_Ingredientes}, utiliza el algoritmo descrito en la sección anterior. Se seleccionan con una sentencia \gls{SQL} todos las las recetas que tengan un número menor de ingredientes que la selección del usuario y tengan al menos un ingrediente de la lista proporcionada. 
+El método \textit{buscarRecetas\_Ingredientes}, utiliza el algoritmo descrito en la sección anterior. Con el método \emph{buscarRecetaIngredientesNumber}, se seleccionan con una sentencia \gls{SQL} todos las las recetas que tengan un número menor de ingredientes que la selección del usuario y tengan al menos un ingrediente de la lista proporcionada. 
 
 Una vez reducido el número de recetas se comprueba si cada ingrediente de la receta está en la lista de ingredientes del usuario. En caso de que no esté, no se debería seguir comprobando esa receta así que se sale del bucle para no perder tiempo. Si la receta cumple, se le añade la lista de ingredientes que se utilizan y a su vez este conjunto se añade al resultado a devolver.
 \begin{figure}[H!]
-\begin{lstlisting}[style=C, caption={Método buscarRecetas\_Ingredientes}]
-try:
-    query = "SELECT DISTINCT ri.recipe_id, r.name FROM RecipeIngredients ri JOIN Recipes r ON r.id = ri.recipe_id WHERE numberofIngredients<="+str(len(IDs))+" AND (ri.ingredient_id="
-    if len(IDs) > 1:
-        for i in range(0,len(IDs)):
-            if i < len(IDs)-1:
-                addIngrediente = " OR ri.ingredient_id="
-            else:
-                addIngrediente = ");"
-            query = query + str(IDs[i]) + addIngrediente
-    elif len(IDs) == 1:
-        query = query + str(IDs[0]) + ");"
-    resultados =  self._db.buscar(query)
-except:
-    raise Error_Buscador("Error Buscador: La sentencia de buscar recetas por id de ingredientes no es correcta")
+\begin{lstlisting}[style=C, caption={Métodos de la base de datos utilizados para buscar recetas por ingredientes}]
+    def buscarRecetasIngredientesNumber(self, id: list[int]):
+    try:
+        subquery = select(RecipeIngredient.recipe_id, func.count(RecipeIngredient.ingredient_id).label('numberofingredients')).group_by(RecipeIngredient.recipe_id)
+        query = select(distinct(RecipeIngredient.recipe_id), Recipes.name).join(Recipes, Recipes.id == RecipeIngredient.recipe_id).filter(subquery.subquery().c.numberofingredients <= len(id)).where(RecipeIngredient.ingredient_id.in_(id))
+        return self._session.execute(query).all()
+    except:
+        raise Error_DB("Error de base de datos: No hay conexión con la base de datos")
     
-try:
-    recetas = []
-    if resultados:
-        query = "SELECT ri.ingredient_id, i.name FROM recipeingredient ri JOIN ingredients i ON ri.ingredient_id = i.id WHERE recipe_id="
-        for item in resultados:
-            cumple = True
-            lista_ingredientes = []
-            resultados = self._db.buscar(query+str(item[0]))
-            for resultado in resultados:
-                if not (resultado[0] in IDs):
-                    cumple = False
-                    break
-                lista_ingredientes.append(resultado[1])
-            if cumple:
-                temp = item + (lista_ingredientes,)
-                recetas.append(temp)
-    return recetas
-except:
-    raise Error_Buscador("Error Buscador: La sentencia de buscar ingredientes por id de la receta no es correcta")
+def buscarRecetasIngredientes(self, id: int):
+    try:
+        query = select(RecipeIngredient.ingredient_id, Ingredient.name).join(RecipeIngredient, RecipeIngredient.ingredient_id == Ingredient.id).where(RecipeIngredient.recipe_id == id)
+        return self._session.execute(query).all()
+    except:
+        raise Error_DB("Error de base de datos: No hay conexión con la base de datos")
 \end{lstlisting}
     \caption{Clase conector de la \gls{base}}
-    \label{cmd:sql}
+    \label{cmd:orm}
 \end{figure}
+
+\begin{figure}[H!]
+    \begin{lstlisting}[style=C, caption={Método del buscador para buscar recetas por ingredientes}]
+        try:
+        resultados =  self._db.buscarRecetasIngredientesNumber(IDs)
+        except:
+            raise Error_Buscador("Error Buscador: La sentencia de buscar recetas por id de ingredientes no es correcta")
+        try:
+            recetas = []
+            if resultados:
+                for item in resultados:
+                    cumple = True
+                    lista_ingredientes = []
+                    resultados = self._db.buscarRecetasIngredientes(item[0])
+                    for resultado in resultados:
+                        if not (resultado[0] in IDs):
+                            cumple = False
+                            break
+                        lista_ingredientes.append(resultado[1])
+                    if cumple:
+                        recetas.append((item[0],item[1],lista_ingredientes))
+            return recetas
+        except:
+            raise Error_Buscador("Error Buscador: La sentencia de buscar ingredientes por id de la receta no es correcta")
+    \end{lstlisting}
+        \caption{Clase buscador de la aplicación}
+        \label{cmd:buscador}
+    \end{figure}
 
 
 \subsection{Tests}
