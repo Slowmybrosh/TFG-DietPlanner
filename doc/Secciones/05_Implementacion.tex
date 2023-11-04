@@ -68,9 +68,16 @@ Para contener las recetas y servirlas al usuario a la hora de responder a las pe
 
 Se escoge SQLite sobre PostgreSQL y MySQL por ser más ligero, estar incluido en \Gls{python} y no depender de un contenedor docker para gestionar la base de datos, además del coste que supone en los recursos del sistema, teniendo toda la información contenida en un único fichero. Si bien es cierto, es posible contar con un servidor SQLite Server de bases de datos local. En un posterior despliegue en la nube, es posible migrar la base de datos a una instancia que ejecute este motor, para permitir mayor concurrencia, fiabilidad. \cite{bbdd2023}
 
+\section{Herrramienta desacoplar la \gls{base}}
+Para desacoplar la base de datos, se utiliza una herramienta \emph{Object-Relational Mappers} (ORM). Que permite acceder a una base de datos por medio de modelos. 
+
+\emph{ORM} tiene tanto ventajas como desventajas, es complicado relacionar los datos de una tabla con un objeto. En el apartado relacional, los elementos se representan en tablas con tuplas y los atributos de un objeto se referencian formando un grafo. 
+
+Se utiliza SQLAlchemy por ser una herramienta con un uso sencillo, aunque con una curva de aprendizaje elevada, para el proyecto no se necesitan consultas demasiado complejas. SQLAlchemy es compatible con multitud de conectores de bases de datos, encontrandose SQLite entre ellos y su compatibilidad con \emph{frameworks} web de \gls{python} \cite{orm2023}
+
 \section{\emph{Test framework}}
 Para asegurar que las características de la aplicación siguen funcionando, es necesario incluir un \emph{framework} para ejecutar los test. Se busca crear test de integración, basados en comprobar diferentes componentes de la aplicación, por ahora solo se comprueba la funcionalidad de encontrar recetas, pero a medida que avance el desarrollo de la aplicación y se implementen más funcionalidades, será necesario contar con sus respectivos test.
 
-Se elige pytest como \emph{test runner}, entre otros como unittest, nose o nose2. Su configuración no tiene complicación,, siendo perfecto para este proyecto, y su uso está muy extendido para realizar las pruebas en el código desarrollado no solo en pequeños proyectos, sino también en proyectos a gran escala. Se han añadido algunos test para asegurar la funcionalidad del buscador de recetas. 
+Se elige pytest como \emph{test runner}, entre otros como unittest, nose o nose2. Su configuración no tiene complicación, siendo perfecto para este proyecto, y su uso está muy extendido para realizar las pruebas en el código desarrollado no solo en pequeños proyectos, sino también en proyectos a gran escala. Se han añadido algunos test para asegurar la funcionalidad del buscador de recetas. 
 
 
