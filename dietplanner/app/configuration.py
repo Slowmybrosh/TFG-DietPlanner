@@ -12,10 +12,7 @@ class Configuration:
     
     def __init__(self):
         """Constructor de clase"""
-        self._db_host = config("DB_HOST")
         self._db_name = config("DB_NAME")
-        self._db_user = config("DB_USER")
-        self._db_password = config("DB_PASSWORD")
 
     @property
     def db_host(self):
