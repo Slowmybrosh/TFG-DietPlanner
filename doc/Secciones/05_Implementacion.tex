@@ -74,7 +74,7 @@ Para asegurar que las características de la aplicación siguen funcionando, es 
 Se elige pytest como \emph{test runner}, entre otros como unittest, nose o nose2. Su configuración no tiene complicación, siendo perfecto para este proyecto, y su uso está muy extendido para realizar las pruebas en el código desarrollado no solo en pequeños proyectos, sino también en proyectos a gran escala. Se han añadido algunos test para asegurar la funcionalidad del buscador de recetas. Además esta herramienta contiene un plugin para realizar test en las aplicaciones de Django.
 
 \section{\emph{Framework web}}
-Un \emph{\gls{framework}} es una estructura software compuesta de componentes personalizables, existiendo una infinidad. No solo relacionadas con el desarrollo web, sino que también hay \gls{framework} orientados a desarrollo de aplicaciones médicas, desarrollo de videojuegos o para cualquier contexto que se nos ocurra. Dicho en otras palabras, se puede definir como una aplicación incompleta a la que tenemos que añadirle las últimas pinceladas para completar el desarrollo. 
+Un \emph{\gls{framework}} es una estructura software compuesta de componentes personalizados, existiendo una infinidad. No solo relacionadas con el desarrollo web, sino que también hay \gls{framework} orientados a desarrollo de aplicaciones médicas, desarrollo de videojuegos o para cualquier contexto que se nos ocurra. Dicho en otras palabras, se puede definir como una aplicación incompleta a la que tenemos que añadirle las últimas pinceladas para completar el desarrollo. 
 
 Se consideran dos \emph{framework web} para \Gls{python} con los que tengo experiencia: \Gls{django} y \Gls{flask}. 
 
@@ -95,7 +95,7 @@ Se consideran dos \emph{framework web} para \Gls{python} con los que tengo exper
     \item Compatibilidad con \emph{Web Server Gateway Interface} (WSGI)
 \end{enumerate}
 
-En la experiencia, \Gls{flask} ha sido más difícil de configurar ya que se encontró menos documentación para los fallos surgidos. No tiene soporte para aplicaciones multipágina, carece de una capa de seguridad incluida y no permite multiplataforma de manera nativa.
+En la experiencia, \Gls{flask} ha sido más difícil de configurar ya que se encontró menos documentación para los fallos surgidos. No tiene soporte para aplicaciones multi-página, carece de una capa de seguridad incluida y no permite multiplataforma de manera nativa.
 
 Sobre el papel, \Gls{django} es más configurable, requiere de un poco más de configuración pero merece la pena por la gran cantidad de configuraciones posibles que permiten adaptarse completamente a cualquier aplicación web. Además, aporta características de seguridad como \gls{CSRF}, \gls{SQL} y \gls{XSS}, parcheando cualquier falla identificada por un equipo comprometido. \cite{frameworkionos2023}\cite{frameworkkinsta2023}
 
@@ -106,6 +106,6 @@ Para desacoplar la base de datos, se utiliza una herramienta \emph{Object-Relati
 
 \emph{ORM} tiene tanto ventajas como desventajas, es complicado relacionar los datos de una tabla con un objeto. En el apartado relacional, los elementos se representan en tablas con tuplas y los atributos de un objeto se referencian formando un grafo. 
 
-En primer lugal se utilizó SQLAlchemy por ser una herramienta con un uso sencillo, aunque con una curva de aprendizaje elevada, para el proyecto no se necesitan consultas demasiado complejas. SQLAlchemy es compatible con multitud de conectores de bases de datos, encontrándose SQLite entre ellos y su compatibilidad con \emph{frameworks} web de \gls{python} \cite{orm2023}
+En primer lugar, se utilizó SQLAlchemy por ser una herramienta con un uso sencillo, aunque con una curva de aprendizaje elevada, para el proyecto no se necesitan consultas demasiado complejas. SQLAlchemy es compatible con multitud de conectores de bases de datos, encontrándose SQLite entre ellos y su compatibilidad con \emph{frameworks} web de \gls{python} \cite{orm2023}
 
 Después de la elección de Django como framework web, para no tener redundancia en las herramientas, se ha migrado el uso de SQLAlchemy al uso de modelos en Django. 
