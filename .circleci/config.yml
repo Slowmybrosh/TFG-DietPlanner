@@ -35,7 +35,7 @@ jobs:
           command: pip install pytest python-decouple django pytest-django
       - run:
           name: Run Tests
-          command: python3 run dietplanner/manage.py test app.tests.tests
+          command: python3 dietplanner/manage.py test app.tests.tests
 
 workflows:
   check-spelling:
