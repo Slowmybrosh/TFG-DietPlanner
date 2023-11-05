@@ -33,9 +33,6 @@ jobs:
       - run:
           name: Install dependencies
           command: pip install pytest python-decouple django pytest-django
-      -run:
-          name: Make migrations
-          command: python3
       - run:
           name: Run Tests
           command: python3 run dietplanner/manage.py test app.tests.tests
