@@ -65,7 +65,7 @@ class Db_connector:
         """
         try:
             results = Ingredients.objects.get(id=id)
-            return [(results.id,results.name)]
+            return (results.id,results.name)
         except:
             raise Error_DB("Error de base de datos: No hay conexión con la base de datos")
     

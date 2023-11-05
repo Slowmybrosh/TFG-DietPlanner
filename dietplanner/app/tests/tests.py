@@ -16,7 +16,7 @@ class TestBuscador(unittest.TestCase):
     # Buscador
     @pytest.mark.django_db
     def test_buscar_ingrediente_id(self):
-        assert self.buscador.buscarIngredienteID(0) == [(0, 'bacalao')]
+        assert self.buscador.buscarIngredienteID(0) == (0, 'bacalao')
 
     @pytest.mark.django_db
     def test_buscar_ingrediente_nombre(self):
@@ -25,7 +25,7 @@ class TestBuscador(unittest.TestCase):
     @pytest.mark.django_db
     def test_buscar_receta_id(self):
         resultado = self.buscador.buscarRecetasID(1)
-        expected = [(1,'Budín de bacalao con espinacas', 'Paso 1\n\nSe le quita al bacalao la piel y se seca con papel absorvente;Paso 2\n\nEn el vaso de la batidora se echa una clara de huevo, el bacalao y la nata con la sal, pimienta y nuez moscada. Se añada las espinacas y el limón. Cuidado con la sal y el bacalao.;Paso 3\n\nSe mete en un recipiente apto para Air fire engrasado con mantequilla. Se calienta la Air fire 2 minutos antes. Después se pone a 180 grados 15 minutos. Sino está poner unos minutos mas.', 7, ['bacalao', 'huevo', 'espinacas', 'nata', 'limón', 'queso en polvo', 'mantequilla'])]
+        expected = (1,'Budín de bacalao con espinacas', 'Paso 1\n\nSe le quita al bacalao la piel y se seca con papel absorvente;Paso 2\n\nEn el vaso de la batidora se echa una clara de huevo, el bacalao y la nata con la sal, pimienta y nuez moscada. Se añada las espinacas y el limón. Cuidado con la sal y el bacalao.;Paso 3\n\nSe mete en un recipiente apto para Air fire engrasado con mantequilla. Se calienta la Air fire 2 minutos antes. Después se pone a 180 grados 15 minutos. Sino está poner unos minutos mas.', 7, ['bacalao', 'huevo', 'espinacas', 'nata', 'limón', 'queso en polvo', 'mantequilla'])
         assert resultado == expected
 
     @pytest.mark.django_db

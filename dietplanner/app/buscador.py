@@ -155,7 +155,7 @@ class Buscador:
         try:
             resultado = self._db.buscarRecetasID(ID)
             lista_ingredientes = self.getIngredientes(ID)
-            return [(resultado[0],resultado[1],resultado[2],resultado[3],lista_ingredientes)]
+            return (resultado[0],resultado[1],resultado[2],resultado[3],lista_ingredientes)
         except:
             raise Error_Buscador("Error Buscador: La sentencia de buscar receta por ID no es correcta")
     
