@@ -1,7 +1,7 @@
 name: Test unitarios
 on: push
 env:
-  DB_NAME: dietplanner.sqlite3
+  DB_NAME: db.sqlite3
 jobs:
   test:
     runs-on: ubuntu-latest
