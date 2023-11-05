@@ -51,23 +51,20 @@ class Buscador:
 
     def buscarIngredienteNombre(self,nombre : str):
         """
-        Método que busca un ingrediente por nombre en la base de datos.
+        Método que recupera una lista de ingredientes de la base de datos
 
         Parameters
         ----------
-
         nombre : str
             Nombre del ingrediente a buscar.
 
         Raises
         ------
-
         Error_Buscador : La sentencia está mal escrita.
 
         Returns
         -------
-
-        resultados : List<(idIngrediente, Nombre>
+        resultados : List<(id, name)>
             Lista de ingredientes encontrados
         """
         try: 
@@ -82,20 +79,17 @@ class Buscador:
 
         Parameters
         ----------
-
         ID : Int
             Identificador del ingrediente.
 
         Raises
         ------
-
-            Error_Buscador : La sentencia está mal escrita.
+        Error_Buscador : La sentencia está mal escrita.
 
         Returns
         -------
-
-        resultados : List<(idIngrediente, Nombre)>
-            Lista de ingredientes encontrados
+        resultados : Tuple(id, name)
+            Ingrediente encontrado
         """
         try:
             return self._db.buscarIngredienteID(ID)
@@ -104,7 +98,7 @@ class Buscador:
     
     def buscarRecetasNombre(self, nombre : str):
         """
-        Método que busca una receta por nombre en la base de datos.
+        Método que busca una lista de recetas por nombre en la base de datos.
 
         Parameters
         ----------
@@ -115,12 +109,12 @@ class Buscador:
         Raises
         ------
 
-            Error_Buscador : La sentencia está mal escrita.
+        Error_Buscador : La sentencia está mal escrita.
 
         Returns
         -------
             
-        resultados : List<(idReceta, numero de ingredientes, nombre, pasos, calorias, carbohidratos, proteinas, grasas)>
+        resultados : List<(id, nombre, ingredientes)>
             Lista de recetas encontrados
         """
         try:
@@ -155,7 +149,7 @@ class Buscador:
         Returns
         -------
             
-        resultados : List<(idReceta, numero de ingredientes, nombre, ingredientes)>
+        resultados : Tuple(idReceta, numero de ingredientes, nombre, ingredientes)
             Lista de recetas encontrados
         """
         try:
@@ -167,23 +161,20 @@ class Buscador:
     
     def buscarRecetasIngredientes(self,IDs : list):
         """
-        Método que busca una receta por nombre en la base de datos.
+        Método que busca una receta por ingredientes en la base de datos.
 
         Parameters
         ----------
-
         IDs : List<Int>
             Identificadores de ingredientes a utilizar.
 
         Raises
         ------
-
-            Error_Buscador : La sentencia está mal escrita.
+        Error_Buscador : La sentencia está mal escrita.
 
         Returns
         -------
-            
-        resultados : List((idReceta, nombre)
+        resultados : List<(id, nombre, ingredientes)>
             Lista de recetas que cumplen la condición
         """
         try:
@@ -214,13 +205,11 @@ class Buscador:
 
         Parameters
         ----------
-
         numero : int
             Número de recetas a obtener
 
         Returns
         -------
-
-        recetas : list<(id,nombre)>
+        recetas : list<(id,name)>
         """
         return self._db.getRecetasRandom(numero)
