@@ -13,7 +13,10 @@ jobs:
 
       - run:
           name: Install dependencies
-          command: pip install invoke
+          command: | 
+            pip install poetry
+            poetry config virtualenvs.create false
+            poetry install --no-root
 
       - run:
           name: Run spelling check
@@ -29,13 +32,16 @@ jobs:
           name: Install Python
           command: |
             sudo apt update
-            sudo apt install python3 python3-pip -y
+            sudo apt install python3.10 python3-pip -y
       - run:
           name: Install dependencies
-          command: pip install pytest python-decouple django pytest-django
+          command: | 
+            pip install poetry invoke
+            poetry install --no-root
+
       - run:
           name: Run Tests
-          command: python3 dietplanner/manage.py test app.tests.tests
+          command: invoke test
 
 workflows:
   check-spelling:

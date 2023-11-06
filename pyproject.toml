@@ -6,7 +6,7 @@ authors = ["Alejandro Olivares <a.olivaresdelrey.pierres@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.10.6"
+python = "~3.10.6"
 invoke = "^2.1.3"
 pytest = "^7.4.3"
 python-decouple = "^3.8"
