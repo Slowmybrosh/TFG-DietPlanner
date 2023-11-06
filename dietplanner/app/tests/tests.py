@@ -1,11 +1,4 @@
 import sys, unittest, warnings, pytest
-
-@pytest.fixture(autouse=True)
-def suppress_all_warnings():
-    warnings.filterwarnings('ignore')
-
-sys.path.append("./")
-sys.path.append("./dietplanner/")
 from app.buscador import Buscador
 
 class TestBuscador(unittest.TestCase):
