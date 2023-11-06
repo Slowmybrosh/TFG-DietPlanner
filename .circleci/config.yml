@@ -15,7 +15,6 @@ jobs:
           name: Install dependencies
           command: | 
             pip install poetry
-            poetry config virtualenvs.create false
             poetry install --no-root
 
       - run:
