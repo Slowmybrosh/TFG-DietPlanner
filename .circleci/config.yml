@@ -29,6 +29,7 @@ jobs:
       STATIC_URL: 'static/'
       DATA_RECIPES: './data/recipes.json'
       DATA_INGREDIENTS: "./data/ingredients.csv"
+      DEBUG: True
     steps:
       - checkout
       - run:
