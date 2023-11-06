@@ -1,8 +1,4 @@
-import csv, json, sys
-from decouple import config
-
-sys.path.append("./")
-sys.path.append("./dierplanner/")
+import csv, json
 from app.models import RecipeIngredient, Recipes, Ingredients
 
 RecipeIngredient.objects.all().delete()
