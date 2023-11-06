@@ -1,12 +1,14 @@
 import csv, json
+from app.configuration import Configuration
 from app.models import RecipeIngredient, Recipes, Ingredients
 
 RecipeIngredient.objects.all().delete()
 Recipes.objects.all().delete()
 Ingredients.objects.all().delete()
 
+configuration = Configuration()
 # Carga de los datos del CSV
-with open("./data/ingredients.csv", "r") as f:
+with open(configuration.data_ingredients, "r") as f:
     reader = csv.reader(f, delimiter=",")
     next(reader)
     for row in reader:
@@ -14,7 +16,7 @@ with open("./data/ingredients.csv", "r") as f:
         ingredient.save()
 
 # # Cargar las recetas en formato JSON
-with open("./data/recipes.json", "r", encoding="utf-8") as f:
+with open(configuration.data_recipes, "r", encoding="utf-8") as f:
     recipes = json.load(f)
 
 for recipe in recipes:
