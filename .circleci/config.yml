@@ -26,6 +26,9 @@ jobs:
       - image: cimg/base:2023.09
     environment:
       DB_NAME: db.sqlite3
+      STATIC_URL: 'static/'
+      DATA_RECIPES: './data/recipes.json'
+      DATA_INGREDIENTS: "./data/ingredients.csv"
     steps:
       - checkout
       - run:
