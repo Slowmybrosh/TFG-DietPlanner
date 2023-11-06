@@ -1,11 +1,12 @@
 name: Test unitarios
 on: push
 env:
-  DB_NAME: dietplanner.sqlite3
-  DB_USER: ""
-  DB_PASSWORD: ""
-  DB_HOST: ""
-  DB_PORT: ""
+  DB_NAME: db.sqlite3
+  STATIC_URL: 'static/'
+  DATA_RECIPES: './data/recipes.json'
+  DATA_INGREDIENTS: "./data/ingredients.csv"
+  DEBUG: True
+  SECRET_KEY: $SECRET_KEY
 jobs:
   test:
     runs-on: ubuntu-latest

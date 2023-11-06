@@ -125,3 +125,11 @@ buscarRecetasIngredientesNumber
 buscarRecetasNombre
 subquery
 RecipeIngredient
+lte
+django
+WSGI
+frontend
+CSRF
+XSS
+microframework
+HU

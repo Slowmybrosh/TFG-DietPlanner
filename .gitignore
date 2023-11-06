@@ -32,3 +32,6 @@ build/
 venv/
 env/
 .env.*
+
+#DB migrations
+migrations/

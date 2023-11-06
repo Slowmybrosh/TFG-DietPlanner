@@ -1,5 +1,5 @@
-from configuration import Configuration
-from db import Db_connector
+from .configuration import Configuration
+from .db import Db_connector
 class Error_Buscador(Exception):
     pass
 
@@ -27,7 +27,7 @@ class Buscador:
         Constructor de clase.
         """
         self._conf = Configuration()
-        self._db = Db_connector(self._conf.db_name)
+        self._db = Db_connector()
 
     def getIngredientes(self,id: int):
         """
@@ -46,28 +46,25 @@ class Buscador:
         nombres = self._db.getIngredientes(id)
         lista_ingredientes = []
         for nombre in nombres:
-            lista_ingredientes.append(nombre[0])
+            lista_ingredientes.append(nombre)
         return lista_ingredientes
 
     def buscarIngredienteNombre(self,nombre : str):
         """
-        Método que busca un ingrediente por nombre en la base de datos.
+        Método que recupera una lista de ingredientes de la base de datos
 
         Parameters
         ----------
-
         nombre : str
             Nombre del ingrediente a buscar.
 
         Raises
         ------
-
         Error_Buscador : La sentencia está mal escrita.
 
         Returns
         -------
-
-        resultados : List<(idIngrediente, Nombre>
+        resultados : List<(id, name)>
             Lista de ingredientes encontrados
         """
         try: 
@@ -82,20 +79,17 @@ class Buscador:
 
         Parameters
         ----------
-
         ID : Int
             Identificador del ingrediente.
 
         Raises
         ------
-
-            Error_Buscador : La sentencia está mal escrita.
+        Error_Buscador : La sentencia está mal escrita.
 
         Returns
         -------
-
-        resultados : List<(idIngrediente, Nombre)>
-            Lista de ingredientes encontrados
+        resultados : Tuple(id, name)
+            Ingrediente encontrado
         """
         try:
             return self._db.buscarIngredienteID(ID)
@@ -104,7 +98,7 @@ class Buscador:
     
     def buscarRecetasNombre(self, nombre : str):
         """
-        Método que busca una receta por nombre en la base de datos.
+        Método que busca una lista de recetas por nombre en la base de datos.
 
         Parameters
         ----------
@@ -115,23 +109,23 @@ class Buscador:
         Raises
         ------
 
-            Error_Buscador : La sentencia está mal escrita.
+        Error_Buscador : La sentencia está mal escrita.
 
         Returns
         -------
             
-        resultados : List<(idReceta, numero de ingredientes, nombre, pasos, calorias, carbohidratos, proteinas, grasas)>
+        resultados : List<(id, nombre, ingredientes)>
             Lista de recetas encontrados
         """
         try:
             recetas = self._db.buscarRecetasNombre(nombre)
             resultados = []
             for receta in recetas:
-                nombres = self._db.getIngredientes(receta[0])
+                nombres = self._db.getIngredientes(receta.id)
                 lista_ingredientes = []
                 for nombre in nombres:
-                    lista_ingredientes.append(nombre[0])
-                resultados.append((receta[0],receta[1],lista_ingredientes))
+                    lista_ingredientes.append(nombre)
+                resultados.append((receta.id,receta.name,lista_ingredientes))
             return resultados
         except:
             raise Error_Buscador("Error Buscador: La sentencia de buscar receta por nombre no es correcta")
@@ -155,35 +149,32 @@ class Buscador:
         Returns
         -------
             
-        resultados : List<(idReceta, numero de ingredientes, nombre, ingredientes)>
+        resultados : Tuple(idReceta, numero de ingredientes, nombre, ingredientes)
             Lista de recetas encontrados
         """
         try:
             resultado = self._db.buscarRecetasID(ID)
             lista_ingredientes = self.getIngredientes(ID)
-            return [(resultado[0],resultado[1],resultado[2],resultado[3],lista_ingredientes)]
+            return (resultado[0],resultado[1],resultado[2],resultado[3],lista_ingredientes)
         except:
             raise Error_Buscador("Error Buscador: La sentencia de buscar receta por ID no es correcta")
     
     def buscarRecetasIngredientes(self,IDs : list):
         """
-        Método que busca una receta por nombre en la base de datos.
+        Método que busca una receta por ingredientes en la base de datos.
 
         Parameters
         ----------
-
         IDs : List<Int>
             Identificadores de ingredientes a utilizar.
 
         Raises
         ------
-
-            Error_Buscador : La sentencia está mal escrita.
+        Error_Buscador : La sentencia está mal escrita.
 
         Returns
         -------
-            
-        resultados : List((idReceta, nombre)
+        resultados : List<(id, nombre, ingredientes)>
             Lista de recetas que cumplen la condición
         """
         try:
@@ -196,14 +187,14 @@ class Buscador:
                 for item in resultados:
                     cumple = True
                     lista_ingredientes = []
-                    resultados = self._db.buscarRecetasIngredientes(item[0])
+                    resultados = self._db.buscarRecetasIngredientes(item.id)
                     for resultado in resultados:
                         if not (resultado[0] in IDs):
                             cumple = False
                             break
                         lista_ingredientes.append(resultado[1])
                     if cumple:
-                        recetas.append((item[0],item[1],lista_ingredientes))
+                        recetas.append((item.id,item.name,lista_ingredientes))
             return recetas
         except:
             raise Error_Buscador("Error Buscador: La sentencia de buscar ingredientes por id de la receta no es correcta")
@@ -214,13 +205,11 @@ class Buscador:
 
         Parameters
         ----------
-
         numero : int
             Número de recetas a obtener
 
         Returns
         -------
-
-        recetas : list<(id,nombre)>
+        recetas : list<(id,name)>
         """
         return self._db.getRecetasRandom(numero)

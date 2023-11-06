@@ -13,7 +13,9 @@ jobs:
 
       - run:
           name: Install dependencies
-          command: pip install invoke
+          command: | 
+            pip install poetry invoke
+            poetry install --no-root
 
       - run:
           name: Run spelling check
@@ -22,24 +24,27 @@ jobs:
     docker:
       - image: cimg/base:2023.09
     environment:
-      DB_NAME: dietplanner.sqlite3
-      DB_USER: ""
-      DB_PASSWORD: ""
-      DB_HOST: ""
-      DB_PORT: ""
+      DB_NAME: db.sqlite3
+      STATIC_URL: 'static/'
+      DATA_RECIPES: './data/recipes.json'
+      DATA_INGREDIENTS: "./data/ingredients.csv"
+      DEBUG: True
     steps:
       - checkout
       - run:
           name: Install Python
           command: |
             sudo apt update
-            sudo apt install python3 python3-pip -y
+            sudo apt install python3.10 python3-pip -y
       - run:
           name: Install dependencies
-          command: pip install pytest python-decouple sqlalchemy
+          command: | 
+            pip install poetry invoke
+            poetry install --no-root
+
       - run:
           name: Run Tests
-          command: pytest tests/test.py
+          command: invoke test
 
 workflows:
   check-spelling:
