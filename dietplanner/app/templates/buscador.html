@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row mt-5">
+        <div class="col-lg-2 col-none"></div>
+            <div class="col-lg-8 col-12 justify-content-center">
+                <h1 class="text-center">RecetApp</h1>
+                <form class="form-control border border-dark" action="/resultados/" method="POST">
+                    {% csrf_token %}
+                    <div class="d-inline-flex w-100">
+                        <input id="buscador-ingredientes" class="form-control me-2" type="search" placeholder="Buscar Ingredientes" aria-label="Search">
+                        <button id="enviarIngredientes" class="btn btn-success" type="submit">Buscar Recetas</button>
+                        <div id="eliminarSeleccion" class="btn btn-danger ms-3">Borrar Selección</div>
+                    </div>
+                        <div class="container">
+                            <table id="tabla" hidden class="table mt-5 container ingredientes">
+                                <thead class="container">
+                                    <tr class="justify-content">
+                                        <th>Nombre</th>
+                                        <th>Tipo</th>
+                                        <th class="text-center">Seleccionado</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabla-ingredientes" class="">
+                                </tbody>
+                            </table>
+                        </div> 
+                    <input type="hidden" name="metodo" value="ingredientes">
+                </form>
+            <div class="col-lg-2 col-none"></div>
+        </div>
+    </div>
+{% endblock %}
