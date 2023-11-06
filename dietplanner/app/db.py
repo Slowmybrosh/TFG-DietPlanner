@@ -1,6 +1,5 @@
-from decouple import config
 from app.models import Ingredients, RecipeIngredient, Recipes
-from django.db.models import Q, Prefetch, OrderBy, F
+from django.db.models import Q, F
 import warnings,random
 
 class Error_DB(Exception):
