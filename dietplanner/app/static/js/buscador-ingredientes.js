@@ -168,4 +168,8 @@ if(btn_guardar != null){
     }
 }
 if(btn_compartir != null){}
-    //btn_compartir.addEventListener("click",shareRecipe);
+for (const boton of btn_guardar) {
+    boton.addEventListener("click", (e) => {
+        e.target.addEventListener("click",shareRecipe)
+    });
+}
