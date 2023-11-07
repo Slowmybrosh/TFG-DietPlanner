@@ -29,7 +29,6 @@ function BuscarIngrediente(response) {
         for (var i = 0; i < resultados.length; i++) {
             var fila = $('<tr data-id="'+resultados[i].id+'" onclick="SeleccionarIngrediente(this)">');
             fila.append($('<td class="">').text(resultados[i].nombre));
-            fila.append($('<td>').text(""));
             var td = $('<td class="text-center">');
             var svg = '<svg';
             if(isSeleccionado(resultados[i].id) == false){
