@@ -1,9 +1,7 @@
-import sys, unittest, pytest
 from django.test import RequestFactory, TestCase
 from django.urls import reverse
 from app.buscador import Buscador
-from ..views import *
-from ..models import *
+from ..models import RecipeIngredient, Recipes, Ingredients
 
 class TestBuscador(TestCase):
 
