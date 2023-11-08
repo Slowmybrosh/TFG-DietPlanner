@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid h-100 background">
+  <div class="row d-flex-inline bg-light rounded rounded-sm background">
+      <div class="col-lg-8 background">
+          <div class="card mt-5 w-100">
+              <img class="card-img border-bottom border-dark" src="{% static 'img/img-template.jpg' %}" width="100%">
+              <h1 class="card-title">{{receta_nombre}}</h1>
+              <div class="ps-3 mt-5 card-body">
+                  <h4>Ingredientes</h4>
+                  <ul>
+                    {% for item in receta_ingredientes %}
+                      <li>{{item}}</li>
+                    {% endfor %}
+                  </ul>
+                  <h4 class="mt-5">Pasos</h4>
+                  <ol>
+                      {% for item in receta_pasos %}
+                        <li><p>{{item}}</p></li>
+                      {% endfor %}
+                  </ol>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg background">
+        <div class="container-fluid">
+          <div class="row rounded-sm d-flex flex-column justify-content-center-100">
+            <button id="guardarReceta" data-id={{receta_id}} class="btn save-btn flex-grow button-bg btn-outline-success btn-lg mt-5 mb-3 border border-dark" saved={{saved}} origin="receta">Guardar receta</button>
+            <div id="compartirReceta" data-id={{receta_id}} class="btn share-btn flex-grow btn-lg btn-light border border-dark">Compartir</div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+{% endblock %}

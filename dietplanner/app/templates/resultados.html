@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if resultados %}
+        <h2><u>Recetas encontradas</u></h2>
+        {% for resultado in resultados %}
+            <div id="resultados" class="mt-1">
+                <div class="card mb-1 d-flex-inline flex-row row">
+                    <div class="col-lg-8">
+                        <a class="link-unstyled w-100" href="/receta/{{resultado.0}}">
+                            <div class="card-img"></div>
+                            <div class="card-body">
+                                <div class="card-title"><h4>{{ resultado.1 }}</h4></div>
+                                <div class="card-text">
+                                    <div class="container d-flex-inline">
+                                        <p class=""><u>Ingredientes utilizados</u></p>
+                                        <ul>
+                                            {% for item in resultado.2%}
+                                                <li>{{item}}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg container">
+                        <div class="row rounded-sm d-flex flex-column justify-content-center-100 pe-3">
+                          <button data-id={{resultado.0}} class="save-btn btn flex-grow button-bg btn-outline-success btn-lg mt-5 mb-3 border border-dark" saved={{resultado.3}} origin="resultado">Guardar receta</button>
+                          <button id="compartirReceta" data-id={{resultado.0}} class="btn share-btn flex-grow btn-lg btn-light border border-dark">Compartir</button>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h2>No se han encontrado recetas</h2>
+    {% endif %}
+{% endblock %}

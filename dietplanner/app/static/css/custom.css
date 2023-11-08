@@ -1,0 +1,30 @@
+.spacer{
+    margin-top: 15px
+}
+
+.link-unstyled, .link-unstyled:link, .link-unstyled:hover {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+.ingredientes{
+    max-height: 10px;
+    overflow-y: scroll;
+}
+
+.background{
+    background: #f8f6f2;
+}
+
+.background-card{
+    background-color: #ffffff;
+}
+
+.button-bg{
+    background-color: #f5a05f !important;
+    color: black !important;
+}
+
+.background-nav{
+    background-color: #f5a05f !important;
+}
