@@ -44,8 +44,6 @@ Para instalar el \gls{framework}, existen dos maneras diferentes:
 
 Para incluirlo en el proyecto se debe añadir el \gls{tag} ``link'' con la referencia al fichero descargado o el enlace al \gls{CDN}. Por otra parte Boostrap usa elementos dinámicos que necesitan de unas funciones escritas en JavaScript incluidas en el mismo fichero comprimido descargable, que será necesario incluir dentro de un \gls{tag} ``script'', una vez añadidos los ficheros necesarios, el estilo se puede aplicar añadiendo clases a los elementos \gls{HTML}, como se haría con un \gls{CSS} normal.
 
-Cabe destacar que se añade con ficheros locales por un fallo en el \gls{CDN} a la hora de programar la interfaz, habiendo algún error en el JavaScript que esconde el navegador en dispositivos móviles.
-
 El buscador principal contiene una tabla en principio oculta, esperando a ser utilizado. Cuando se escribe una letra, se empieza a buscar el resultado de la cadena en la base de datos, y los resultados se escriben dinámicamente en una tabla para que el usuario pueda seleccionar el ingrediente que desea usar. Esta función se realiza con \gls{JQuery}, usando un evento \textit{input} en el campo de búsqueda. Cada vez que se desencadena el evento se genera, con \gls{AJAX}, una petición a un \gls{endpoint} de la aplicación web, que devuelve una lista de ingredientes coincidentes.
 \begin{figure}[h!]
 \centering
