@@ -111,3 +111,6 @@ Para desacoplar la base de datos, se utiliza una herramienta \emph{Object-Relati
 En primer lugar, se utilizó SQLAlchemy por ser una herramienta con un uso sencillo, aunque con una curva de aprendizaje elevada, para el proyecto no se necesitan consultas demasiado complejas. SQLAlchemy es compatible con multitud de conectores de bases de datos, encontrándose SQLite entre ellos y su compatibilidad con \emph{frameworks} web de \gls{python} \cite{orm2023}
 
 Después de la elección de Django como framework web, para no tener redundancia en las herramientas, se ha migrado el uso de SQLAlchemy al uso de modelos en Django. 
+
+\section{Servidor Web}
+Para exponer la aplicación a internet de forma segura, es necesario utilizar un servidor web que permita desplegar la aplicación para recoger peticiones del usuario. Aunque se pueda desplegar la aplicación, tal y como está, para añadir escalabilidad y seguridad, se utilizará un servidor web. Existen otros servidores web muy populares como Apache o LightSpeed, se escoge Nginx como servidor web por su flexibilidad, facilidad de configuración y modularidad, permitiendo extender la funcionalidad hasta el punto deseado, cubriendo las necesades de la aplicación a medida.
