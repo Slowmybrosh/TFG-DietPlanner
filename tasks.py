@@ -65,7 +65,7 @@ def loadData(c):
 
 @task
 def runserver(c):
-    run("poetry run python3 dietplanner/manage.py runserver")
+    run("cd dietplanner/ && poetry run gunicorn --bind 0.0.0.0:8000 dietplanner.wsgi:application  ")
 
 @task
 def test(c, test="app.tests.tests"):
