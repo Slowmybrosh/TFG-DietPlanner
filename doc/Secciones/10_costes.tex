@@ -1,0 +1,12 @@
+\chapter{Costes}
+En este capítulo se definirán los costes del desarrollo de la aplicación, tanto los costes de IaaS como los costes derivados de la manufactura del proyecto.
+
+\section{Infraestructura}
+Un despliegue en la nube es costoso, aunque depende de los servicios que se utilicen en él, para detallar los costes de manera sencilla, AWS ofrece una calculadora de precios. Para resumir, en este despliegue se utilizan los siguientes servicios de AWS:
+\begin{enumerate}
+    \item Instancia EC2 t3.medium con 2vCPU y 4GB de memoria: 29.43 USD
+    \item Instancia Aurora PostgreSQL 2vCPU, 4GB de memoria y \emph{network performance: low to moderate}: 121.86 USD
+    \item Balanceador de carga para una sola aplicación suponiendo 10GB/hora de peticiones: 80.64 USD
+\end{enumerate}
+
+En conclusión, la suma total es de 231.93 USD/año. Coste que no puedo aportar actualmente de mi bolsillo, por ello se deja planteada teóricamente el despliegue de la aplicación en la nube de AWS.
