@@ -59,13 +59,13 @@ def migrate(c, app="app"):
     run(f"poetry run python3 dietplanner/manage.py makemigrations {app}")
     run(f"poetry run python3 dietplanner/manage.py migrate {app}")
 @task
-def loadData(c):
+def loadData(c, path="data/load_data.py"):
     print("Cargando datos...")
-    run("poetry run python3 dietplanner/manage.py shell < data/load_data.py")
+    run(f"poetry run python3 dietplanner/manage.py shell < {path}")
 
 @task
-def runserver(c):
-    run("cd dietplanner/ && poetry run gunicorn --bind 0.0.0.0:8000 dietplanner.wsgi:application  ")
+def runserver(c, app="dietplanner.wsgi:application"):
+    run(f"cd dietplanner/ && poetry run gunicorn --bind 0.0.0.0:8000 {app}")
 
 @task
 def test(c, test="app.tests.tests"):

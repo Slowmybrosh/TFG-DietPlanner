@@ -5,6 +5,8 @@ env:
   STATIC_URL: 'static/'
   DATA_RECIPES: './data/recipes.json'
   DATA_INGREDIENTS: "./data/ingredients.csv"
+  APP_WSGI: "dietplanner.wsgi:application"
+  APP_TEST: "app.tests.tests"
   DEBUG: True
   SECRET_KEY: $SECRET_KEY
 jobs:
@@ -28,4 +30,4 @@ jobs:
         run: poetry install --no-root
 
       - name: Run tests
-        run: invoke test
+        run: invoke test --test=$APP_TEST
