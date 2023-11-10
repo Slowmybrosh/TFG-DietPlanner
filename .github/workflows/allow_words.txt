@@ -188,3 +188,5 @@ DNS
 VPC
 wsgi
 USD
+ThinkPad
+Lenovo
