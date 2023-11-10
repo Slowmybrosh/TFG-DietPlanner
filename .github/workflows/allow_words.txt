@@ -188,3 +188,7 @@ DNS
 VPC
 wsgi
 USD
+http
+Grisha
+Trubetskoy
+uWSGI

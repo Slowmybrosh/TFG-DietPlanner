@@ -28,6 +28,8 @@ jobs:
       STATIC_URL: 'static/'
       DATA_RECIPES: './data/recipes.json'
       DATA_INGREDIENTS: "./data/ingredients.csv"
+      APP_WSGI: "dietplanner.wsgi:application"
+      APP_TEST: "app.tests.tests"
       DEBUG: True
     steps:
       - checkout
@@ -44,7 +46,7 @@ jobs:
 
       - run:
           name: Run Tests
-          command: invoke test
+          command: invoke test --test=$APP_TEST
 
 workflows:
   check-spelling:
