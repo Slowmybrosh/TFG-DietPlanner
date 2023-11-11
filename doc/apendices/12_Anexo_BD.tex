@@ -33,7 +33,13 @@
                 result_ingredient = Ingredients.objects.get(id=ingredient)
                 recipeingredient = RecipeIngredient(recipe_id=resultado,ingredient_id=result_ingredient)
                 recipeingredient.save()
-        
+    \end{lstlisting}
+    \caption{\Gls{script} para insertar los datos en la \gls{base}}
+    \label{sni:insertar}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{lstlisting}[style=python]
         ## Actualizar tabla para incluir el numero de ingredientes de la receta
         for recipe in recipes:
             name = recipe['Name']
@@ -42,50 +48,46 @@
             num_ingredients = RecipeIngredient.objects.filter(recipe_id=id).count()
             Recipes.objects.filter(id=id).update(number_of_ingredients=num_ingredients)
     \end{lstlisting}
-    \caption{\Gls{script} para insertar los datos en la \gls{base}}
-    \label{sni:insertar}
+    \caption{Continuación del \Gls{script} para insertar los datos en la \gls{base}}
+    \label{sni:insertar-continuacion}
 \end{figure}
 
 \begin{figure}[H]
 \begin{lstlisting}[style=python]
-    class Db_connector:
-    """
-    Clase para desacoplar la base de datos
-    """
-        
-    def __init__(self):
+        def buscarIngredienteNombre(self,name: str):
         """
-        Constructor de clase
+        Metodo que recupera una lista de ingredientes de la base de datos
+
+        Parameters
+        ----------
+        name : str
+            Nombre del ingrediente a buscar.
+
+        Raises
+        ------
+        Error_DB : No hay conexion con la base de datos.
+
+        Returns
+        -------
+        resultados : List<(id, name)>
+            Lista de ingredientes encontrados
         """
-        
-    def buscarIngredienteNombre(self,name: str):
-            """
-            Metodo que recupera una lista de ingredientes de la base de datos
+        try:
+            results = Ingredients.objects.filter(name__icontains=name).all()
+            format_results = []
+            for result in results:
+                format_results.append((result.id,result.name))
+            return format_results
+        except:
+            raise Error_DB("Error de base de datos: No hay conexion con la base de datos")
+    \end{lstlisting}
+    \caption{Método para buscar ingredientes por nombre en la \gls{base}}
+    \label{sni:buscarIngredienteNombre}
+\end{figure}
 
-            Parameters
-            ----------
-            name : str
-                Nombre del ingrediente a buscar.
-
-            Raises
-            ------
-            Error_DB : No hay conexion con la base de datos.
-
-            Returns
-            -------
-            resultados : List<(id, name)>
-                Lista de ingredientes encontrados
-            """
-            try:
-                results = Ingredients.objects.filter(name__icontains=name).all()
-                format_results = []
-                for result in results:
-                    format_results.append((result.id,result.name))
-                return format_results
-            except:
-                raise Error_DB("Error de base de datos: No hay conexion con la base de datos")
-            
-    def buscarIngredienteID(self,id: int):
+\begin{figure}[H]
+    \begin{lstlisting}[style=python]
+        def buscarIngredienteID(self,id: int):
         """
         Metodo que busca un ingrediente por identificador en la base de datos.
 
@@ -108,8 +110,13 @@
             return (results.id,results.name)
         except:
             raise Error_DB("Error de base de datos: No hay conexion con la base de datos")
-    
-    def getIngredientes(self, id: int):
+    \end{lstlisting}
+    \caption{Método para buscar ingredientes por ID en la \gls{base}}
+    \label{sni:buscarIngredienteID}
+\end{figure}
+\begin{figure}[H]
+    \begin{lstlisting}[style=python]
+        def getIngredientes(self, id: int):
             """
             Metodo para obtener los ingredientes de una receta por ID
 
@@ -132,8 +139,13 @@
                 return list_ingredients
             except:
                 raise Error_DB("Error de base de datos: No hay conexion con la base de datos")
-            
-    def buscarRecetasNombre(self, name : str):
+    \end{lstlisting}
+    \caption{Metodo para obtener los ingredientes de una receta por ID en la \gls{base}}
+    \label{sni:buscarRecetaIngredientesID}
+\end{figure}
+\begin{figure}[H]
+    \begin{lstlisting}[style=python]
+        def buscarRecetasNombre(self, name : str):
         """
         Metodo que busca una lista de recetas por nombre en la base de datos.
 
@@ -155,8 +167,13 @@
             return Recipes.objects.filter(name__icontains=name).all()
         except:
             raise Error_DB("Error de base de datos: No hay conexion con la base de datos")
-
-    def buscarRecetasID(self, id: int):
+    \end{lstlisting}
+    \caption{Metodo para buscar una lista de recetas por nombre en la \gls{base}}
+    \label{sni:buscarRecetaNombre}
+\end{figure}
+\begin{figure}[H]
+    \begin{lstlisting}[style=python]
+        def buscarRecetasID(self, id: int):
         """
         Metodo que busca una receta por identificador en la base de datos.
 
@@ -182,8 +199,13 @@
             return (result.id,result.name,result.steps,result.number_of_ingredients)
         except:
             raise Error_DB("Error de base de datos: No hay conexion con la base de datos")
-        
-    def buscarRecetasIngredientesNumber(self, id: list[int]):
+    \end{lstlisting}
+    \caption{Metodo para buscar una lista de recetas por ID en la \gls{base}}
+    \label{sni:buscarRecetaID}
+\end{figure}
+\begin{figure}[H]
+    \begin{lstlisting}[style=python]
+        def buscarRecetasIngredientesNumber(self, id: list[int]):
         """
         Metodo que busca una lista de recetas por numero de ingredientes y que contengan al menos un ingrediente de la lista en la base de datos.
 
@@ -209,8 +231,13 @@
             return recipes.all()
         except:
             raise Error_DB("Error de base de datos: No hay conexion con la base de datos")
-        
-    def buscarRecetasIngredientes(self, id: int):
+    \end{lstlisting}
+    \caption{Metodo para buscar una lista de recetas por su numero de ingredientes y que contengan un ingrediente de la lista en la \gls{base}}
+    \label{sni:buscarRecetaNumeroIngredientes}
+\end{figure}
+\begin{figure}[H]
+    \begin{lstlisting}[style=python]
+        def buscarRecetasIngredientes(self, id: int):
         """
         Metodo que recupera los ingredientes de una receta por identificador.
 
@@ -236,8 +263,13 @@
             return resultado
         except:
             raise Error_DB("Error de base de datos: No hay conexion con la base de datos")
-        
-    def getRecetasRandom(self, number: int):
+    \end{lstlisting}
+    \caption{Metodo para recuperar los ingredientes de una receta por su identificador de la \gls{base}}
+    \label{sni:buscarRecetaIDIngredientes}
+\end{figure}
+\begin{figure}[H]
+    \begin{lstlisting}[style=python]
+        def getRecetasRandom(self, number: int):
         """
         Metodo para obtener recetas aleatorias de la base de datos
 
@@ -260,9 +292,9 @@
             return random_items
         except:
             raise Error_DB("Error de base de datos: No hay conexion con la base de datos")
-\end{lstlisting}
-\caption{Clase DB\_Connector}
-\label{sni:db}
+    \end{lstlisting}
+    \caption{Metodo para recuperar recetas aleatorias de la \gls{base}}
+    \label{sni:buscarRecetaAleatorias}
 \end{figure}
 
 \newpage
