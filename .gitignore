@@ -10,6 +10,17 @@
 *.bbl
 *.blg
 *.pdf
+*.lot
+*.toc
+*.lof
+*.ist
+*.idx
+*.glsdefs
+*.glo
+*.ilg
+*.ind
+*.gls
+*.glg
 
 # Byte-compiled / optimized Python files
 __pycache__/

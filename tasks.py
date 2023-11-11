@@ -6,7 +6,7 @@ def pdf(c):
     Tarea que genera la documentación del proyecto en formato pdf
     """
     print("Generando documentación...")
-    run("cd doc && pdflatex -interaction=nonstopmode proyecto.tex && biber proyecto && pdflatex -interaction=nonstopmode proyecto.tex && pdflatex -interaction=nonstopmode proyecto.tex", shell="/bin/sh")
+    run("cd doc && pdflatex -interaction=nonstopmode proyecto && biber proyecto && makeglossaries proyecto && pdflatex -interaction=nonstopmode proyecto && pdflatex -interaction=nonstopmode proyecto", shell="/bin/sh")
 
 @task
 def clean(c):

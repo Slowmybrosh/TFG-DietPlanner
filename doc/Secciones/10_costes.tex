@@ -2,14 +2,14 @@
 En este capítulo se definirán los costes del desarrollo de la aplicación, tanto los costes de IaaS como los costes derivados de la manufactura del proyecto.
 
 \section{Infraestructura}
-Un despliegue en la nube es costoso, aunque depende de los servicios que se utilicen en él, para detallar los costes de manera sencilla, AWS ofrece una calculadora de precios. Para resumir, en este despliegue se utilizan los siguientes servicios de AWS:
+Un despliegue en la nube es costoso, aunque depende de los servicios que se utilicen en él, para detallar los costes de manera sencilla, \gls{AWS} ofrece una calculadora de precios. Para resumir, en este despliegue se utilizan los siguientes servicios de \gls{AWS}:
 \begin{enumerate}
-    \item Instancias EC2 t3.medium con 2vCPU y 4GB de memoria: 58.86 - 117.72 USD/mes
+    \item Instancias \gls{EC2} t3.medium con 2vCPU y 4GB de memoria: 58.86 - 117.72 USD/mes
     \item Instancia Aurora PostgreSQL 2vCPU, 4GB de memoria y \emph{network performance: low to moderate}: 121.86 USD/mes
     \item Balanceador de carga para una sola aplicación suponiendo 10GB/hora de peticiones: 80.64 USD/mes
 \end{enumerate}
 
-En conclusión, la suma total es de 231.93 - 291.09 USD/mes. Coste que no puedo aportar actualmente de mi bolsillo, por ello se deja planteada teóricamente el despliegue de la aplicación en la nube de AWS. Cabe destacar que la instancia EC2 es parte de un grupo de escalado, que permite añadir instancias automáticamente cuando se necesiten y eliminarlas cuando haya poca carga de trabajo. Se estiman que haya normalmente unas 2 instancias en ejecución y como máximo 4 instancias.
+En conclusión, la suma total es de 231.93 - 291.09 USD/mes. 2783.16 - 3493.08 USD/año. Coste que no puedo aportar actualmente de mi bolsillo, por ello se deja planteada teóricamente el despliegue de la aplicación en la nube de \gls{AWS}. Cabe destacar que la instancia EC2 es parte de un grupo de escalado, que permite añadir instancias automáticamente cuando se necesiten y eliminarlas cuando haya poca carga de trabajo. Se estiman que haya normalmente unas 2 instancias en ejecución y como máximo 4 instancias.
 
 \section{Proyecto}
 El coste del equipo técnico se calcula teniendo en cuenta el ordenador utilizado, un Lenovo ThinkPad P15v de segunda generación, de un coste estimado de 2.497,00 euros, teniendo en cuenta una vida útil de cinco años y una amortización de un 25\%, con un uso de unos 4 meses de proyecto, habiendo trabajado alrededor de unas 500 horas en el proyecto en un formato de jornada partida de cinco horas. Cabe destacar que al haberse combinado un trabajo a jornada completa, se ha intentado compatibilizar de la mejor manera, intentando cumplir con los horarios, aunque no siempre ha sido posible.

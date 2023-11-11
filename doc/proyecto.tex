@@ -8,14 +8,15 @@
 %\usepackage{titlesec}
 %\usepackage{pailatino}
 
-%\usepackage[
-%backend=biber,
-%style=alphabetic,
-%sorting=ynt
-%]{biblatex}
-\usepackage{biblatex}
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
 \addbibresource{bibliografia.bib}
+
 \usepackage{breakcites}
+\usepackage{float}
 
 \decimalpoint
 \usepackage{dcolumn}
@@ -70,14 +71,15 @@ pdfproducer = {pdflatex}
 
 %\usepackage{doxygen/doxygen}
 %\usepackage{pdfpages}
+\usepackage{dirtree}
 \usepackage{url}
 \usepackage{colortbl,longtable}
 \usepackage[stable]{footmisc}
-%\usepackage{index}
+\usepackage{index}
 
-%\makeindex
-%\usepackage[style=long, cols=2,border=plain,toc=true,number=none]{glossary}
-% \makeglossary
+\makeindex
+\usepackage[toc,nonumberlist]{glossaries}
+\makeglossaries
 
 % Definición de comandos que me son tiles:
 %\renewcommand{\indexname}{Índice alfabético}
@@ -140,7 +142,7 @@ pdfproducer = {pdflatex}
 	language=C,
 	numbers=left
    }
-\lstdefinestyle{CodigoC++}
+\lstdefinestyle{python}
    {
 	basicstyle=\small,
 	frame=single,
@@ -184,8 +186,8 @@ pdfproducer = {pdflatex}
 \input{portada/portada}
 \input{prefacios/prefacio}
 %\frontmatter
-%\tableofcontents
-%\listoffigures
+\tableofcontents
+\listoffigures
 %\listoftables
 %
 %\mainmatter
@@ -204,31 +206,22 @@ pdfproducer = {pdflatex}
 \input{Secciones/11_conclusiones}
 
 %
-%\input{capitulos/03_Planificacion}
+\nocite{*}
+\addcontentsline{toc}{chapter}{Bibliografía}
+\bibliographystyle{miunsrturl}
+\printbibliography
 %
-%\input{capitulos/04_Analisis}
-%
-%\input{capitulos/05_Diseno}
-%
-%\input{capitulos/06_Implementacion}
-%
-%\input{capitulos/07_Pruebas}
-%
-%\input{capitulos/08_Conclusiones}
-%
-%%\chapter{Conclusiones y Trabajos Futuros}
-%
-%
-%%\nocite{*}
-%\bibliography{bibliografia/bibliografia}\addcontentsline{toc}{chapter}{Bibliografía}
-%\bibliographystyle{miunsrturl}
-%
-%\appendix
+\appendix
+\input{apendices/12_Anexo_BD}
+\input{apendices/13_Anexo_prototipo}
+\input{apendices/14_Anexo_pruebas}
 %\input{apendices/manual_usuario/manual_usuario}
-%%\input{apendices/paper/paper}
-%\input{glosario/entradas_glosario}
-% \addcontentsline{toc}{chapter}{Glosario}
-% \printglossary
+%\input{apendices/paper/paper}
+
+\input{glosario}
+\glsaddall
+\addcontentsline{toc}{chapter}{Glosario}
+\printglossaries
 \chapter*{}
 \thispagestyle{empty}
 

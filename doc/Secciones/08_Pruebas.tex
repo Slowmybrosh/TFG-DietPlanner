@@ -6,7 +6,7 @@ Para una correcta metodología, es necesario contar con una serie de test unitar
 
 Para los test, se añaden los pertinentes que permiten realizar comprobar que lo que ve el usuario es lo correcto en cada momento, no solo comprobando si se devuelve un código de respuesta correcto (2xx) sino que realmente sea lo que el usuario tiene que estar viendo, haciendo los test a nivel de vista.
 
-En el desarrollo de las pruebas se ha realizado con la herramienta pytest, incluida en django. Se ha generado un \gls{test} para cada filtro de la base de datos.
+En el desarrollo de las pruebas se ha realizado con la herramienta pytest, incluida en \Gls{django}. Se ha generado un \gls{test} para cada filtro de la base de datos.
 \begin{enumerate}
     \item Recetas
     \begin{itemize}
@@ -21,7 +21,7 @@ En el desarrollo de las pruebas se ha realizado con la herramienta pytest, inclu
     \end{itemize}
 \end{enumerate}
 
-Para ejecutar los test se hace uso de la tarea especificada para ello en Invoke, el código de las pruebas se incluye en el anexo de la documentación. 
+Para ejecutar los \gls{test} se hace uso de la tarea especificada para ello en Invoke, el código de las pruebas se incluye en el anexo de la documentación. 
 
 \begin{figure}
     \centering
@@ -40,13 +40,13 @@ Daniel encuentra un anuncio de la aplicación en internet y se anima a probarla 
 \newpage
 \begin{figure}
     \centering
-    \fbox{\includegraphics[width=125mm, scale=1]{./doc/imagenes/home-escritorio.png}}
-    \fbox{\includegraphics[width=125mm, scale=1]{./doc/imagenes/Receta-Daniel.png}}
+    \fbox{\includegraphics[width=125mm, scale=1]{./doc/imagenes/home_escritorio.png}}
+    \fbox{\includegraphics[width=125mm, scale=1]{./doc/imagenes/Receta_Daniel.png}}
     \caption{Primeros pasos de Daniel}
     \label{fig:Daniel-pasos1}
 \end{figure}
 
-Una vez que vuelve a la página principal, empieza a introducir los ingredientes que quiere gastar. Como últimamente quiere comer sano, le apetece cenar una ensalada gastando las verduras que están a punto de caducar y añadiendo otros ingredientes que le sobran.
+Una vez que vuelve a la página principal, empieza a introducir los ingredientes que quiere gastar. Como últimamente quiere comer sano, le apetece cenar una pescado, gastando las espinacas que están a punto de caducar y añadiendo otros ingredientes que le sobran.
 \begin{enumerate}
     \item Bacalao
     \item Huevos
@@ -58,18 +58,15 @@ Una vez que vuelve a la página principal, empieza a introducir los ingredientes
     \item mantequilla
 \end{enumerate}
 
-El buscador debería encontrar las recetas que usan estos ingredientes, mostrándolas al usuario de manera organizada y clara. Las recetas que se deben ofrecer son:
-\begin{enumerate}
-    
-\end{enumerate}
+El buscador debería encontrar las recetas que usan estos ingredientes, mostrándolas al usuario de manera organizada y clara.
 
 Daniel pulsa el botón para buscar ingredientes con el botón verde habilitado para ello. Los resultados que ha obtenido son los esperados, ha obtenido todas las recetas que se esperaba que devolviera la aplicación. 
 
-Daniel mira los resultados devueltos y elige comer una ensalada de lentejas, seleccionando dicha receta desde el buscador, leyendo la receta y reuniendo los ingredientes. 
+Daniel mira los resultados devueltos y elige comer un budín de bacalao, seleccionando dicha receta desde el buscador, leyendo la receta y reuniendo los ingredientes para realizar los pasos detallados. 
 \begin{figure}[h!]
     \centering
-    \fbox{\includegraphics[width=120mm, scale=1]{./doc/imagenes/Resultados-Daniel.png}}
-    \fbox{\includegraphics[width=120mm, scale=1]{./doc/imagenes/recetafinal-daniel.png}}
+    \fbox{\includegraphics[width=120mm, scale=1]{./doc/imagenes/Resultados_Daniel.png}}
+    \fbox{\includegraphics[width=120mm, scale=1]{./doc/imagenes/Recetafinal_Daniel.png}}
     \caption{Pasos finales de Daniel}
     \label{fig:Daniel-pasos2}
 \end{figure}
@@ -77,7 +74,7 @@ Daniel mira los resultados devueltos y elige comer una ensalada de lentejas, sel
 Otro viaje por la aplicación es el de María Encarnación, al que su hijo recomienda usar la aplicación y se la muestra en su tableta, enseñándola a usarla. Observa el buscador inicial, incluyendo algunos ingredientes, pero no quiere buscar recetas por ingredientes, así que los elimina todos con el botón ``Eliminar selección''. Para buscar recetas por nombre su hijo le dijo que tenía que utilizar la barra de arriba, así que busca ``Bizcocho''. 
 
 \begin{figure}[H]
-    \fbox{\includegraphics[width=120mm, scale=1]{./doc/imagenes/Resultados-Marien.png}}
+    \fbox{\includegraphics[width=120mm, scale=1]{./doc/imagenes/Resultados_Marien.png}}
     \fbox{\includegraphics[width=120mm, scale=1]{./doc/imagenes/bizcocho.png}}
     \caption{Resultados a la búsqueda de María Encarnación}
     \label{fig:Daniel-pasos2}
