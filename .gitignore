@@ -6,10 +6,8 @@
 *.run.xml
 *.dtx
 *.dvi
-*.pdf
 *.bbl
 *.blg
-*.pdf
 *.lot
 *.toc
 *.lof
