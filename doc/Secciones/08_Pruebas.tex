@@ -6,19 +6,12 @@ Para una correcta metodología, es necesario contar con una serie de test unitar
 
 Para los test, se añaden los pertinentes que permiten realizar comprobar que lo que ve el usuario es lo correcto en cada momento, no solo comprobando si se devuelve un código de respuesta correcto (2xx) sino que realmente sea lo que el usuario tiene que estar viendo, haciendo los test a nivel de vista.
 
-En el desarrollo de las pruebas se ha realizado con la herramienta pytest, incluida en \Gls{django}. Se ha generado un \gls{test} para cada filtro de la base de datos.
+En el desarrollo de las pruebas se ha realizado con la herramienta pytest, incluida en \Gls{django}. Se ha generado un \gls{test} para cada vista de la aplicación.
 \begin{enumerate}
-    \item Recetas
-    \begin{itemize}
-        \item Identificador
-        \item Nombre
-        \item Ingredientes
-    \end{itemize}
-    \item Ingredientes
-    \begin{itemize}
-        \item Identificador
-        \item Nombre
-    \end{itemize}
+    \item Índex
+    \item Resultados de recetas
+    \item Detalles de recetas
+    \item Recetas guardadas
 \end{enumerate}
 
 Para ejecutar los \gls{test} se hace uso de la tarea especificada para ello en Invoke, el código de las pruebas se incluye en el anexo de la documentación. 
