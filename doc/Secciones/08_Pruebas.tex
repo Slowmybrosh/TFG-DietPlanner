@@ -82,7 +82,7 @@ Para comprobar el rendimiento de la aplicación propuesta como solución al prob
 
 Como prueba de carga, se ha definido un camino para el usuario en el que accede a la página principal de la web, visita una receta de las aleatorias que se muestran en la columna derecha de la pantalla y por último busca una receta a partir de unos ingredientes que tiene en su despensa.
 
-Por ser una prueba de carga, se busca que los usuarios realicen estas tres acciones de manera continua, cada vez escalando más el número de usuarios que realizan esta acción repetitiva, con el objetivo de comprobar cuando el servidor se ve sobrepasado y empieza a perder rendimiento. 
+Se busca que los usuarios de prueba realicen estas tres acciones de manera continua, cada vez escalando más el número de usuarios que realizan esta acción repetitiva, con el objetivo de comprobar cuando el servidor se ve sobrepasado y empieza a perder rendimiento. 
 
 Locust cuenta con una interfaz gráfica para lanzar los \gls{test}, que permite configurar el número de usuarios que tendrá la prueba y el ratio de \emph{spawn} de los usuarios, permitiendo incrementar gradualmente el nivel de estrés. Además, genera en tiempo real un gráfico que permite observar el número de usuarios, cuantas peticiones fallidas se han detectado y el tiempo de respuesta de la página web.
 
@@ -91,7 +91,7 @@ La prueba se ha realizado con mil usuarios, incrementándolos gradualmente de di
 \begin{figure}[H]
     \fbox{\includegraphics[width=120mm, scale=1]{./doc/imagenes/number_of_users.png}}
     \caption{Resultados de la prueba de carga}
-    \label{fig:Daniel-pasos2}
+    \label{fig:prueba de carga}
 \end{figure}
 
-En la imágen se observa como la aplicación aguanta hasta setecientos usuarios, teniendo problemas entre seiscientos y setecientos usuarios, hasta que al final el servidor no puede más y deja de poder responder a las peticiones correctamente.
+En la imagen se observa como la aplicación aguanta hasta setecientos usuarios, teniendo problemas entre seiscientos y setecientos usuarios, hasta que al final el servidor no puede más y deja de poder responder a las peticiones correctamente.
