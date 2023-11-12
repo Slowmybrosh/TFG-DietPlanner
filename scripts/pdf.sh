@@ -5,6 +5,5 @@ pdflatex -interaction=nonstopmode proyecto
 biber proyecto
 makeglossaries proyecto
 pdflatex -interaction=nonstopmode proyecto
-mv proyecto.pdf ../proyecto.pdf
 cd ..
 invoke clean     
