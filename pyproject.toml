@@ -12,6 +12,9 @@ django = "^4.2.7"
 gunicorn = "^21.2.0"
 invoke = "^2.2.0"
 
+[tool.poetry.group.dev.dependencies]
+locust = "^2.18.3"
+
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "dietplanner.settings"
 
