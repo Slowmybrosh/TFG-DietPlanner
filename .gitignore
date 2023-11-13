@@ -6,9 +6,19 @@
 *.run.xml
 *.dtx
 *.dvi
-*.pdf
 *.bbl
 *.blg
+*.lot
+*.toc
+*.lof
+*.ist
+*.idx
+*.glsdefs
+*.glo
+*.ilg
+*.ind
+*.gls
+*.glg
 *.pdf
 
 # Byte-compiled / optimized Python files

@@ -1,10 +1,10 @@
 \chapter{Recetas}
-En este capítulo se detallará todo lo relativo al \href{https://github.com/Slowmybrosh/TFG-DietPlanner/milestone/3}{milestone} ``Encontrar recetas'', que tiene como objetivo solucionar al usuario la necesidad de encontrar recetas utilizando exclusivamente los ingredientes seleccionados por el usuario.
+En este capítulo se detallará todo lo relativo al \href{https://github.com/Slowmybrosh/TFG-DietPlanner/milestone/3}{\emph{\gls{milestone}}} ``Encontrar recetas'', que tiene como objetivo solucionar al usuario la necesidad de encontrar recetas utilizando exclusivamente los ingredientes seleccionados por el usuario.
 
 \section{Fuente de recetas}
 Para la obtención de recetas, se obtendrán de la famosa página de recetas \href{https://cookpad.com/es/home}{Cookpad}. Donde la comunidad puede subir cualquier receta. Habiendo mucha variedad de recetas, permitiendo obtener una base de datos variada. Estas recetas se deberán cargar en una base de datos.
 
-El robot de BluePrism, utiliza un reconocimiento del código fuente, similar a un crawler, de la página permitiendo seleccionar los elementos deseados de cada una. Inspeccionando la página se pueden analizar una serie de atributos para identificar inequívocamente algunos elementos.
+El robot de \href{https://www.blueprism.com/es/}{BluePrism}, utiliza un reconocimiento del código fuente, similar a un \emph{\gls{crawler}}, de la página permitiendo seleccionar los elementos deseados de cada una. Inspeccionando la página se pueden analizar una serie de atributos para identificar inequívocamente algunos elementos.
 
 Los pasos que se han seguido para obtener recetas son:
 \begin{enumerate}
@@ -17,14 +17,14 @@ Los pasos que se han seguido para obtener recetas son:
         \item Ingredientes
         \item Pasos
     \end{enumerate}
-    \item Formar un fichero en formato JSON
+    \item Formar un fichero en formato \gls{JSON} (JavaScript Object Notation)
 \end{enumerate}
 
 Para la función de buscar recetas de diferentes tipos, se lanza un navegador web con la dirección de inicio de \href{https://cookpad.com/es/home}{Cookpad}, al buscar cualquier cosa utilizando el cuadro de búsqueda. La dirección a la que se consulta la petición es la siguiente: \emph{buscar/verduras?event=search.history&order=recent}, con un simple vistazo se puede identificar que la petición en este caso fue ``verduras''. Sabiendo esto, para buscar por tipo de receta se han compuesto las direcciones url de manera dinámica, evitando pasos extra a la hora de realizar esta búsqueda inicial. 
 
 \begin{figure}[h!]
     \centering
-    \fbox{\includegraphics[width=100mm,scale=1]{./doc/images/Extract_recipe.png}}
+    \fbox{\includegraphics[width=100mm,scale=1]{./doc/imagenes/Extract_recipe.png}}
     \caption{Función para extraer enlaces}
     \label{fig:links}
 \end{figure}
@@ -33,24 +33,24 @@ En el paso de obtención de la receta, se identifica el nombre de la receta. Uti
 
 \begin{figure}[h!]
     \centering
-    \fbox{\includegraphics[width=100mm,scale=1]{./doc/images/Extract_recipe.png}}
+    \fbox{\includegraphics[width=100mm,scale=1]{./doc/imagenes/Extract_recipe.png}}
     \caption{Función para extraer recetas}
     \label{fig:recipe}
 \end{figure}
 
 Una vez obtenidos todos los enlaces, puede que haya repetidos por coincidir en la categoría de carne y verduras a la vez, es necesario hacer un filtrado muy sencillo que elimine los enlaces repetidos. 
 
-La función que extrae la receta de la página, obtiene el nombre teniendo en cuenta que es el primer \emph{h1} de la página. Los ingredientes y los pasos se tratan de listas ordenadas, fáciles de extraer. Cada ingrediente tienen un identificador \emph{ingredient} seguido de una cadena de números. BluePrism puede utilizar \emph{wildcards} para identificar elementos de la página web, de la misma manera que al extraer una lista de enlaces, se itera por los ingredientes hasta que no haya más. Con los pasos se sigue el mismo razonamiento, valiéndose de un selector CSS para extraer los pasos iterando sobre ellos hasta que no hay más. 
+La función que extrae la receta de la página, obtiene el nombre teniendo en cuenta que es el primer \emph{h1} de la página. Los ingredientes y los pasos se tratan de listas ordenadas, fáciles de extraer. Cada ingrediente tienen un identificador \emph{ingredient} seguido de una cadena de números. BluePrism puede utilizar \emph{wildcards} para identificar elementos de la página web, de la misma manera que al extraer una lista de enlaces, se itera por los ingredientes hasta que no haya más. Con los pasos se sigue el mismo razonamiento, valiéndose de un selector \gls{CSS} para extraer los pasos iterando sobre ellos hasta que no hay más. 
 
 \begin{figure}[h!]
     \centering
-    \fbox{\includegraphics[width=100mm,scale=1]{./doc/images/identify_step.png}}
+    \fbox{\includegraphics[width=100mm,scale=1]{./doc/imagenes/identify_step.png}}
     \caption{Identificar los pasos de la receta}
     \label{fig:steps}
 \end{figure}
 
 
-Para que constituya una fuente de información uniforme, la colección de recetas se guarda como un fichero JSON que puede ser fácilmente recuperado y transformado en cualquier otro formato.
+Para que constituya una fuente de información uniforme, la colección de recetas se guarda como un fichero \gls{JSON} que puede ser fácilmente recuperado y transformado en cualquier otro formato.
 
 El proceso de ejecución del robot lleva tiempo, ya que el identificar los ingredientes a través de una expresión regular toma entre diez y veinte segundos. Los demás pasos son relativamente menos costosos en cuestión de tiempo. El robot tardó aproximadamente cuatro horas en obtener sesenta y dos recetas con todos los elementos mencionados. La ventaja de haber utilizado este proceso de obtención de recetas es que se puede ampliar en el futuro a conveniencia, aunque hay que tener en cuenta el tiempo que tarda el robot en obtener recetas.
 
@@ -58,17 +58,16 @@ El proceso de ejecución del robot lleva tiempo, ya que el identificar los ingre
 
 Para insertar los datos en la aplicación, se insertan en una base de datos relacional para aprovechar la relación que existe entre una receta y los ingredientes que contiene. Permitiendo identificar rápidamente que ingredientes lleva una receta, pudiendo gestionar de manera sencilla los requisitos para realizar una receta. 
 
-Se utiliza un pequeño script para insertar los datos desde sus respectivos ficheros a la base de datos siguiendo el siguiente esquema
+Se utiliza un pequeño \gls{script} para insertar los datos desde sus respectivos ficheros a la base de datos siguiendo el siguiente esquema
 \begin{figure}[h!]
     \centering
-    \fbox{\includegraphics[width=100mm,scale=1]{./doc/images/db.drawio.png}}
+    \fbox{\includegraphics[width=100mm,scale=1]{./doc/imagenes/db.drawio.png}}
     \caption{Esquema de la \gls{base}}
     \label{fig:scheme}
 \end{figure}
 
 \section{Encontrar recetas}
 El primer problema que se pretende resolver con la publicación del proyecto es permitir a los usuarios encontrar recetas, ya sea por aprovechar los ingredientes de su despensa o porque no recuerdan con exactitud los ingredientes de una receta o sus pasos.
-
 
 \subsection{Consideraciones iniciales}
 Antes de explicar como se ha resuelto el problema debemos hacer unas consideraciones iniciales que se han tomado en cuenta en la etapa de modelización del problema.
@@ -87,7 +86,7 @@ Otra consideración importante es que no se tiene en cuenta la cantidad de cada 
 \subsection{Algoritmo}
 La funcionalidad se puede implementar de muchas maneras. Quizá la más sencilla sea obtener todas las recetas de la base de datos e ir comprobando una por una las que pueda hacer el usuario con los ingredientes seleccionados. Pero el orden de la función sería  $O(f(n))=n*m$ siendo \textit{n} el número de recetas de la base de datos y m el número de ingredientes que contiene cada una. En este proyecto, al ser una modelización de una solución al problema no se utilizan unos datos demasiado extensos, pero si se extiende el catálogo de recetas la eficiencia se verá afectada gravemente.
 
-Debido a la poca eficiencia en un \gls{dataset} muy grande, es necesario utilizar algunos ajustes previos para reducir lo máximo posible el número de recetas inicial. El primer filtro que se utiliza es el razonamiento de que una receta no será candidata cuando tenga más ingredientes que los seleccionados por el usuario, pues significará que existe un ingrediente que falta. 
+Debido a la poca eficiencia en un \emph{\gls{dataset}} muy grande, es necesario utilizar algunos ajustes previos para reducir lo máximo posible el número de recetas inicial. El primer filtro que se utiliza es el razonamiento de que una receta no será candidata cuando tenga más ingredientes que los seleccionados por el usuario, pues significará que existe un ingrediente que falta. 
 
 Una vez que se ha reducido la búsqueda a un subconjunto de recetas que cuentan con un número de ingredientes menor o igual a los introducidos por el usuario. Existen recetas del subconjunto que no tienen ningún ingrediente de los que se tienen en la despensa, analizar si es una receta candidata será un gasto de tiempo. Del anterior razonamiento nace el segundo filtro aplicado: Obtener solo recetas que contengan al menos un ingrediente de los que ha seleccionado el usuario. 
 
@@ -162,41 +161,3 @@ Una vez reducido el número de recetas se comprueba si cada ingrediente de la re
         \caption{Clase buscador de la aplicación}
         \label{cmd:buscador}
     \end{figure}
-
-
-\subsection{Tests}
-Para una correcta metodología, es necesario contar con una serie de test unitarios que permitan comprobar cada vez que se añade una nueva funcionalidad, la correcta integración de la misma. Como se mencionó en el capítulo de implementación, en el proyecto actual solo existe una funcionalidad, pero se deja la puerta abierta para el desarrollo de nuevas utilidades en el futuro, como añadir cualquier restricción alimentaria que pueda tener el usuario, cambiando los ingredientes problemáticos por unos permitidos para el usuario. 
-
-En el desarrollo de las pruebas se ha realizado con la herramienta pytest. Se ha generado un \gls{test} para cada filtro de la base de datos.
-\begin{enumerate}
-    \item Recetas
-    \begin{itemize}
-        \item Identificador
-        \item Nombre
-        \item Ingredientes
-    \end{itemize}
-    \item Ingredientes
-    \begin{itemize}
-        \item Identificador
-        \item Nombre
-    \end{itemize}
-\end{enumerate}
-
-Los test se han añadido en un fichero de python ``test/test.py'' del que se obtienen las pruebas para la integración de la aplicación.
-\begin{figure}[h!]
-    \centering
-    \fbox{\includegraphics[width=100mm,scale=1]{./doc/images/tests.png}}
-    \caption{Clase para testear la funcionalidad buscador}
-    \label{fig:test}
-\end{figure}
-
-Para ejecutar los test se hace uso de Invoke, el gestor de tareas seleccionado en el proyecto, el código de las pruebas se incluye en el anexo de la documentación. 
-
-\begin{figure}
-    \centering
-    \begin{lstlisting}[style=consola]
-        invoke test
-    \end{lstlisting}
-    \caption{Comando para lanzar los test unitarios}
-    \label{cmd:test}
-\end{figure}

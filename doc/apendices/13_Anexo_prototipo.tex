@@ -1,0 +1,573 @@
+\chapter{Plataforma Web}
+\section{Interfaz}
+\begin{figure}[H]
+    \begin{lstlisting}[style=consola]
+    <head>
+        <title>RecetApp</title>
+
+        <!--Custom style css for more spaces-->
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+
+        <!-- Latest compiled JQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
+    \end{lstlisting}
+    \caption{Template de los ficheros fuente de la \gls{interfaz}}
+    \label{sni:docker}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}[style=consola]
+    <body class="">
+        <nav class="navbar navbar-expand-lg navbar-light background-nav border-bottom border-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="/">RecetApp</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse in" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="/guardadas/">Recetas guardadas</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                  </li>
+                </ul>
+                <form class="d-flex" action="/resultados/" method="POST">
+                  {% csrf_token %}
+                  <input class="form-control me-2 border border-dark" type="search" placeholder="Nombre de la receta" aria-label="Search" name="search-recetas">
+                  <button class="btn btn-success" type="submit">Buscar</button>
+                  <input type="hidden" name="metodo" value="recetas">
+                </form>
+              </div>
+            </div>
+          </nav>
+\end{lstlisting}
+\caption{Template del navegador de la \gls{interfaz}}
+\label{sni:interfaz}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}[style=consola]
+        <main class="background">
+            <div class="container-fluid pt-3">
+                <div class="row justify-content-center">
+                <div class="col-lg-9 col-md-9 container-fluid">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+                <div class="col-lg-3 col-md-9 mt-5 pe-lg-3 d-flex flex-column overflow-auto">
+                    {% if top %}
+                    <h3 class="w-100 text-center">Algunas recetas</h3>
+                    {% for item in top %}
+                        <div class="card border rounded w-100" style="width: 18rem;">
+                        <a class="link-unstyled" href="#">
+                            <div class="card-body border border-dark background-card">
+                            <h5 class="card-title">{{item.name}}</h5>
+                            <a href="/receta/{{item.id}}" class="btn button-bg border border-dark">Ver receta</a>
+                            </div>
+                        </a>
+                        </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                </div>
+            </div>
+        </main>
+    </body>
+    <script src="{% static 'js/buscador-ingredientes.js' %}"></script>
+</html>
+\end{lstlisting}
+\caption{Template del contenedor principal la base de la \gls{interfaz}}
+\label{sni:interfaz}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}[style=consola]
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row mt-5">
+        <div class="col-lg-2 col-none"></div>
+            <div class="col-lg-8 col-12 justify-content-center">
+                <h1 class="text-center">RecetApp</h1>
+                <form class="form-control border border-dark" action="/resultados/" method="POST">
+                    {% csrf_token %}
+                    <div class="d-inline-flex w-100">
+                        <input id="buscador-ingredientes" class="form-control me-2" type="search" placeholder="Buscar Ingredientes" aria-label="Search">
+                        <button id="enviarIngredientes" class="btn btn-success" type="submit">Buscar Recetas</button>
+                        <div id="eliminarSeleccion" class="btn btn-danger ms-3">Borrar Seleccion</div>
+                    </div>
+                        <div class="container">
+                            <table id="tabla" hidden class="table mt-5 container ingredientes">
+                                <thead class="container">
+                                    <tr class="justify-content">
+                                        <th>Nombre</th>
+                                        <th class="text-center">Seleccionado</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabla-ingredientes" class="">
+                                </tbody>
+                            </table>
+                        </div> 
+                    <input type="hidden" name="metodo" value="ingredientes">
+                </form>
+            <div class="col-lg-2 col-none"></div>
+        </div>
+    </div>
+{% endblock %}
+\end{lstlisting}
+\caption{Bloque HTML del buscador}
+\label{sni:buscador}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}[style=consola]
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid h-100 background">
+    <div class="row d-flex-inline bg-light rounded rounded-sm background">
+        <div class="col-lg-8 background">
+            <div class="card mt-5 w-100">
+                <img class="card-img border-bottom border-dark" src="{% static 'img/img-template.jpg' %}" width="100%">
+                <h1 class="card-title">{{receta_nombre}}</h1>
+                <div class="ps-3 mt-5 card-body">
+                    <h4>Ingredientes</h4>
+                    <ul>
+                    {% for item in receta_ingredientes %}
+                        <li>{{item}}</li>
+                    {% endfor %}
+                    </ul>
+                    <h4 class="mt-5">Pasos</h4>
+                    <ol>
+                        {% for item in receta_pasos %}
+                        <li><p>{{item}}</p></li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg background">
+        <div class="container-fluid">
+            <div class="row rounded-sm d-flex flex-column justify-content-center-100">
+            <button id="guardarReceta" data-id={{receta_id}} class="btn save-btn flex-grow button-bg btn-outline-success btn-lg mt-5 mb-3 border border-dark" saved={{saved}} origin="receta">Guardar receta</button>
+            <div id="compartirReceta" data-id={{receta_id}} class="btn share-btn flex-grow btn-lg btn-light border border-dark">Compartir</div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+\end{lstlisting}
+\caption{Bloque HTML de la receta}
+\label{sni:receta}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}[style=consola]
+    {% extends 'base.html' %}
+    {% block content %}
+        {% if resultados %}
+            <h2><u>Recetas encontradas</u></h2>
+            {% for resultado in resultados %}
+                <div id="resultados" class="mt-1">
+                    <div class="card mb-1 d-flex-inline flex-row row">
+                        <div class="col-lg-8">
+                            <a class="link-unstyled w-100" href="/receta/{{resultado.0}}">
+                                <div class="card-img"></div>
+                                <div class="card-body">
+                                    <div class="card-title"><h4>{{ resultado.1 }}</h4></div>
+                                    <div class="card-text">
+                                        <div class="container d-flex-inline">
+                                            <p class=""><u>Ingredientes utilizados</u></p>
+                                            <ul>
+                                                {% for item in resultado.2%}
+                                                    <li>{{item}}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg container">
+                            <div class="row rounded-sm d-flex flex-column justify-content-center-100 pe-3">
+                              <button data-id={{resultado.0}} class="save-btn btn flex-grow button-bg btn-outline-success btn-lg mt-5 mb-3 border border-dark" saved={{resultado.3}} origin="resultado">Guardar receta</button>
+                              <button id="compartirReceta" data-id={{resultado.0}} class="btn share-btn flex-grow btn-lg btn-light border border-dark">Compartir</button>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h2>No se han encontrado recetas</h2>
+        {% endif %}
+    {% endblock %}
+\end{lstlisting}
+\caption{Bloque HTML de la lista de resultados}
+\label{sni:resultados}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}[style=consola]
+$(document).ready(function() {
+    $('#buscador-ingredientes').on('input', function() {
+        var query = $(this).val();
+        $.ajax({
+            url: '/buscar/',
+            data: {'query': query},
+            dataType: 'json',
+            success: function(response) {
+                BuscarIngrediente(response)
+            }
+        });
+    });
+});
+\end{lstlisting}
+\caption{Evento del buscador}
+\label{sni:evnt-buscador}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}[style=consola]
+function BuscarIngrediente(response) {
+    if(ObtenerCookie("IDs") == null){
+        var json = {
+            seleccionados: []
+        };
+        crearCookie("IDs",JSON.stringify(json),1);
+    }
+    $('#tabla').removeAttr('hidden');
+    var tabla = $('#tabla-ingredientes');
+    if(response == null){
+        tabla.empty();
+    } else{
+        var resultados = response.resultados;
+        tabla.empty();
+        for (var i = 0; i < resultados.length; i++) {
+            var fila = $('<tr data-id="'+resultados[i].id+'" onclick="SeleccionarIngrediente(this)">');
+            fila.append($('<td class="">').text(resultados[i].nombre));
+            var td = $('<td class="text-center">');
+            var svg = '<svg';
+            if(isSeleccionado(resultados[i].id) == false){
+                svg += " hidden"
+            }
+            svg += <tag del SVG>
+            td.append(svg);
+            fila.append(td);
+            tabla.append(fila);
+        }
+    }
+}
+\end{lstlisting}
+\caption{Función para buscar dinámicamente los ingredientes}
+\label{sni:buscadorIngredientes}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}[style=consola]
+function SeleccionarIngrediente(row){
+    var svg = row.querySelector('svg');
+    if(svg.hasAttribute('hidden')){
+        svg.removeAttribute('hidden');
+        var json = ObtenerCookie("IDs");
+        if(json != null){
+            var lista = JSON.parse(json);
+            lista.seleccionados.push(row.getAttribute('data-id'));
+            crearCookie("IDs",JSON.stringify(lista))
+        }
+    }
+    else{
+        svg.setAttribute('hidden','true');
+        var json = ObtenerCookie("IDs");
+        if(json != null){
+            var lista = JSON.parse(json);
+            lista = eliminarID(row.getAttribute('data-id'),lista);
+            crearCookie("IDs",JSON.stringify(lista))
+        }
+    }
+}
+\end{lstlisting}
+\caption{Función para seleccionar el ingrediente de la lista}
+\label{sni:seleccion}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}[style=consola]
+function ObtenerCookie(cookieName) {
+    var cookieValue = null;
+    var cookieString = document.cookie;
+    var cookies = cookieString.split(';');
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i].trim();
+
+        if (cookie.startsWith(cookieName + '=')) {
+        cookieValue = cookie.substring(cookieName.length + 1);
+        break;
+        }
+}
+
+return cookieValue;
+}
+\end{lstlisting}
+\caption{Función para obtener la cookie}
+\label{sni:cookie-Obtener}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}[style=consola]
+function crearCookie(nombre, valor, diasExpiracion) {
+    var fechaExpiracion = new Date();
+    fechaExpiracion.setDate(fechaExpiracion.getDate() + diasExpiracion);
+    var cookieString = nombre + '=' + valor + '; expires=' + fechaExpiracion.toUTCString() + '; path=/';
+    document.cookie = cookieString;
+}
+\end{lstlisting}
+\caption{Función para crear la cookie}
+\label{sni:cookie-Crear}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}[style=consola]
+function eliminarID(id, lista){
+    var indice = lista.seleccionados.indexOf(String(id));
+    if (indice !== -1) {
+        lista.seleccionados.splice(indice, 1);
+    }
+    return lista
+}
+\end{lstlisting}
+\caption{Función para eliminar un ingrediente de seleccionados}
+\label{sni:seleccionados-eliminar}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}[style=consola]
+    function eliminarID(id, lista){
+    var indice = lista.seleccionados.indexOf(String(id));
+    if (indice !== -1) {
+        lista.seleccionados.splice(indice, 1);
+    }
+    return lista
+}
+\end{lstlisting}
+\caption{Función para eliminar un ingrediente de seleccionados}
+\label{sni:seleccionados-eliminar}
+\end{figure}
+
+\section{Framework}
+
+\begin{figure}[H]
+\begin{lstlisting}[style=consola]
+class Ingredients(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'ingredient'
+
+class Recipes(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255)
+    steps = models.TextField()
+    number_of_ingredients = models.IntegerField(null=True)
+
+    class Meta:
+        db_table = 'recipes'
+
+class RecipeIngredient(models.Model):
+    recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE)
+    ingredient_id = models.ForeignKey(Ingredients, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'recipeingredient'
+        constraints = [
+            models.UniqueConstraint(fields=['recipe_id', 'ingredient_id'], name='unique_recipe_ingredient'),
+        ]
+
+\end{lstlisting}
+\caption{Fichero con los modelos de \gls{Django}}
+\label{sni:django-modelos}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}[style=consola]
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path("",views.index, name="index"),
+    path("buscar/", views.buscar, name="buscar_resultados"),
+    path("resultados/", views.resultados, name="resultados"), #Endpoint para buscar recetas
+    path("receta/<int:id>", views.detalle_receta, name="detalle_receta"), #Endpoint para buscar detalles de una receta
+    path("guardadas/", views.guardadas, name="guardadas")
+]
+\end{lstlisting}
+\caption{Fichero con los \gls{endpoint} de \gls{Django}}
+\label{sni:django-urls}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}[style=consola]
+def index(request):
+    """
+    Endpoint para el home
+    """
+    context = {
+        "top": buscador.getRandom(5)
+    }
+    return render(request, 'buscador.html', context)
+\end{lstlisting}
+\caption{Punto de acceso a la página principal}
+\label{sni:django-index}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{lstlisting}[style=consola]
+    def buscar(request):
+        """
+        Endpoint para buscar los ingredientes en base a una query
+        """
+        resultados_lista = []
+        if(request.method == 'GET'):
+            query = request.GET.get('query','')
+            resultados = buscador.buscarIngredienteNombre(query)
+            for resultado in resultados:
+                resultado_dict = {
+                    'id': resultado[0],
+                    'nombre': resultado[1]
+                }
+                resultados_lista.append(resultado_dict)
+        return JsonResponse({'resultados': resultados_lista})
+    \end{lstlisting}
+    \caption{}
+    \label{sni:django-buscar}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{lstlisting}[style=consola]
+        def resultados(request):
+            """
+            Endpoint para buscar recetas en base a los ingredientes seleccionados
+            """
+            if request.method == 'POST':
+                metodo = request.POST.get("metodo")
+                if request.COOKIES.get("recetas"):
+                    guardadas_json = json.loads(request.COOKIES.get("recetas"))
+                    guardadas  = [eval(i) for i in guardadas_json]
+                else:
+                    guardadas = []
+                if metodo == "ingredientes":
+                    if request.COOKIES.get("IDs"):
+                        seleccionados_json = json.loads(request.COOKIES.get("IDs"))
+                        if seleccionados_json:
+                            IDs = list(map(int, seleccionados_json["seleccionados"]))
+                            lista_recetas = buscador.buscarRecetasIngredientes(IDs)
+                            recetas = []
+                            for receta in lista_recetas:
+                                recetas.append((receta[0],receta[1],receta[2],receta[0] in guardadas))
+                            context = {
+                                "top": buscador.getRandom(5),
+                                "resultados": recetas
+                            }
+                        else:
+                            context = {
+                                "top": buscador.getRandom(5)
+                            }
+                    else:
+                        return redirect("index")
+                if metodo == "recetas":
+                    query = request.POST.get('search-recetas')
+                    lista_recetas = buscador.buscarRecetasNombre(query)
+                    recetas = []
+                    for receta in lista_recetas:
+                        recetas.append((receta[0],receta[1],receta[2],receta[0] in guardadas))
+                    context = {
+                        "top": buscador.getRandom(5),
+                        "resultados": recetas
+                    }
+                return render(request,'resultados.html',context)
+            else:
+                return redirect("index")
+    \end{lstlisting}
+    \caption{\gls{endpoint} para buscar recetas por ingredientes}
+    \label{sni:django-recetasIngredientes}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{lstlisting}[style=consola]
+        def getRandom(numero : int):
+            return buscador.getRandom(numero)
+    \end{lstlisting}
+    \caption{Método para buscar recetas aleatorias}
+    \label{sni:django-aleatorias}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{lstlisting}[style=consola]
+        def detalle_receta(request, id):
+            """
+            Endpoint para ver los detalles de una receta
+            """
+            try:
+                receta = buscador.buscarRecetasID(id)
+                formateado = re.sub("Paso (\d+)\n\n","",receta[2]).split(";")
+                IDs = []
+                if request.COOKIES.get("recetas"):
+                    guardadas_json = json.loads(request.COOKIES.get("recetas"))
+                    IDs  = [eval(i) for i in guardadas_json]
+                
+                saved = id in IDs
+                context = {
+                    "receta_id": receta[0],
+                    "receta_nombre": receta[1],
+                    "receta_pasos": formateado,
+                    "receta_ingredientes": receta[4],
+                    "saved": saved
+                }
+                return render(request,'receta.html', context)
+            except:
+                return redirect("index")
+    \end{lstlisting}
+    \caption{\gls{endpoint} para ver detalles de una receta}
+    \label{sni:django-detalles}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{lstlisting}[style=consola]
+        def guardadas(request):
+            """
+            Endpoint para ver las recetas guardadas
+            """
+            context = {}
+            if request.COOKIES.get("recetas"):
+                guardadas_json = json.loads(request.COOKIES.get("recetas"))
+                IDs  = [eval(i) for i in guardadas_json]
+                recipes = []
+                for id in IDs:
+                    recipe = buscador.buscarRecetasID(id)
+                    saved = recipe[0] in IDs
+                    recipes.append((recipe[0],recipe[1],recipe[4],saved))
+        
+                context = {
+                    "top": buscador.getRandom(5),
+                    "resultados": recipes
+                }
+            
+            return render(request,'resultados.html',context)
+    \end{lstlisting}
+    \caption{\gls{endpoint} para ver las recetas guardadas del usuario}
+    \label{sni:django-detalles}
+\end{figure}

@@ -2,14 +2,14 @@
 Una vez creado el núcleo de la aplicación, para llevarlo al usuario final se debe encapsular en dos capas: \Gls{interfaz} y \gls{framework}. La primera capa es totalmente visual, lo que el usuario va a ver y con lo que va a interactuar, por eso es tan importante contar con una \gls{interfaz} sencilla e intuitiva que permita a cualquier persona entender como utilizar la aplicación. La segunda capa se puede definir como el pegamento que une la \gls{interfaz} con la funcionalidad para encontrar recetas, gestiona las llamadas al núcleo y da formato a la \gls{interfaz} que ve el usuario.
 
 \section{Interfaz}
-En el apartado de \textit{design thinking} se detallaba la interfaz de baja fidelidad para el prototipo, esta se ha llevado a cabo como una primera versión de interfaz para conocer las opiniones de los usuarios y poder mejorarla de cara al futuro.
+En el apartado de \textit{\gls{design}} se detallaba la interfaz de baja fidelidad para el prototipo, esta se ha llevado a cabo como una primera versión de interfaz para conocer las opiniones de los usuarios y poder mejorarla de cara al futuro.
  
 \subsection{Diseño}
 Siguiendo los \gls{mockup} presentados de la aplicación web, se intenta realizar en mayor medida una \gls{interfaz} sencilla que una persona mayor pueda entender, si el diseño está muy recargado es muy probable que se confunda. En la versión final de la aplicación se puede añadir un banner que actúe como footer con anuncios, que no entorpezcan la visualización o la experiencia del usuario.
 
 \begin{figure}[h!]
 \centering
-\fbox{\includegraphics[width=100mm,scale=1]{./doc/imagenes/home.png}}
+\fbox{\includegraphics[width=100mm,scale=1]{./doc/imagenes/home_escritorio.png}}
 \caption{Diseño para escritorio}
 \label{fig:escritorio}
 \end{figure}
@@ -19,7 +19,7 @@ En cuanto al diseño central de la aplicación, se puede observar una clara divi
 \newpage
 \begin{figure}[h!]
 \centering
-\fbox{\includegraphics[width=100mm,scale=1]{./doc/imagenes/home-ipad-horizontal.png}}
+\fbox{\includegraphics[width=100mm,scale=1]{./doc/imagenes/home_ipad_horizontal.png}}
 \caption{Diseño para tableta horizontal}
 \label{fig:surface}
 \end{figure}
@@ -27,19 +27,19 @@ La figura superior muestra un diseño para una tableta en modo horizontal, siend
 
 \begin{figure}[b!p]
 \centering
-\fbox{\includegraphics[width=63mm,scale=1]{./doc/imagenes/home-vertical.png}}
+\fbox{\includegraphics[width=85mm,scale=1]{./doc/imagenes/home_vertical.png}}
 \caption{Diseño para tableta vertical}
 \label{fig:ipad}
 \end{figure}
 Por último, se muestra el diseño para una tableta vertical más estrecha. Se puede observar que la zona central que antes estaba dividida en dos, se ha pasado a una sola columna con el objetivo de que los resultados sean lo más legibles posible. Este mismo diseño es el utilizado para dispositivos móviles.
 
 \subsection{Implementación}
-Para la parte de implementación de la interfaz se ha utilizado \href{https://getbootstrap.com/}{Boostrap}, un \emph{\gls{framework}} de estilos orientado a la facilitar una mejora visual al código \gls{HTML} sin tener que entrar a \gls{CSS} (Cascade Style Sheet). Existen otros \gls{frameworks} de estilo, pero Boostrap es muy completo, no solo incluyendo estilos \gls{CSS} sino también algunas funcionalidades en JavaScript, para mejorar la interfaz, haciéndola dinámica.
+Para la parte de implementación de la interfaz se ha utilizado \href{https://getbootstrap.com/}{Boostrap}, un \emph{\gls{framework}} de estilos orientado a la facilitar una mejora visual al código \gls{HTML} sin tener que entrar a \gls{CSS} (Cascade Style Sheet). Existen otros \glspl{framework} de estilo, pero Boostrap es muy completo, no solo incluyendo estilos \gls{CSS} sino también algunas funcionalidades en JavaScript, para mejorar la interfaz, haciéndola dinámica.
 
 Para instalar el \gls{framework}, existen dos maneras diferentes:
 \begin{itemize}
     \item Descargar el código fuente
-    \item Utilizar un \gls{CDN} (Content Delivery Network)
+    \item Utilizar un Content Delivery Network (\gls{CDN})
 \end{itemize}
 
 Para incluirlo en el proyecto se debe añadir el \gls{tag} ``link'' con la referencia al fichero descargado o el enlace al \gls{CDN}. Por otra parte Boostrap usa elementos dinámicos que necesitan de unas funciones escritas en JavaScript incluidas en el mismo fichero comprimido descargable, que será necesario incluir dentro de un \gls{tag} ``script'', una vez añadidos los ficheros necesarios, el estilo se puede aplicar añadiendo clases a los elementos \gls{HTML}, como se haría con un \gls{CSS} normal.
@@ -53,7 +53,7 @@ El buscador principal contiene una tabla en principio oculta, esperando a ser ut
     <div class="d-inline-flex w-100">
         <input id="buscador-ingredientes" class="form-control me-2" type="search" placeholder="Buscar Ingredientes" aria-label="Search">
         <button id="enviarIngredientes" class="btn btn-success" type="submit">Buscar Recetas</button>
-    <div id="eliminarSeleccion" class="btn btn-danger ms-3">Borrar Selección</div>
+    <div id="eliminarSeleccion" class="btn btn-danger ms-3">Borrar Seleccion</div>
 \end{lstlisting}
 \caption{Diseño del buscador}
 \end{figure}
@@ -61,7 +61,7 @@ El buscador principal contiene una tabla en principio oculta, esperando a ser ut
 La función que recupera los ingredientes de la base de datos se ha codificado en JavaScript y es llamada cada vez que el \gls{endpoint} devuelve una lista de ingredientes encontrados, es la función que da forma a la tabla de manera dinámica. \textit{buscarIngrediente} obtiene como parámetro la respuesta con la lista de ingredientes. En primer lugar, se crea la \gls{cookie} que contendrá la lista de ingredientes seleccionados. Y se elimina el atributo \textit{hidden}, para que se visualicen los resultados. Posteriormente por cada ingrediente de la lista se crea una nueva fila a la que se le añaden los atributos del ingrediente recuperado, y un disparador de eventos que al pulsar la fila añade el identificador del ingrediente a la lista almacenada en la \gls{cookie} mencionada. Si se selecciona el elemento, se muestra un \textit{tick} que permite al usuario conocer si cuenta con ese ingrediente en su lista, al volver a seleccionar el ingrediente se elimina de la ``despensa'' del usuario y se vuelve a esconder el \textit{tick}.
 \begin{figure}[h!]
 \centering
-\fbox{\includegraphics[width=100mm,scale=1]{./doc/imagenes/buscador-tabla.png}}
+\fbox{\includegraphics[width=125mm,scale=1]{./doc/imagenes/buscador_tabla.png}}
 \label{fig:buscador-tabla}
 \begin{lstlisting}[style=consola]
     <table id="tabla" class="table mt-5 container ingredientes">
@@ -99,7 +99,7 @@ Por simplicidad se ha añadido solo el código \gls{HTML} relativo a una sola en
                 if(isSeleccionado(resultados[i].id) == false){
                     svg += " hidden"
                 }
-                svg += '<código del svg>'
+                svg += '<codigo del svg>'
                 td.append(svg);
                 fila.append(td);
                 tabla.append(fila);
@@ -115,14 +115,14 @@ Los dos botones del buscador tienen la utilidad de eliminar ingredientes selecci
 
 \begin{figure}[h!]
 \centering
-\fbox{\includegraphics[width=120mm,scale=1]{./doc/imagenes/resultados-guardadas.png}}
+\fbox{\includegraphics[width=120mm,scale=1]{./doc/imagenes/resultados_guardadas.png}}
 \caption{Resultados del filtrado por ingrediente}
 \label{fig:resultados}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\fbox{\includegraphics[width=75mm,scale=1]{imagenes/resultados-ipad.png}}
+\fbox{\includegraphics[width=100mm,scale=1]{imagenes/resultados_ipad.png}}
 \caption{Resultados del filtrado por ingrediente en una tablet}
 \label{fig:resultados-tablet}
 \end{figure}
@@ -139,7 +139,7 @@ Esta \gls{interfaz} es muy clara, ya que solo muestra recetas que se pueden real
 
 \begin{figure}[h!]
 \centering
-\fbox{\includegraphics[width=75mm,scale=1]{./doc/imagenes/receta-ipad.png}}
+\fbox{\includegraphics[width=100mm,scale=1]{./doc/imagenes/receta_ipad.png}}
 \caption{Tarjeta de la receta ``Budín de bacalao'' en una tablet}
 \label{fig:receta-tablet}
 \end{figure}
@@ -176,15 +176,15 @@ El código \gls{HTML} de la receta se genera dinámicamente obteniendo los datos
 \section{Framework}
 Para pegar las dos capas desarrolladas hasta ahora: El núcleo para encontrar recetas y la capa de \gls{frontend}, se utiliza un \gls{framework} que actúa como intermediario estableciendo unos \gls{endpoint} para el usuario y algunas funcionalidades ya vistas en la sección anterior. 
 
-Como ya se explicó en el apartado de implementación del proyecto, se ha elegido \gls{django} como \gls{framework} para \gls{python}. Este permite crear las rutas de manera sencilla y ofrece un modelo \gls{MVC} (Modelo-Vista-Controlador), que gestiona tanto la base de datos como la generación del \gls{HTML} que se ofrece al usuario. Además, permite crear plantillas \gls{HTML} dinámicas con los datos recuperados del modelo, y generar formularios que encajen con la generación de \glspl{tupla} para la \gls{base}. 
+Como ya se explicó en el apartado de implementación del proyecto, se ha elegido \Gls{django} como \gls{framework} para \Gls{python}. Este permite crear las rutas de manera sencilla y ofrece un modelo \gls{MVC} (Modelo-Vista-Controlador), que gestiona tanto la base de datos como la generación del \gls{HTML} que se ofrece al usuario. Además, permite crear plantillas \gls{HTML} dinámicas con los datos recuperados del modelo, y generar formularios que encajen con la generación de \glspl{tupla} para la \gls{base}. 
 
-La instalación es muy sencilla, pudiéndose insertar en el entorno de \gls{poetry} añadiendo las dependencias según lo explicado. \gls{django} usa por defecto una \gls{base} SQLite 3, por ello hay que cambiar la configuración del proyecto, además de añadir al software instalado el entorno de la nueva aplicación.
+La instalación es muy sencilla, pudiéndose insertar en el entorno de \Gls{poetry} añadiendo las dependencias según lo explicado. \Gls{django} usa por defecto una \gls{base} SQLite 3 llamada ``db.sqlite3'' se puede cambiar el nombre mediante el parámetro ``DB_NAME'' del fichero de configuración de entorno. Además es necesario añadir al software instalado el entorno de la nueva aplicación.
 
-Iniciar una aplicación genera una platilla de ficheros de donde \gls{django} obtendrá los datos para montar la lógica de la página web. 
+Iniciar una aplicación genera una platilla de ficheros de donde \Gls{django} obtendrá los datos para montar la lógica de la página web. 
 \begin{figure}[h!]
 \begin{lstlisting}[style=consola]
     poetry run django-admin startproject <nombre del proyecto>
-    poetry run Python3 <carpeta del proyecto>/manage.py startapp <nombre de la aplicación>
+    poetry run Python3 <carpeta del proyecto>/manage.py startapp <nombre de la aplicacion>
     invoke migrate --app=<nombre del proyecto>
 \end{lstlisting}
 \caption{Comandos para la instalación de Django}
@@ -217,12 +217,12 @@ Iniciar una aplicación genera una platilla de ficheros de donde \gls{django} ob
     \caption{Estructura del proyecto}
     \label{fig:django}
 \end{figure}
-En la figura superior se muestra el árbol de directorios final que tiene el proyecto generado por \gls{django}. En la carpeta ``app'' es donde se contiene toda la información de la aplicación. 
+En la figura superior se muestra el árbol de directorios final que tiene el proyecto generado por \Gls{django}. En la carpeta ``app'' es donde se contiene toda la información de la aplicación. 
 
 \subsection{Endpoints}
 La definición de \gls{endpoint} tiene muchos significados diferentes dependiendo del contexto, en un entorno de programación el significado se refiere a una URL de una \gls{API} o \gls{backend} que se encarga de responder a una petición. 
 
-Para el desarrollo del proyecto se han creado algunos \gls{endpoint} que sirven como punto de acceso a los datos de recetas almacenado en la base de datos. En \gls{django} se definen en el archivo ``app\\urls.py'', pero para que \gls{django} pueda encontrarlos debemos incluir este fichero en las URL a nivel de proyecto, desde ``Dietplanner\\urls.py''. 
+Para el desarrollo del proyecto se han creado algunos \gls{endpoint} que sirven como punto de acceso a los datos de recetas almacenado en la base de datos. En \Gls{django} se definen en el archivo ``app\\urls.py'', pero para que \Gls{django} pueda encontrarlos debemos incluir este fichero en las URL a nivel de proyecto, desde ``Dietplanner\\urls.py''. 
 
 \begin{figure}
     \centering
@@ -251,9 +251,9 @@ Dentro del fichero ``views.py'' se implementa la lógica de cada \gls{endpoint}.
 Este punto de acceso se utiliza por defecto al acceder a la página web inicialmente, y devuelve una vista de la plantilla ``buscador.html'' con el buscador principal y una columna de recetas aleatorias. 
 
 \subsubsection{Buscar}
-Anteriormente, en el apartado de interfaz, se explicó que el buscador de ingredientes principal, que se actualizaba la lista de ingredientes con cada letra que se introducía haciendo uso de un \gls{event listener}, dicha funcionalidad utiliza este \gls{endpoint}.
+Anteriormente, en el apartado de interfaz, se explicó que el buscador de ingredientes principal, que se actualizaba la lista de ingredientes con cada letra que se introducía haciendo uso de un \gls{event}, dicha funcionalidad utiliza este \gls{endpoint}.
 
-Al llegar una petición se comprueba el método, si viene de una solicitud ``GET'' se obtiene la cadena pasada como argumento. Posteriormente, por simplicidad, se utiliza un filtro en \gls{django} para obtener todos los ingredientes que existen en la \gls{base}. 
+Al llegar una petición se comprueba el método, si viene de una solicitud ``GET'' se obtiene la cadena pasada como argumento. Posteriormente, por simplicidad, se utiliza un filtro en \Gls{django} para obtener todos los ingredientes que existen en la \gls{base}. 
 \begin{figure}
     \centering
     \begin{lstlisting}[style=consola]
@@ -268,7 +268,7 @@ Al llegar una petición se comprueba el método, si viene de una solicitud ``GET
     \caption{Endpoint buscar}
     \label{sni:Buscar}
 \end{figure}
-Para cada uno de los ingredientes encontrados como resultado se crea una cadena de texto en formato \gls{JSON} (JavaScript Object Notation) con toda la información relativa de los ingredientes, y en el lado de la \gls{interfaz} se gestionan los datos como se explicó anteriormente.
+Para cada uno de los ingredientes encontrados como resultado se crea una cadena de texto en formato \gls{JSON} con toda la información relativa de los ingredientes, y en el lado de la \gls{interfaz} se gestionan los datos como se explicó anteriormente.
 
 \subsubsection{Resultados}
 Este \gls{endpoint} se especifica para obtener los resultados de las recetas que puede hacer el usuario con los ingredientes que desea utilizar en la cocina. En la aplicación existen dos tipos de búsqueda de recetas

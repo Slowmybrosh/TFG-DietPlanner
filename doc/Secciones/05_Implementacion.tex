@@ -2,18 +2,18 @@
 En todo proyecto existen una serie de decisiones que marcan el avance del proyecto. En este capítulo se describirán, detalladamente, las justificaciones de cada decisión que se tome durante el desarrollo del mismo. Otorgando tanto al lector como a cualquier desarrollador que busque continuar este proyecto, un entendimiento de porqué se han tomado dichas decisiones.
 
 \section{Herramientas de control de versiones}
-Como se explicó en capítulos anteriores, \Gls{git} es una herramienta de control de versiones muy poderosa que permite mantener una organización en los cambios realizados en el código de un proyecto por medio de \emph{issues} y \emph{commits}.
+Como se explicó en capítulos anteriores, \emph{\Gls{git}} es una herramienta de control de versiones muy poderosa que permite mantener una organización en los cambios realizados en el código de un proyecto por medio de \emph{\glspl{issue}} y \emph{\glspl{commit}}.
 
-Es posible trabajar con \Gls{git} localmente, pero se consiguen mejores resultados al utilizar una plataforma en línea para almacenar estos cambios. Para mantener la coherencia en los cambios del proyecto es necesario elegir una plataforma para el control de versiones. Las dos plataformas consideradas son \href{https://github.com/}{Github} y \href{https://about.gitlab.com/}{GitLab}. 
+Es posible trabajar con \emph{\Gls{git}} localmente, pero se consiguen mejores resultados al utilizar una plataforma en línea para almacenar estos cambios. Para mantener la coherencia en los cambios del proyecto es necesario elegir una plataforma para el control de versiones. Las dos plataformas consideradas son \href{https://github.com/}{\emph{\Gls{github}}} y \href{https://about.gitlab.com/}{\emph{\Gls{gitlab}}}. 
 
-Dichas plataformas son muy parecidas, dificultando la elección de una de ellas objetivamente. Ambas permiten la gestión del proyecto por medio de un repositorio remoto y están basadas en \Gls{git}. La mayor diferencia que existe entre ambas es el objetivo para el que se utilizan. GitHub es una plataforma colaborativa que ayuda a revisar y gestionar el código remotamente. Mientras que GitLab está más enfocado a proyectos de DevOps y CI/CD. \cite{VCS2022}
+Dichas plataformas son muy parecidas, dificultando la elección de una de ellas objetivamente. Ambas permiten la gestión del proyecto por medio de un repositorio remoto y están basadas en \emph{\Gls{git}}. La mayor diferencia que existe entre ambas es el objetivo para el que se utilizan. GitHub es una plataforma colaborativa que ayuda a revisar y gestionar el código remotamente. Mientras que GitLab está más enfocado a proyectos de DevOps y CI/CD. \cite{VCS2022}
 
 En el proyecto se utiliza GitHub por ser la única herramienta de control de versiones  
 
 \section{Herramientas de integración continua}
 La integración continua (CI) es un proceso de desarrollo de software que permite al equipo de desarrollo realizar \emph{builds} consistentes, añadiendo test que permitan comprobar que las funcionalidades desarrolladas funcionen como se espera. Los tres pasos esenciales de la integración continua son: Construir, testear y mezclar.
 
-Después de una investigación, de diferentes artículos\emph{online}, en el cambo de los \emph{framework} de integración continua más populares actualmente se deben valorar diferentes soluciones posibles para la implementación de la integración continua. \cite{CIKumar2023}\cite{CITaylor2023}\cite{CIRoddewig2023}
+Después de una investigación, de diferentes artículos\emph{online}, en el cambo de los \emph{\gls{framework}} de integración continua más populares actualmente se deben valorar diferentes soluciones posibles para la implementación de la integración continua. \cite{CIKumar2023}\cite{CITaylor2023}\cite{CIRoddewig2023}
 
 Se consideran las siguientes herramientas como herramientas de CI:
 \begin{enumerate}
@@ -33,7 +33,7 @@ Se elige este lenguaje por ser con el que más experiencia cuento para realizar 
 \section{Gestor de dependencias}
 En el proyecto es necesario utilizar un gestor de dependencias que resuelva la problemática de la gestión de módulos y bibliotecas externas del proyecto, para facilitar la colaboración en el proyecto y brindar una reproducibilidad en diferentes sistemas y momentos. 
 
-Como opciones se considera Poetry, ya que el lenguaje en el que se implementará el proyecto es \Gls{Python}, y son sencillos de utilizar. Las mejores prácticas en la gestión de dependencias de \Gls{Python} es el uso de pip. Esta herramienta instala las dependencias de manera global, por ello se habla también de aislar los entornos de \Gls{python} para separar las dependencias de un proyecto de otro, teniendo que añadir herramientas extra. 
+Como opciones se considera Poetry, ya que el lenguaje en el que se implementará el proyecto es \Gls{python}, y son sencillos de utilizar. Las mejores prácticas en la gestión de dependencias de \Gls{python} es el uso de pip. Esta herramienta instala las dependencias de manera global, por ello se habla también de aislar los entornos de \Gls{python} para separar las dependencias de un proyecto de otro, teniendo que añadir herramientas extra. 
 
 Se escoge Poetry por ser un gestor de dependencias sencillo que permite gestionar las dependencias de manera sencilla dentro de un entorno virtual por proyecto, para asegurar la reproducibilidad.
 
@@ -53,11 +53,11 @@ Para formar una base de datos lo más realista posible, se plantean dos solucion
     \item Crear un robot que recoja las recetas y las organice 
 \end{itemize}
 
-Un \textit{crawler} o rastreador, es un programa que analiza los documentos \gls{HTML} de sitios web. Su objetivo principal es crear una base de datos, se utilizan sobretodo en motores de búsqueda, con el objetivo de extraer información que necesitan para evaluar sitios web y el posicionamiento en las búsquedas web.\cite{https://es.ryte.com/wiki/Crawler}
+Un \href{https://es.ryte.com/wiki/Crawler}{\textit{\gls{crawler}}} o rastreador, es un programa que analiza los documentos \gls{HTML} de sitios web. Su objetivo principal es crear una base de datos, se utilizan sobretodo en motores de búsqueda, con el objetivo de extraer información que necesitan para evaluar sitios web y el posicionamiento en las búsquedas web.
 
 Otra solución planteada es utilizar una automatización para extraer recetas de un sitio web, que sirva para obtener una base de datos inicial con la que trabajar. 
 
-La ventaja que determina utilizar una herramienta de ``Robotic Process Automation'' (RPA) es que la mayoría de sitios web añaden un fichero ``robots.txt'' que impiden el acceso a \textit{\gls{crawlers}} a la página, aunque es posible esquivar esta medida de protección de manera no muy lícita. Mientras que un robot hace uso de la interfaz gráfica de un navegador común, pudiendo completar la tarea sin ningún inconveniente.
+La ventaja que determina utilizar una herramienta de ``Robotic Process Automation'' (RPA) es que la mayoría de sitios web añaden un fichero ``robots.txt'' que impiden el acceso a \textit{\glspl{crawler}} a la página, aunque es posible esquivar esta medida de protección de manera no muy lícita. Mientras que un robot hace uso de la interfaz gráfica de un navegador común, pudiendo completar la tarea sin ningún inconveniente.
 
 Para automatizar el proceso de búsqueda de recetas, se utilizará la herramienta BluePrism, aunque es una herramienta de pago, cuento con una licencia para su uso. Existen otras opciones como UIPath, robocorp o python RPA. Pero BluePrism es la herramienta con la que más experiencia tengo y contar con una licencia es un aliciente para la elección de esta herramienta. 
 
@@ -69,14 +69,14 @@ Para contener las recetas y servirlas al usuario a la hora de responder a las pe
 Se escoge SQLite sobre PostgreSQL y MySQL por ser más ligero, estar incluido en \Gls{python} y no depender de un contenedor docker para gestionar la base de datos, además del coste que supone en los recursos del sistema, teniendo toda la información contenida en un único fichero. Si bien es cierto, es posible contar con un servidor SQLite Server de bases de datos local. En un posterior despliegue en la nube, es posible migrar la base de datos a una instancia que ejecute este motor, para permitir mayor concurrencia, fiabilidad. \cite{bbdd2023}
 
 \section{\emph{Test framework}}
-Para asegurar que las características de la aplicación siguen funcionando, es necesario incluir un \emph{framework} para ejecutar los test. Se busca crear test de integración, basados en comprobar diferentes componentes de la aplicación, por ahora solo se comprueba la funcionalidad de encontrar recetas, pero a medida que avance el desarrollo de la aplicación y se implementen más funcionalidades, será necesario contar con sus respectivos test.
+Para asegurar que las características de la aplicación siguen funcionando, es necesario incluir un \emph{\gls{framework}} para ejecutar los test. Se busca crear test de integración, basados en comprobar diferentes componentes de la aplicación, por ahora solo se comprueba la funcionalidad de encontrar recetas, pero a medida que avance el desarrollo de la aplicación y se implementen más funcionalidades, será necesario contar con sus respectivos test.
 
 Se elige pytest como \emph{test runner}, entre otros como unittest, nose o nose2. Su configuración no tiene complicación, siendo perfecto para este proyecto, y su uso está muy extendido para realizar las pruebas en el código desarrollado no solo en pequeños proyectos, sino también en proyectos a gran escala. Se han añadido algunos test para asegurar la funcionalidad del buscador de recetas. Además esta herramienta contiene un plugin para realizar test en las aplicaciones de Django.
 
 \section{\emph{Framework web}}
 Para que el usuario medio (\href{https://github.com/Slowmybrosh/TFG-DietPlanner/issues/22}{HU01} y \href{https://github.com/Slowmybrosh/TFG-DietPlanner/issues/41}{HU02}) pueda encontrar recetas por medio de uno de sus dispositivos, ya sea móvil o computadora. Es necesario componer la solución y envolverla con una interfaz de usuario agradable a la vista, que le permita encontrar recetas. Antes de añadir esa capa de interfaz, es necesario una herramienta que conecte la capa de interfaz con la funcionalidad de encontrar recetas. 
 
-Un \emph{\gls{framework}} es una estructura software compuesta de componentes personalizados, existiendo una infinidad. No solo relacionadas con el desarrollo web, sino que también hay \gls{framework} orientados a desarrollo de aplicaciones médicas, desarrollo de videojuegos o para cualquier contexto que se nos ocurra. Dicho en otras palabras, se puede definir como una aplicación incompleta a la que tenemos que añadirle las últimas pinceladas para completar el desarrollo. 
+Un \emph{\gls{framework}} es una estructura software compuesta de componentes personalizados, existiendo una infinidad. No solo relacionadas con el desarrollo web, sino que también hay \emph{\gls{framework}} orientados a desarrollo de aplicaciones médicas, desarrollo de videojuegos o para cualquier contexto que se nos ocurra. Dicho en otras palabras, se puede definir como una aplicación incompleta a la que tenemos que añadirle las últimas pinceladas para completar el desarrollo. 
 
 Se consideran \Gls{django} y \Gls{flask} como \emph{``framework'' web} para \Gls{python}.
 
@@ -85,32 +85,39 @@ Se consideran \Gls{django} y \Gls{flask} como \emph{``framework'' web} para \Gls
     \item Ligero
     \item Sistema de test unitarios
     \item Extensión por medio de \emph{plugins}
-    \item Compatibilidad con \emph{Web Server Gateway Interface} (WSGI)
+    \item Compatibilidad con \emph{Web Server Gateway Interface} (\gls{WSGI})
 \end{enumerate}
 
-\Gls{django} por su parte es un \emph{framework web} completo que contiene muchas funcionalidades en su núcleo, sin tener que hacer uso de extensiones como \emph{flask}. Entre sus ventajas principales se encuentran:
+\Gls{django} por su parte es un \emph{\gls{framework} web} completo que contiene muchas funcionalidades en su núcleo, sin tener que hacer uso de extensiones como \Gls{flask}. Entre sus ventajas principales se encuentran:
 \begin{enumerate}
     \item Seguridad robusta
     \item Se adapta a proyectos con un gran volumen de carga
-    \item \emph{SEO-Friendly}
+    \item \emph{\gls{SEO}-Friendly}
     \item Gran variedad de extensiones
-    \item Compatibilidad con \emph{Web Server Gateway Interface} (WSGI)
+    \item Compatibilidad con \emph{Web Server Gateway Interface} (\gls{WSGI})
 \end{enumerate}
 
 En la experiencia, \Gls{flask} ha sido más difícil de configurar ya que se encontró menos documentación para los fallos surgidos. No tiene soporte para aplicaciones multi-página, carece de una capa de seguridad incluida y no permite multiplataforma de manera nativa.
 
 Sobre el papel, \Gls{django} es más configurable, requiere de un poco más de configuración pero merece la pena por la gran cantidad de configuraciones posibles que permiten adaptarse completamente a cualquier aplicación web. Además, aporta características de seguridad como \gls{CSRF}, \gls{SQL} y \gls{XSS}, parcheando cualquier falla identificada por un equipo comprometido. \cite{frameworkionos2023}\cite{frameworkkinsta2023}
 
-Se elige \Gls{django} como \emph{framework web} por la facilidad del desarrollo de la aplicación en pocas líneas, siendo más rápida en la creación de un producto mínimo viable que \Gls{flask}. \Gls{django} permite implementar un \emph{frontend} de manera más rápida para recibir \emph{feedback} del usuario, además de poder implementar de manera sencilla cualquier funcionalidad futura.
+Se elige \Gls{django} como \emph{framework web} por la facilidad del desarrollo de la aplicación en pocas líneas, siendo más rápida en la creación de un producto mínimo viable que \Gls{flask}. \Gls{django} permite implementar un \emph{gls{frontend}} de manera más rápida para recibir \emph{feedback} del usuario, además de poder implementar de manera sencilla cualquier funcionalidad futura.
 
 \section{Herramienta desacoplar la \gls{base}}
 Para desacoplar la base de datos, se utiliza una herramienta \emph{Object-Relational Mappers} (ORM). Que permite acceder a una base de datos por medio de modelos. 
 
 \emph{ORM} tiene tanto ventajas como desventajas, es complicado relacionar los datos de una tabla con un objeto. En el apartado relacional, los elementos se representan en tablas con tuplas y los atributos de un objeto se referencian formando un grafo. 
 
-En primer lugar, se utilizó SQLAlchemy por ser una herramienta con un uso sencillo, aunque con una curva de aprendizaje elevada, para el proyecto no se necesitan consultas demasiado complejas. SQLAlchemy es compatible con multitud de conectores de bases de datos, encontrándose SQLite entre ellos y su compatibilidad con \emph{frameworks} web de \gls{python} \cite{orm2023}
+En primer lugar, se utilizó SQLAlchemy por ser una herramienta con un uso sencillo, aunque con una curva de aprendizaje elevada, para el proyecto no se necesitan consultas demasiado complejas. SQLAlchemy es compatible con multitud de conectores de bases de datos, encontrándose SQLite entre ellos y su compatibilidad con \emph{\glspl{framework}} web de \Gls{python} \cite{orm2023}
 
-Después de la elección de Django como framework web, para no tener redundancia en las herramientas, se ha migrado el uso de SQLAlchemy al uso de modelos en Django. 
+Después de la elección de Django como \emph{\gls{framework}} web, para no tener redundancia en las herramientas, se ha migrado el uso de SQLAlchemy al uso de modelos en \gls{django}. 
+
+\section{Web Server Gateway Interface}
+Antes de lanzarse a elegir un \emph{Web Server Gateway Interface} (\gls{WSGI}), considero necesario que se explique que es y para que sirve. Para establecer una base sobre porqué se necesita este módulo en la aplicación. Si bien es cierto que, en teoría, sería posible subir el proyecto a una instancia en la nube y exponer el puerto \gls{http} creando un servicio poco seguro.
+
+Un servidor web no sabe ejecutar aplicaciones en python, por eso Grisha Trubetskoy creó un modulo para Apache conocido como \textit{mod\_python}. Era simple y llanamente una implementación que permitía ejecutar código de python en un servidor. Poco después, fruto de la aparición de vulnerabilidades la comunidad de python comenzó a implementar \gls{WSGI}, que realmente se trata de un estándar escrito en \hred{https://peps.python.org/pep-3333/}{PEP 3333}. Al ser un estándar, permite definir de manera organizada por medio de reglas, que se requiere de la aplicación. 
+
+El \gls{WSGI} que más se utiliza en la comunidad de Python es \href{https://gunicorn.org/}{Gunicorn} ya que es muy ligero, sencillo de implementar, escalable, y se ajusta perfectamente a las necesidades de cualquier proyecto. \href{https://uwsgi-docs.readthedocs.io/en/latest/}{uWSGI} es muy popular también pero ofrece demasiadas funcionalidades que se solapan entre ellas. Por las ventajas mencionadas de Gunicorn, se escoge este \gls{WSGI}.
 
 \section{Web Server Gateway Interface}
 Antes de lanzarse a elegir un Web Server Gateway Interface (WSGI), considero necesario que se explique que es y para que sirve. Para establecer una base sobre porqué se necesita este módulo en la aplicación. Si bien es cierto que, en teoría, sería posible subir el proyecto a una instancia en la nube y exponer el puerto \gls{http} creando un servicio poco seguro.
@@ -120,4 +127,4 @@ Un servidor web no sabe ejecutar aplicaciones en python, por eso Grisha Trubetsk
 El WSGI que más se utiliza en la comunidad de Python es Gunicorn ya que es muy ligero, sencillo de implementar, escalable, y se ajusta perfectamente a las necesidades de cualquier proyecto. uWSGI es muy popular también pero ofrece demasiadas funcionalidades que se solapan entre ellas. Por las ventajas mencionadas de Gunicorn, se escoge este WSGI.
 
 \section{Servidor Web}
-Para exponer la aplicación a internet de forma segura, es necesario utilizar un servidor web que permita desplegar la aplicación para recoger peticiones del usuario. Aunque se pueda desplegar la aplicación, tal y como está, para añadir escalabilidad y seguridad, se utilizará un servidor web. Existen otros servidores web muy populares como Apache o LightSpeed, se escoge Nginx como servidor web por su flexibilidad, facilidad de configuración y modularidad, permitiendo extender la funcionalidad hasta el punto deseado, cubriendo las necesades de la aplicación a medida.
+Para exponer la aplicación a internet de forma segura, es necesario utilizar un servidor web que permita desplegar la aplicación para recoger peticiones del usuario. Aunque se pueda desplegar la aplicación, tal y como está, para añadir escalabilidad y seguridad, se utilizará un servidor web. Existen otros servidores web muy populares como \href{https://httpd.apache.org/}{Apache} o \href{https://www.litespeedtech.com/products/litespeed-web-server}{LiteSpeed}, se escoge \href{https://nginx.org/en/}{Nginx} como servidor web por su flexibilidad, facilidad de configuración y modularidad, permitiendo extender la funcionalidad hasta el punto deseado, cubriendo las necesades de la aplicación a medida.
