@@ -70,3 +70,7 @@ def runserver(c, app="dietplanner.wsgi:application"):
 @task
 def test(c, test="app.tests.tests"):
     run(f"poetry run dietplanner/manage.py test {test}")
+
+@task
+def loadtest(c, path="dietplanner/app/tests/locust.py"):
+     run(f"poetry run locust -f {path}")
