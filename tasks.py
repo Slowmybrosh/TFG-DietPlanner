@@ -74,3 +74,7 @@ def test(c, test="app.tests.tests"):
 @task
 def loadtest(c, path="dietplanner/app/tests/locust.py"):
      run(f"poetry run locust -f {path}")
+
+@task
+def rundjango(c,path="dietplanner/manage.py"):
+    run(f"poetry run python3 {path} runserver")
