@@ -1,7 +1,7 @@
 name: Test unitarios
 on: push
 env:
-  DB_NAME: db.sqlite3
+  DB_NAME: dietplanner/db.sqlite3
   STATIC_URL: 'static/'
   DATA_RECIPES: './data/recipes.json'
   DATA_INGREDIENTS: "./data/ingredients.csv"
@@ -23,7 +23,7 @@ jobs:
 
       - name: Install Poetry
         run: |
-          pip install poetry
+          pip install poetry invoke
           poetry config virtualenvs.create false
 
       - name: Install dependencies

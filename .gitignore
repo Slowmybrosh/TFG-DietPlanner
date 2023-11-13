@@ -19,6 +19,7 @@
 *.ind
 *.gls
 *.glg
+*.pdf
 
 # Byte-compiled / optimized Python files
 __pycache__/
