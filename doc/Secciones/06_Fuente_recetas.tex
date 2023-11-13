@@ -22,18 +22,18 @@ Los pasos que se han seguido para obtener recetas son:
 
 Para la función de buscar recetas de diferentes tipos, se lanza un navegador web con la dirección de inicio de \href{https://cookpad.com/es/home}{Cookpad}, al buscar cualquier cosa utilizando el cuadro de búsqueda. La dirección a la que se consulta la petición es la siguiente: \emph{buscar/verduras?event=search.history&order=recent}, con un simple vistazo se puede identificar que la petición en este caso fue ``verduras''. Sabiendo esto, para buscar por tipo de receta se han compuesto las direcciones url de manera dinámica, evitando pasos extra a la hora de realizar esta búsqueda inicial. 
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     \fbox{\includegraphics[width=100mm,scale=1]{./doc/imagenes/Extract_recipe.png}}
     \caption{Función para extraer enlaces}
     \label{fig:links}
 \end{figure}
 
-En el paso de obtención de la receta, se identifica el nombre de la receta. Utilizando la herramienta de modelado de aplicación que trae incorporada BluePrism. Con ella se puede seleccionar el elemento de la página que se desea extraer y automáticamente se extrae información relevante para la identificación como el identificador del elemento, las clases CSS del mismo, su ruta XPATH, etc... El nombre de las recetas como elemento no es único, al ser una lista de recetas habrá muchas coincidencias que se quieran extraer. Para ello se utiliza el atributo \emph{match_index}, si se selecciona el primer resultado de la página se obtendría el primer nombre. BluePrism permite recuperar atributos dinámicos, en la función el número de coincidencia itera entre uno y diez para obtener diez recetas de cada tipo. Con la coincidencia del elemento, se extrae el enlace y se guarda en una colección que se pasará a la función para extraer recetas. 
+En el paso de obtención de la receta, se identifica el nombre de la receta. Utilizando la herramienta de modelado de aplicación que trae incorporada BluePrism. Con ella se puede seleccionar el elemento de la página que se desea extraer y automáticamente se extrae información relevante para la identificación como el identificador del elemento, las clases CSS del mismo, su ruta XPATH, etc... El nombre de las recetas como elemento no es único, al ser una lista de recetas habrá muchas coincidencias que se quieran extraer. Para ello se utiliza el atributo \emph{match\_index}, si se selecciona el primer resultado de la página se obtendría el primer nombre. BluePrism permite recuperar atributos dinámicos, en la función el número de coincidencia itera entre uno y diez para obtener diez recetas de cada tipo. Con la coincidencia del elemento, se extrae el enlace y se guarda en una colección que se pasará a la función para extraer recetas. 
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
-    \fbox{\includegraphics[width=100mm,scale=1]{./doc/imagenes/Extract_recipe.png}}
+    \fbox{\includegraphics[width=75mm,scale=1]{./doc/imagenes/Extract_recipe.png}}
     \caption{Función para extraer recetas}
     \label{fig:recipe}
 \end{figure}
@@ -42,7 +42,7 @@ Una vez obtenidos todos los enlaces, puede que haya repetidos por coincidir en l
 
 La función que extrae la receta de la página, obtiene el nombre teniendo en cuenta que es el primer \emph{h1} de la página. Los ingredientes y los pasos se tratan de listas ordenadas, fáciles de extraer. Cada ingrediente tienen un identificador \emph{ingredient} seguido de una cadena de números. BluePrism puede utilizar \emph{wildcards} para identificar elementos de la página web, de la misma manera que al extraer una lista de enlaces, se itera por los ingredientes hasta que no haya más. Con los pasos se sigue el mismo razonamiento, valiéndose de un selector \gls{CSS} para extraer los pasos iterando sobre ellos hasta que no hay más. 
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     \fbox{\includegraphics[width=100mm,scale=1]{./doc/imagenes/identify_step.png}}
     \caption{Identificar los pasos de la receta}
@@ -54,6 +54,7 @@ Para que constituya una fuente de información uniforme, la colección de receta
 
 El proceso de ejecución del robot lleva tiempo, ya que el identificar los ingredientes a través de una expresión regular toma entre diez y veinte segundos. Los demás pasos son relativamente menos costosos en cuestión de tiempo. El robot tardó aproximadamente cuatro horas en obtener sesenta y dos recetas con todos los elementos mencionados. La ventaja de haber utilizado este proceso de obtención de recetas es que se puede ampliar en el futuro a conveniencia, aunque hay que tener en cuenta el tiempo que tarda el robot en obtener recetas.
 
+\newpage
 \section{Gestión de las recetas en la aplicación}
 
 Para insertar los datos en la aplicación, se insertan en una base de datos relacional para aprovechar la relación que existe entre una receta y los ingredientes que contiene. Permitiendo identificar rápidamente que ingredientes lleva una receta, pudiendo gestionar de manera sencilla los requisitos para realizar una receta. 
@@ -66,6 +67,7 @@ Se utiliza un pequeño \gls{script} para insertar los datos desde sus respectivo
     \label{fig:scheme}
 \end{figure}
 
+\newpage
 \section{Encontrar recetas}
 El primer problema que se pretende resolver con la publicación del proyecto es permitir a los usuarios encontrar recetas, ya sea por aprovechar los ingredientes de su despensa o porque no recuerdan con exactitud los ingredientes de una receta o sus pasos.
 
@@ -93,7 +95,7 @@ Una vez que se ha reducido la búsqueda a un subconjunto de recetas que cuentan 
 Al aplicar los dos filtros conjuntamente, se está obteniendo un subconjunto mucho menor y más manejable, solo se necesitaría comprobar que el usuario tenga en su haber los demás ingredientes de la receta.
 
 \subsection{Implementación}
-De manera técnica se ha implementado toda la funcionalidad en una misma clase denominada \textit{DB_connector}, que contiene todos los métodos para buscar en la base de datos utilizando diferentes filtros. Además, se han tomado protecciones para que solo haya una clase de este tipo, siendo un \gls{singleton}. Todas las sentencias \gls{SQL} se generan por medio de la herramienta \gls{ORM} utilizando los modelos de las tablas existentes en la base de datos.
+De manera técnica se ha implementado toda la funcionalidad en una misma clase denominada \textit{DB\_connector}, que contiene todos los métodos para buscar en la base de datos utilizando diferentes filtros. Además, se han tomado protecciones para que solo haya una clase de este tipo, siendo un \gls{singleton}. Todas las sentencias \gls{SQL} se generan por medio de la herramienta \gls{ORM} utilizando los modelos de las tablas existentes en la base de datos.
 
 La mayoría de métodos son accesos a objetos triviales, con el objetivo de recuperar un objeto por su identificador o por nombre. Se puede ver la información detallada de esta clase en el apéndice de la memoria.
 
@@ -109,18 +111,58 @@ Por otra parte, \textit{buscarRecetasID}, usa un algoritmo similar a la función
 El método \textit{buscarRecetasIngredientes}, utiliza el algoritmo descrito en la sección anterior. Con el método \emph{buscarRecetasIngredientesNumber}, se seleccionan con una sentencia \gls{SQL} todos las las recetas que tengan un número menor de ingredientes que la selección del usuario y tengan al menos un ingrediente de la lista proporcionada. 
 
 Una vez reducido el número de recetas se comprueba si cada ingrediente de la receta está en la lista de ingredientes del usuario. En caso de que no esté, no se debería seguir comprobando esa receta así que se sale del bucle para no perder tiempo. Si la receta cumple, se le añade la lista de ingredientes que se utilizan y a su vez este conjunto se añade al resultado a devolver.
-\begin{figure}[H!]
-\begin{lstlisting}[style=C, caption={Métodos de la base de datos utilizados para buscar recetas por ingredientes}]
-    def buscarRecetasIngredientesNumber(self, id: list[int]):
+\begin{figure}[H]
+    \begin{lstlisting}[style=python]
+        def buscarRecetasIngredientesNumber(self, id: list[int]):
+        """
+        Metodo que busca una lista de recetas por numero de ingredientes y que contengan al menos un ingrediente de la lista en la base de datos.
+
+        Parameters
+        ----------
+        id : List<Int>
+            Identificadores de ingredientes a utilizar.
+
+        Raises
+        ------
+        Error_DB : No hay conexion con la base de datos.
+
+        Returns
+        -------
+            
+        resultados : List<(Recipes)>
+            Lista de recetas que cumplen la condicion
+        """
         try:
             recipes = Recipes.objects.filter(
                 Q(number_of_ingredients__lte=len(id)) & Q(recipeingredient__ingredient_id__in=id)
             ).distinct()
             return recipes.all()
         except:
-            raise Error_DB("Error de base de datos: No hay conexión con la base de datos")
-        
-    def buscarRecetasIngredientes(self, id: int):
+            raise Error_DB("Error de base de datos: No hay conexion con la base de datos")
+    \end{lstlisting}
+    \caption{Metodo para buscar una lista de recetas por su numero de ingredientes y que contengan un ingrediente de la lista en la \gls{base}}
+    \label{sni:buscarRecetaNumeroIngredientes}
+\end{figure}
+\begin{figure}[H]
+    \begin{lstlisting}[style=python]
+        def buscarRecetasIngredientes(self, id: int):
+        """
+        Metodo que recupera los ingredientes de una receta por identificador.
+
+        Parameters
+        ----------
+        id : Int
+            Identificador de receta
+
+        Raises
+        ------
+        Error_DB : No hay conexion con la base de datos.
+
+        Returns
+        -------
+        resultados : List<(ingredient_id,ingredient_name)>
+            Lista de recetas que cumplen la condicion
+        """
         try:
             receta_ingredientes = RecipeIngredient.objects.filter(recipe_id=id).values('ingredient_id', ingredient_name=F('ingredient_id__name'))
             resultado = []
@@ -128,36 +170,8 @@ Una vez reducido el número de recetas se comprueba si cada ingrediente de la re
                 resultado.append((receta['ingredient_id'],receta['ingredient_name']))
             return resultado
         except:
-            raise Error_DB("Error de base de datos: No hay conexión con la base de datos")
-\end{lstlisting}
-    \caption{Clase conector de la \gls{base}}
-    \label{cmd:orm}
-\end{figure}
-
-\begin{figure}[H!]
-    \begin{lstlisting}[style=C, caption={Método del buscador para buscar recetas por ingredientes}]
-        try:
-            resultados =  self._db.buscarRecetasIngredientesNumber(IDs)
-        except:
-            raise Error_Buscador("Error Buscador: La sentencia de buscar recetas por id de ingredientes no es correcta")
-        try:
-            recetas = []
-            if resultados:
-                for item in resultados:
-                    cumple = True
-                    lista_ingredientes = []
-                    resultados = self._db.buscarRecetasIngredientes(item.id)
-                    for resultado in resultados:
-                        if not (resultado[0] in IDs):
-                            cumple = False
-                            break
-                        lista_ingredientes.append(resultado[1])
-                    if cumple:
-                        recetas.append((item.id,item.name,lista_ingredientes))
-            return recetas
-        except:
-            raise Error_Buscador("Error Buscador: La sentencia de buscar ingredientes por id de la receta no es correcta")
+            raise Error_DB("Error de base de datos: No hay conexion con la base de datos")
     \end{lstlisting}
-        \caption{Clase buscador de la aplicación}
-        \label{cmd:buscador}
-    \end{figure}
+    \caption{Metodo para recuperar los ingredientes de una receta por su identificador de la \gls{base}}
+    \label{sni:buscarRecetaIDIngredientes}
+\end{figure}
