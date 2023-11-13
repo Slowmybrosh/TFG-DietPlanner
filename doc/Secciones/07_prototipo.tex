@@ -171,14 +171,13 @@ Esta \gls{interfaz} es muy clara, ya que solo muestra recetas que se pueden real
 \label{sni:}
 \end{figure}
 
-El código \gls{HTML} de la receta se genera dinámicamente obteniendo los datos del \gls{backend}, que se explicará en la siguiente sección.
-
+\newpage
 \section{Framework}
 Para pegar las dos capas desarrolladas hasta ahora: El núcleo para encontrar recetas y la capa de \gls{frontend}, se utiliza un \gls{framework} que actúa como intermediario estableciendo unos \gls{endpoint} para el usuario y algunas funcionalidades ya vistas en la sección anterior. 
 
 Como ya se explicó en el apartado de implementación del proyecto, se ha elegido \Gls{django} como \gls{framework} para \Gls{python}. Este permite crear las rutas de manera sencilla y ofrece un modelo \gls{MVC} (Modelo-Vista-Controlador), que gestiona tanto la base de datos como la generación del \gls{HTML} que se ofrece al usuario. Además, permite crear plantillas \gls{HTML} dinámicas con los datos recuperados del modelo, y generar formularios que encajen con la generación de \glspl{tupla} para la \gls{base}. 
 
-La instalación es muy sencilla, pudiéndose insertar en el entorno de \Gls{poetry} añadiendo las dependencias según lo explicado. \Gls{django} usa por defecto una \gls{base} SQLite 3 llamada ``db.sqlite3'' se puede cambiar el nombre mediante el parámetro ``DB_NAME'' del fichero de configuración de entorno. Además es necesario añadir al software instalado el entorno de la nueva aplicación.
+La instalación es muy sencilla, pudiéndose insertar en el entorno de \Gls{poetry} añadiendo las dependencias según lo explicado. \Gls{django} usa por defecto una \gls{base} SQLite 3 llamada ``db.sqlite3'' dentro del entorno de \Gls{django}, se puede cambiar el nombre mediante el parámetro \emph{DB\_Name} del fichero de configuración de entorno. Además es necesario añadir al software instalado el entorno de la nueva aplicación.
 
 Iniciar una aplicación genera una platilla de ficheros de donde \Gls{django} obtendrá los datos para montar la lógica de la página web. 
 \begin{figure}[h!]
@@ -222,7 +221,7 @@ En la figura superior se muestra el árbol de directorios final que tiene el pro
 \subsection{Endpoints}
 La definición de \gls{endpoint} tiene muchos significados diferentes dependiendo del contexto, en un entorno de programación el significado se refiere a una URL de una \gls{API} o \gls{backend} que se encarga de responder a una petición. 
 
-Para el desarrollo del proyecto se han creado algunos \gls{endpoint} que sirven como punto de acceso a los datos de recetas almacenado en la base de datos. En \Gls{django} se definen en el archivo ``app\\urls.py'', pero para que \Gls{django} pueda encontrarlos debemos incluir este fichero en las URL a nivel de proyecto, desde ``Dietplanner\\urls.py''. 
+Para el desarrollo del proyecto se han creado algunos \gls{endpoint} que sirven como punto de acceso a los datos de recetas almacenado en la base de datos. En \Gls{django} se definen en el archivo ``app/urls.py'', pero para que \Gls{django} pueda encontrarlos debemos incluir este fichero en las URL a nivel de proyecto, desde ``Dietplanner/urls.py''. 
 
 \begin{figure}
     \centering
