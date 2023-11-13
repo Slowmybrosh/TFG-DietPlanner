@@ -64,8 +64,12 @@ def loadData(c, path="data/load_data.py"):
     run(f"poetry run python3 dietplanner/manage.py shell < {path}")
 
 @task
-def runserver(c, app="dietplanner.wsgi:application"):
-    run(f"cd dietplanner/ && poetry run gunicorn --bind 0.0.0.0:8000 {app}")
+def start(c,path="dietplanner/",app="wsgi:application", port="8000", dev=False):
+    if dev:
+        print(dev)
+        run(f"poetry run python3 {path}/manage.py runserver")
+    else:
+        run(f"cd dietplanner/ && poetry run gunicorn --bind 0.0.0.0:{port} {path[:-1]}.{app}")
 
 @task
 def test(c, test="app.tests.tests"):
